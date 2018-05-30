@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>音频消息</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrapValidator.css"/>
+	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="../../stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="../../assets/css/ace.min.css" />
+	<link rel="stylesheet" href="../../css/common.css" />
+	<link rel="stylesheet" href="../../css/message.css" />
+</head>
+<body>
+	<div class="page-content text-index" id="text-index">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="header smaller lighter blue">音频消息</h3>
+				<a class="return smaller lighter blue" href="userList.html" >返回上一级<img class="icon_return" src="../../images/return.png" alt=""></a>
+			</div>
+			<div class="col-xs-12 clearfix">
+					<div class="form-group col-sm-6 clearfix">
+						<a href="./add-text.html">
+							<h4 class="col-sm-4 control-label no-padding-right" for="name">关键字：1</h4>
+						</a>
+					</div>
+					<div class="form-group col-sm-6 clearfix">
+						<a href="#">
+							<h4 class="col-sm-4 control-label no-padding-right" for="name">关键字：1</h4>
+						</a>
+					</div>
+					<div class="form-group col-sm-6 clearfix">
+						<a href="#">
+							<h4 class="col-sm-4 control-label no-padding-right" for="name">关键字：1</h4>
+						</a>
+					</div>
+					<div class="form-group col-sm-6 clearfix" @click="getData()">
+						<a href="#">
+							<h4 class="col-sm-4 control-label no-padding-right" for="name">关键字：1</h4>
+						</a>
+					</div>
+					<button class="btn btn-primary" onclick="add();">新增关键字</button>
+					
+			</div>
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="fileImg" name="file" onchange="setpicurl(this);">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="../../assets/js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='../../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript">
+		if("ontouchend" in document) document.write("<script src='../../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script src="../../assets/js/vue/vue.js"></script>
+    <script src="../../assets/js/vue/vue-resource.min.js"></script>
+	
+   <!--  <script type="text/javascript" src="../dist/js/bootstrapValidator.js"></script> -->
+	<script type="text/javascript">
+		function add(){
+			window.location.href="./add-audio.html"
+		}
+		// var baseUrl=
+		var app = new Vue({
+			el:'#text-index',
+	        data:{
+	            bookList:[]
+	        },
+	        methods:{
+	        	getData:function(){
+	        		console.log("请求数据")
+	        		var url=baseUrl+"user/register";
+				    this.$http.get(url,param).then(function(res){
+						if(res.data.code==200){
+						 	g.popupMobile.msg(res.data.data);
+						}else{
+						  	g.popupMobile.msg(res.data.error);
+						}
+				    },function(){
+				       alert('请求失败处理'); //失败处理
+				    });
+	        	}
+	        },
+	        mounted:function(){
+	        	console.log(111)
+	        },
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图文消息</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrapValidator.css"/>
+	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="../../stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="../../assets/css/ace.min.css" />
+	<link rel="stylesheet" href="../../css/common.css" />
+	<link rel="stylesheet" href="../../css/message.css" />
+</head>
+<style>
+	.form-actions{
+		border-top: 0;
+		background-color: #fff;
+	}
+</style>
+<body>
+	<div class="page-content add-text-picture" id="add-picture">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="header smaller lighter blue">图文消息</h3>
+				<a class="return smaller lighter blue" href="userList.html" >返回上一级<img class="icon_return" src="../../images/return.png" alt=""></a>
+			</div>
+			<!-- <div class="main-content"> -->
+				<div class="page-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<!-- PAGE CONTENT BEGINS -->
+
+							<form class="form-horizontal" role="form">
+								<div class="sub sub0">
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 请输入关键字</label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="请输入关键字" class="col-xs-10 col-sm-5 keyword" v-model = "keyword">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">请上传主图片</label>
+										<div class="col-sm-9 main-img" @click="clickPic();">
+											<img v-bind:src="masterItem.imageUrl" alt="">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 输入主标题</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入主标题" class="col-xs-10 col-sm-5 mainTitle" v-model = "masterItem.title">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">输入主url</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入主标题url" class="col-xs-10 col-sm-5 main-url" v-model = "masterItem.url">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">输入主描述</label>
+										<div class="col-sm-9">
+											<textarea class="form-control main-decr" id="form-field-8" placeholder="请输入描述" style="height: 82px; width: 500px;" v-model = "masterItem.description"  > 
+											</textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">是否需要登陆</label>
+
+										<div class="col-sm-9">
+		
+											<!-- <input type="checkbox" id="form-field-1"  class="col-xs-10 col-sm-5 needLogin"> -->
+											<img class="isLogin" src="../../images/uncheck.png" @click="isCheck($event)" v-if="masterItem.needLogin==0">
+											<img class="isLogin" src="../../images/check.png" @click="isCheck($event)" v-if="masterItem.needLogin==1">
+										</div>
+									</div>
+								</div>
+									
+
+								<div class="sub" v-for="(item,index) in subItems" v-bind:class="[item.subClass]">
+									<div class="form-group" >
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级图片</label>
+										<div class="col-sm-9 item-img" v-bind:class="[item.imgClass]"  @click="clickPic1(item.imgClass);">
+											<img v-bind:src="item.imageUrl" alt="" v-bind:class="index">
+										</div>
+									</div>
+									<div class="form-group item1">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级标题{{index}}</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入子标题" class="col-xs-10 col-sm-5 itemTitle" v-bind:class="[item.titleClass]"  v-model="item.title">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级url</label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入url" class="col-xs-10 col-sm-5" v-model="item.url" v-bind:class="[item.urlClass]">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级描述</label>
+										<div class="col-sm-9">
+											<textarea class="form-control" id="form-field-8" placeholder="请输入描述" style="height: 82px; width: 500px;" v-bind:class="[item.decrClass]" v-model="item.description" >
+											</textarea>
+										</div>
+										
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">是否需要登陆</label>
+
+										<div class="col-sm-9">
+
+											<!-- <input type="checkbox" id="form-field-1"  class="col-xs-10 col-sm-5 needLogin" > -->
+											<img class="isLogin" src="../../images/uncheck.png" @click="isCheck($event)" v-if="item.needLogin==0">
+											<img class="isLogin" src="../../images/check.png" @click="isCheck($event)" v-if="item.needLogin==1">
+										</div>
+									</div>
+								</div>
+								<div class="clearfix form-actions">
+									<div class="col-md-offset-3 col-md-9">
+										<button class="btn btn-info upload" type="button" @click="loadData();">
+											<i class="icon-ok bigger-110"></i>
+											更新
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset" @click="deleteKey();">
+											<i class="icon-undo bigger-110"></i>
+											删除
+										</button>
+									</div>
+								</div>
+							</form>
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div>
+			<!-- </div> -->
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="fileImg" name="file" onchange="setpicurl(this,'mainImg');">
+				</div>
+			</form>
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm1" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="fileImg1" name="file" onchange="setpicurl(this,'item1');">
+				</div>
+			</form>
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm2" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="fileImg2" name="file" onchange="setpicurl(this,'item2');">
+				</div>
+			</form>
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm3" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="fileImg3" name="file" onchange="setpicurl(this,'item3');">
+				</div>
+			</form>
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm4" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="fileImg4" name="file" onchange="setpicurl(this,'item4');">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="../../assets/js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='../../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript">
+		if("ontouchend" in document) document.write("<script src='../../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+   <!--  <script type="text/javascript" src="../dist/js/bootstrapValidator.js"></script> -->
+    <script src="../../js/global.js"></script>
+    <script src="../../assets/js/vue/vue.js"></script>
+    <script src="../../assets/js/vue/vue-resource.min.js"></script>
+    <script src="../../assets/js/layer/layer.js"></script>
+	<script type="text/javascript">
+		// var baseUrl = "http://localhost:8002/gch/";//调试
+		// var baseUrl = "http://gaofen.iask.in/gaofen/";//服务器
+		// function add(){
+		// 	window.location.href="./add-text.html"
+		// }
+		// $('#test2').on('click', function(){
+		//     layer.msg('hello');
+		//     console.log(111)
+		//   });
+		function setpicurl(obj,typeImg){
+			$(".upload").attr('disabled',true);
+			var file = obj.files[0]; 
+			//获得一个http格式的url路径:mozilla(firefox)||webkit or chrome  
+		    var windowURL = window.URL || window.webkitURL;  
+		    //createObjectURL创建一个指向该参数对象(图片)的URL  
+		    var dataURL;  
+		    dataURL = windowURL.createObjectURL(file); 
+			console.log(dataURL)
+			if(typeImg =="mainImg"){
+				$('.main-img img')[0].src=dataURL;
+				// var html='<div class="img fl"><img src="'+dataURL+'" alt=""></div>';
+				// $('.img-all').append(html);
+				setTimeout(function(){
+					this.app.douploadImg(typeImg);
+				},1000)
+			}else if(typeImg =="item1"){
+				$('.item1-img img')[0].src=dataURL;
+				setTimeout(function(){
+					this.app.douploadImg(typeImg);
+				},1000)
+			}else if(typeImg =="item2"){
+				$('.item2-img img')[0].src=dataURL;
+				setTimeout(function(){
+					this.app.douploadImg(typeImg);
+				},1000)
+			}else if(typeImg =="item3"){
+				$('.item3-img img')[0].src=dataURL;
+				setTimeout(function(){
+					this.app.douploadImg(typeImg);
+				},1000)
+			}else if(typeImg =="item4"){
+				$('.item4-img img')[0].src=dataURL;
+				setTimeout(function(){
+					this.app.douploadImg(typeImg);
+				},1000)
+			}			
+		}
+		var app = new Vue({
+			el:'#add-picture',
+	        data:{
+	        	msgId:'',//关键字id
+				msgType:'',//关键字类型
+	            bookList:"111",
+	            mainImgUrl:'',//主图片url
+	            item1ImgUrl:'',//第一个item的图片url
+	            item2ImgUrl:'',//第一个item的图片url
+	            item3ImgUrl:'',//第一个item的图片url
+	            item4ImgUrl:'',//第一个item的图片url
+	            description:'',
+				imageUrl:'',
+				itemId:'',
+				title:'',
+				masterItem:'',//大主题
+				subItems:'',//小标题
+				keyword:'',//关键字
+				dataParam:{},//获取的数据对象
+				isActive:false,
+				imgClass:'',
+				oldImgUrl:'uncheck',//未选择的标示
+	        },
+	        methods:{
+	        	// 是否需要登陆
+	        	isCheck:function(e){
+	        		var oldUrl = e.target.src;//上一次的图片路径
+	        		var isChangUrl = oldUrl.indexOf('uncheck');
+	        		console.log(isChangUrl)
+	        		if(isChangUrl!=-1){
+	        			e.target.src="../../images/check.png"
+	        		}else {
+	        			e.target.src="../../images/uncheck.png"
+	        		}
+	        	},
+	        	// 获取url
+	        	getUrl:function(name) {
+		            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		            var r = window.location.search.substr(1).match(reg);
+		            if (r != null) {
+		                return decodeURI(r[2]);
+		            }
+		            return null;
+		        },
+	        	// 删除关键字
+	        	deleteKey:function(name) {
+		           var vm =this;
+		      		var url=baseUrl+"deleteImgTextReplyMsg";
+		      		vm.dataParam.msgId= vm.msgId;
+		      		var param = vm.dataParam;
+				    this.$http.post(url,param).then(function(res){
+				    	if(res.data.code==200){
+				    		setTimeout(function(){
+						  	layer.msg('删除成功', {icon: 6,time:2000});
+						  },2000)
+						  window.location.href="./text-picture.html";
+				    	}else {
+				    		layer.msg(res.data.error, {icon: 2,time:2000});
+				    	}
+				    },function(res){//失败处理
+				       layer.msg(res.data.error, {icon: 2,time:2000});
+				    });
+		        },
+		        // 请求详情
+		        getMsgDetail:function(){
+		        	var vm =this;
+		      		var url=baseUrl+"getMsgDetail?msgId="+vm.msgId+"&msgType="+vm.msgType;
+				    this.$http.get(url).then(function(res){
+				    	if(res.data.code==200){
+				    		vm.dataParam = res.data.data;
+							vm.keyword = res.data.data.keyWord;
+							vm.masterItem = res.data.data.masterItem;
+							vm.subItems = res.data.data.subItems;
+							if(vm.subItems!=null){
+								$.each(vm.subItems,function(i,e){
+									e.titleClass = "itemTitle"+(i+1);
+									e.imgClass = "item"+(i+1)+"-img";
+									e.urlClass = "itemUrl"+(i+1);
+									e.decrClass = "itemDecr"+(i+1);
+									e.subClass= "sub"+(i+1);
+									vm.titleClass = e.titleClass;
+									vm.imgClass = e.imgClass;
+									vm.urlClass = e.urlClass;
+									vm.decrClass = e.decrClass;
+								})
+							}
+				    	}else {
+				    		layer.msg(res.data.error, {icon: 2,time:2000});
+				    	}
+				    },function(res){
+				        layer.msg(res.data.error, {icon: 2,time:2000});
+				    });
+		        },
+	        	clickPic:function(){
+            		$("#fileImg").click();
+            		console.log($("#fileImg").val())
+            	},
+            	clickPic1:function(item){
+            		
+            		if(item=="item1-img"){
+            			$("#fileImg1").click();
+            		    console.log($("#fileImg1").val())
+            		}else if(item=="item2-img"){
+            			$("#fileImg2").click();
+            		}else if(item=="item3-img"){
+            			$("#fileImg3").click();
+            		}else if(item=="item4-img"){
+            			$("#fileImg4").click();
+            		}
+            		
+            	},
+            	// clickPic2:function(){
+            	// 	$("#fileImg2").click();
+            	// 	console.log($("#fileImg2").val())
+            	// },
+            	// clickPic3:function(){
+            	// 	$("#fileImg3").click();
+            	// 	console.log($("#fileImg3").val())
+            	// },
+            	// clickPic4:function(){
+            	// 	$("#fileImg4").click();
+            	// 	console.log($("#fileImg4").val())
+            	// },
+            	// 请求微信服务器
+            	weiServe:function(){
+            		var vm=this;
+            		//先获得图片的路径
+					var uPic = $("#fileImg").val();
+					if(uPic == null || uPic == "") {
+						layer.msg('请选择文件再上传', {icon: 6,time:2000});
+						return;
+					}
+					var formData = new FormData($("#imgForm")[0]);
+					// formData.append ("openId" , "12456");
+					// formData.append ("imageType" , 1);
+					var url="https://api.weixin.qq.com/cgi-bin/material/add_news?access_token=ACCESS_TOKEN";
+					vm.$http.post(url,formData).then(function(res){
+					  layer.msg('请求成功', {icon: 6,time:2000});
+					   console.log(res)
+				    },function(){
+				       layer.msg('请求失败', {icon: 6,time:2000});
+				    });
+			    },
+			    // 请求上传图片接口
+            	douploadImg:function(typeImg){
+            		var vm=this;
+
+            		//先获得图片的路径
+            		if(typeImg=="mainImg"){
+            			var uPic = $("#fileImg").val();
+            			var formData = new FormData($("#imgForm")[0]);
+            		}else if(typeImg=="item1"){
+            			var uPic = $("#fileImg1").val();
+            			var formData = new FormData($("#imgForm1")[0]);
+            		}else if(typeImg=="item2"){
+            			var uPic = $("#fileImg2").val();
+            			var formData = new FormData($("#imgForm2")[0]);
+            		}else if(typeImg=="item3"){
+            			var uPic = $("#fileImg3").val();
+            			var formData = new FormData($("#imgForm3")[0]);
+            		}else if(typeImg=="item4"){
+            			var uPic = $("#fileImg4").val();
+            			var formData = new FormData($("#imgForm4")[0]);
+            		}
+					
+					console.log(uPic)
+					if(uPic == null || uPic == "") {
+						layer.msg('请选择图片', {icon: 2,time:2000});
+						return;
+					}
+					// var formData = new FormData($("#imgForm")[0]);
+					formData.append ("openId" , "12456");
+					formData.append ("imageType" , 1);
+					var url=baseUrl+"uploadImage";
+					vm.$http.post(url,formData).then(function(res){
+						if(res.data.code==200){
+							layer.msg('上传成功', {icon: 6,time:2000});
+							if(typeImg=="mainImg"){
+								vm.mainImgUrl = res.data.data;
+								console.log("vm.mainImgUrl:"+vm.mainImgUrl)
+							}else if(typeImg=="item1"){
+								vm.item1ImgUrl =res.data.data;
+							}else if(typeImg=="item2"){
+								vm.item2ImgUrl =res.data.data;
+							}else if(typeImg=="item3"){
+								vm.item3ImgUrl =res.data.data;
+							}else if(typeImg=="item4"){
+								vm.item4ImgUrl =res.data.data;
+							}
+							$(".upload").attr('disabled',false);
+						}else {
+							layer.msg(res.data.error, {icon: 2,time:2000});
+						}
+				    },function(res){
+				       layer.msg(res.data.error, {icon: 2,time:2000});
+				    });
+			    },
+			    // 查看所有二级的needLogin是否修改
+			    changSubCheck:function(items){
+			    	var vm =this;
+			    	if(items==null) {
+			    		return;
+			    	}
+			    	for(var i =0;i<items.length;i++){
+			    		var newImg = vm.getImgDom($('.sub'+(i+1)+' .isLogin')[0]);
+			    		var item= items[i];
+			    		if(item!=undefined){
+							if(newImg.indexOf('uncheck')==-1){
+								item.needLogin = 1;
+							}else {
+								item.needLogin = 0;
+							}
+						}
+			    	}
+			    	
+			    },
+			    // 查看一级（master）needLogin是否修改
+			    changCheck:function(newImg,item){
+			    	if(item!=undefined){
+						if(newImg.indexOf('uncheck')==-1){
+							item.needLogin = 1;
+						}else {
+							item.needLogin = 0;
+						}
+					}
+			    },
+			    // 上传
+			    loadData:function(){
+            		var vm=this;
+					vm.dataParam.msgId= vm.msgId;
+					vm.dataParam.keyWord = $(".keyword").val();
+            		vm.dataParam.masterItem.title = $(".mainTitle").val();
+
+            		// 检测needLogin
+					var newImg0 = vm.getImgDom($('.sub0 .isLogin')[0]);
+					vm.changCheck(newImg0,vm.dataParam.masterItem);
+					vm.changSubCheck(vm.dataParam.subItems);
+				
+
+            		var itemTitle1 =  vm.getDom($(".itemTitle1"));
+            		if(itemTitle1!=undefined){
+            			vm.dataParam.subItems[0].title =itemTitle1;
+            		}
+            		var itemTitle2 =  vm.getDom($(".itemTitle2"));
+            		if(itemTitle2!=undefined){
+            			vm.dataParam.subItems[1].title =itemTitle2;
+            		}
+            		var itemTitle3 =  vm.getDom($(".itemTitle3"));
+            		if(itemTitle3!=undefined){
+            			vm.dataParam.subItems[2].title =itemTitle3;
+            		}
+            		var itemTitle4 =  vm.getDom($(".itemTitle4"));
+            		if(itemTitle4!=undefined){
+            			vm.dataParam.subItems[3].title =itemTitle4;
+            		}
+            		
+
+            		vm.dataParam.masterItem.url = $(".main-url").val();
+            		var itemUrl1 =  vm.getDom($(".itemUrl1"));
+            		if(itemUrl1!=undefined){
+            			vm.dataParam.subItems[0].url =itemUrl1;
+            		}
+            		var itemUrl2=  vm.getDom($(".itemUrl2"));
+            		if(itemUrl2!=undefined){
+            			vm.dataParam.subItems[1].url =itemUrl2;
+            		}
+            		var itemUrl3 =  vm.getDom($(".itemUrl3"));
+            		if(itemUrl3!=undefined){
+            			vm.dataParam.subItems[2].url =itemUrl3;
+            		}
+            		var itemUrl4 =  vm.getDom($(".itemUrl4"));
+            		if(itemUrl4!=undefined){
+            			vm.dataParam.subItems[3].url =itemUrl4;
+            		}
+            		
+
+            		var uPic = $("#fileImg").val();
+            		var uPic1 = $("#fileImg1").val();
+            		var uPic2 = $("#fileImg2").val();
+            		var uPic3 = $("#fileImg3").val();
+            		
+            		vm.dataParam.masterItem.description = $(".main-decr").val();
+            		var description1 =  vm.getDom($(".itemDecr1"));
+            		if(description1!=undefined){
+            			vm.dataParam.subItems[0].description =description1;
+            		}
+            		var description2 =  vm.getDom($(".itemDecr2"));
+            		if(description2!=undefined){
+            			vm.dataParam.subItems[1].description =description2;
+            		}
+            		var description3 =  vm.getDom($(".itemDecr3"));
+            		if(description3!=undefined){
+            			vm.dataParam.subItems[2].description =description3;
+            		}
+            		var description4 =  vm.getDom($(".itemDecr4"));
+            		if(description4!=undefined){
+            			vm.dataParam.subItems[3].description =description4;
+            		}
+
+            		var masterImgUrl =  $('.main-img img')[0].src;//获取页面获取的图片路径
+            		var oldMasterImg = vm.dataParam.masterItem.imageUrl;//后台返回的图片路径
+            		var newMasterImg = vm.mainImgUrl;//新上传的图片路径
+            		if(masterImgUrl!=oldMasterImg){
+            			vm.dataParam.masterItem.imageUrl = vm.mainImgUrl;
+            		}
+            		// 先判断是否有子级
+            		if(vm.dataParam.subItems!=null){
+	            		var itemImgUrl1 = vm.getImgDom($('.item1-img img')[0]);//获取页面获取的图片路径
+	            		var oldItemImg1 = vm.getDataImg(vm.dataParam.subItems[0]);//后台返回的图片路径
+	            		var newItemImg1 = vm.item1ImgUrl;//新上传的图片路径
+	            		if(itemImgUrl1!=oldItemImg1){
+	            			vm.dataParam.subItems[0].imageUrl = vm.item1ImgUrl;
+	            		}
+
+	            		var itemImgUrl2 = vm.getImgDom($('.item2-img img')[0]);//获取页面获取的图片路径
+	            		var oldItemImg2 = vm.dataParam.subItems[1].imageUrl;//后台返回的图片路径
+	            		var oldItemImg2 = vm.getDataImg(vm.dataParam.subItems[1]);//后台返回的图片路径
+	            		var newItemImg2 = vm.item2ImgUrl;//新上传的图片路径
+	            		if(itemImgUrl2!=oldItemImg2){
+	            			vm.dataParam.subItems[1].imageUrl = vm.item2ImgUrl;
+	            		}
+
+	            		var itemImgUrl3 = vm.getImgDom($('.item3-img img')[0]);//获取页面获取的图片路径
+	            		var oldItemImg3 = vm.getDataImg(vm.dataParam.subItems[2]);//后台返回的图片路径
+	            		var newItemImg3 = vm.item3ImgUrl;//新上传的图片路径
+	            		if(itemImgUrl3!=oldItemImg3){
+	            			vm.dataParam.subItems[2].imageUrl = vm.item3ImgUrl;
+	            		}
+	            		var itemImgUrl4 = vm.getImgDom($('.item4-img img')[0]);//获取页面获取的图片路径
+	            		var oldItemImg4 =  vm.getDataImg(vm.dataParam.subItems[3]);//后台返回的图片路径
+	            		var newItemImg4 = vm.item4ImgUrl;//新上传的图片路径
+	            		if(itemImgUrl4!=oldItemImg4){
+	            			vm.dataParam.subItems[3].imageUrl = vm.item4ImgUrl;
+	            		}
+            		}
+            		if(vm.dataParam.keyWord==null || vm.dataParam.keyWord.length==0){
+            			layer.msg('请输入关键字', {icon: 2,time:2000});
+            			return false;
+            		}
+            		if(vm.dataParam.masterItem.title==null || vm.dataParam.masterItem.title.length==0){
+            			layer.msg('请输入主标题', {icon: 2,time:2000});
+            			return false;
+            		}
+            		if(vm.dataParam.masterItem.url==null || vm.dataParam.masterItem.url.length==0){
+            			layer.msg('请输入主链接', {icon: 2,time:2000});
+            			return false;
+            		}
+					var url=baseUrl+"updateImgTextReplyMsg";
+					vm.$http.post(url,vm.dataParam).then(function(res){
+						if(res.data.code==200){
+							layer.msg('更新成功', {icon: 6,time:1500});
+							setTimeout(function(){
+								self.location=document.referrer; 
+							},1500)
+						}else {
+							layer.msg(res.data.error, {icon: 2,time:1500});
+						}
+				    },function(res){
+				        layer.msg(res.data.error, {icon: 2,time:1500});
+				    });
+				 
+			    },
+			    getDom:function(dom) {
+			    	if(dom!=null){
+			    		return dom.val();
+			    	}
+			    },
+			    getImgDom:function(dom){
+			    	if(dom!=null){
+			    		return dom.src;
+			    	}
+			    },
+			    getDataImg:function(obj){
+			    	if(obj!=null){
+			    		return obj.imageUrl;
+			    	}
+			    }
+	        },
+	        mounted:function(){
+	        	var vm = this;
+	        	vm.msgId = vm.getUrl("msgId");
+	        	vm.msgType = vm.getUrl("msgType");
+	        	vm.getMsgDetail();
+	        	  
+	        },
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.WeixinSubMenuButtonMapper">
+  <resultMap id="BaseResultMap" type="com.gaofen.model.WeixinSubMenuButton">
+    <constructor>
+      <idArg column="MENUID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TYPE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="KEY" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="URL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MEDIAID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="APPID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PAGEPATH" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    MENUID, TYPE, NAME, KEY, URL, MEDIAID, APPID, PAGEPATH
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WEIXIN_SUB_MENU_BUTTON
+    where MENUID = #{menuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WEIXIN_SUB_MENU_BUTTON
+    where MENUID = #{menuId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.gaofen.model.WeixinSubMenuButton">
+    insert into WEIXIN_SUB_MENU_BUTTON (MENUID, TYPE, NAME, 
+      KEY, URL, MEDIAID, 
+      APPID, PAGEPATH)
+    values (#{menuId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{key,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{mediaId,jdbcType=VARCHAR},
+      #{appId,jdbcType=VARCHAR}, #{pagePath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gaofen.model.WeixinSubMenuButton">
+    insert into WEIXIN_SUB_MENU_BUTTON
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menuId != null">
+        MENUID,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="key != null">
+        KEY,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="mediaId != null">
+        MEDIAID,
+      </if>
+      <if test="appId != null">
+        APPID,
+      </if>
+      <if test="pagePath != null">
+        PAGEPATH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menuId != null">
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null">
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaId != null">
+        #{mediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="pagePath != null">
+        #{pagePath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gaofen.model.WeixinSubMenuButton">
+    update WEIXIN_SUB_MENU_BUTTON
+    <set>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null">
+        KEY = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaId != null">
+        MEDIAID = #{mediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        APPID = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="pagePath != null">
+        PAGEPATH = #{pagePath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MENUID = #{menuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gaofen.model.WeixinSubMenuButton">
+    update WEIXIN_SUB_MENU_BUTTON
+    set TYPE = #{type,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      KEY = #{key,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      MEDIAID = #{mediaId,jdbcType=VARCHAR},
+      APPID = #{appId,jdbcType=VARCHAR},
+      PAGEPATH = #{pagePath,jdbcType=VARCHAR}
+    where MENUID = #{menuId,jdbcType=VARCHAR}
+  </update>
+  <select id="getAllSubMenuButtons" resultType="com.gaofen.model.WeixinSubMenuButton">
+    SELECT * FROM WEIXIN_SUB_MENU_BUTTON
+    WHERE
+    MENU_ID in
+    <foreach collection="subMenuIds" item="item" index="index"
+            open="(" separator="," close=")">#{item}
+    </foreach>
+  </select>
+
+  <delete id="clearAll">
+    DELETE FROM WEIXIN_SUB_MENU_BUTTON
+  </delete>
+</mapper>

@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.TbBasSatelliteTermMapper">
+    <resultMap id="BaseResultMap" type="com.gaofen.model.TbBasSatelliteTerm">
+        <constructor>
+            <arg column="DATAID" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="SATELLITEID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="SENSORID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="SCENEDATE" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="PRODUCTLEVEL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="RECSTATIONID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="OVERALLQUALITY" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="SCENEPATH" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="SCENEROW" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="PRODUCTNAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="STATE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="PRODUCTPATH" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="FILESIZE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="PICTUREFORMAT" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="TOPLEFTLATITUDE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="TOPLEFTLONGITUDE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="TOPRIGHTLATITUDE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="TOPRIGHTLONGITUDE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="BOTTOMRIGHTLATITUDE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="BOTTOMRIGHTLONGITUDE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="BOTTOMLEFTLATITUDE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="BOTTOMLEFTLONGITUDE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="INSTORAGEDATE" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="TESTSS" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="MYOBJSTATE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="IMGOPERATESTATE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="SCENEID" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="CATALOGID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="PUSHDATE" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="PRODUCTID" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="MOSAICPATH" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="COVERAGESTATUS" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="CLOUDPERCENT" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="IMAGEGSD" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="BAKPATH" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="POLYGONSTATE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="PRODUCTTYPE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="AUDITSTATE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="AUDITDATE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="AUDITOPERATOR" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="F_OVERALL_IMAGE_QUALITY" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="F_KEY_AREAS_CLOUM" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="F_KEY_AREAS_CLOUM_COVER" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="F_IMAGE_INTEGRITY" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="F_AREA_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <insert id="insert" parameterType="com.gaofen.model.TbBasSatelliteTerm">
+    insert into TB_BAS_SATELLITE_TERM (DATAID, SATELLITEID, SENSORID, 
+      SCENEDATE, PRODUCTLEVEL, RECSTATIONID, 
+      OVERALLQUALITY, SCENEPATH, SCENEROW, 
+      PRODUCTNAME, STATE, PRODUCTPATH, 
+      FILESIZE, PICTUREFORMAT, TOPLEFTLATITUDE, 
+      TOPLEFTLONGITUDE, TOPRIGHTLATITUDE, TOPRIGHTLONGITUDE, 
+      BOTTOMRIGHTLATITUDE, BOTTOMRIGHTLONGITUDE, 
+      BOTTOMLEFTLATITUDE, BOTTOMLEFTLONGITUDE, 
+      INSTORAGEDATE, TESTSS, MYOBJSTATE, 
+      IMGOPERATESTATE, SCENEID, CATALOGID, 
+      PUSHDATE, PRODUCTID, MOSAICPATH, 
+      COVERAGESTATUS, CLOUDPERCENT, IMAGEGSD, 
+      BAKPATH, POLYGONSTATE, PRODUCTTYPE, 
+      AUDITSTATE, AUDITDATE, AUDITOPERATOR, 
+      F_OVERALL_IMAGE_QUALITY, F_KEY_AREAS_CLOUM, F_KEY_AREAS_CLOUM_COVER, 
+      F_IMAGE_INTEGRITY, F_AREA_NAME)
+    values (#{dataId,jdbcType=DECIMAL}, #{satelliteid,jdbcType=VARCHAR}, #{sensorid,jdbcType=VARCHAR},
+      #{scenedate,jdbcType=TIMESTAMP}, #{productlevel,jdbcType=VARCHAR}, #{recstationid,jdbcType=VARCHAR}, 
+      #{overallquality,jdbcType=DECIMAL}, #{scenepath,jdbcType=DECIMAL}, #{scenerow,jdbcType=DECIMAL}, 
+      #{productname,jdbcType=VARCHAR}, #{state,jdbcType=DECIMAL}, #{productpath,jdbcType=VARCHAR}, 
+      #{filesize,jdbcType=VARCHAR}, #{pictureformat,jdbcType=VARCHAR}, #{topleftlatitude,jdbcType=DECIMAL}, 
+      #{topleftlongitude,jdbcType=DECIMAL}, #{toprightlatitude,jdbcType=DECIMAL}, #{toprightlongitude,jdbcType=DECIMAL}, 
+      #{bottomrightlatitude,jdbcType=DECIMAL}, #{bottomrightlongitude,jdbcType=DECIMAL}, 
+      #{bottomleftlatitude,jdbcType=DECIMAL}, #{bottomleftlongitude,jdbcType=DECIMAL}, 
+      #{instoragedate,jdbcType=TIMESTAMP}, #{testss,jdbcType=VARCHAR}, #{myobjstate,jdbcType=DECIMAL}, 
+      #{imgoperatestate,jdbcType=DECIMAL}, #{sceneid,jdbcType=DECIMAL}, #{catalogid,jdbcType=VARCHAR}, 
+      #{pushdate,jdbcType=TIMESTAMP}, #{productid,jdbcType=DECIMAL}, #{mosaicpath,jdbcType=VARCHAR}, 
+      #{coveragestatus,jdbcType=DECIMAL}, #{cloudpercent,jdbcType=DECIMAL}, #{imagegsd,jdbcType=DECIMAL}, 
+      #{bakpath,jdbcType=VARCHAR}, #{polygonstate,jdbcType=DECIMAL}, #{producttype,jdbcType=DECIMAL}, 
+      #{auditstate,jdbcType=DECIMAL}, #{auditdate,jdbcType=VARCHAR}, #{auditoperator,jdbcType=VARCHAR}, 
+      #{fOverallImageQuality,jdbcType=VARCHAR}, #{fKeyAreasCloum,jdbcType=VARCHAR}, #{fKeyAreasCloumCover,jdbcType=VARCHAR}, 
+      #{fImageIntegrity,jdbcType=VARCHAR}, #{fAreaName,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.gaofen.model.TbBasSatelliteTerm">
+        insert into TB_BAS_SATELLITE_TERM
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dataId != null">
+                DATAID,
+            </if>
+            <if test="satelliteid != null">
+                SATELLITEID,
+            </if>
+            <if test="sensorid != null">
+                SENSORID,
+            </if>
+            <if test="scenedate != null">
+                SCENEDATE,
+            </if>
+            <if test="productlevel != null">
+                PRODUCTLEVEL,
+            </if>
+            <if test="recstationid != null">
+                RECSTATIONID,
+            </if>
+            <if test="overallquality != null">
+                OVERALLQUALITY,
+            </if>
+            <if test="scenepath != null">
+                SCENEPATH,
+            </if>
+            <if test="scenerow != null">
+                SCENEROW,
+            </if>
+            <if test="productname != null">
+                PRODUCTNAME,
+            </if>
+            <if test="state != null">
+                STATE,
+            </if>
+            <if test="productpath != null">
+                PRODUCTPATH,
+            </if>
+            <if test="filesize != null">
+                FILESIZE,
+            </if>
+            <if test="pictureformat != null">
+                PICTUREFORMAT,
+            </if>
+            <if test="topleftlatitude != null">
+                TOPLEFTLATITUDE,
+            </if>
+            <if test="topleftlongitude != null">
+                TOPLEFTLONGITUDE,
+            </if>
+            <if test="toprightlatitude != null">
+                TOPRIGHTLATITUDE,
+            </if>
+            <if test="toprightlongitude != null">
+                TOPRIGHTLONGITUDE,
+            </if>
+            <if test="bottomrightlatitude != null">
+                BOTTOMRIGHTLATITUDE,
+            </if>
+            <if test="bottomrightlongitude != null">
+                BOTTOMRIGHTLONGITUDE,
+            </if>
+            <if test="bottomleftlatitude != null">
+                BOTTOMLEFTLATITUDE,
+            </if>
+            <if test="bottomleftlongitude != null">
+                BOTTOMLEFTLONGITUDE,
+            </if>
+            <if test="instoragedate != null">
+                INSTORAGEDATE,
+            </if>
+            <if test="testss != null">
+                TESTSS,
+            </if>
+            <if test="myobjstate != null">
+                MYOBJSTATE,
+            </if>
+            <if test="imgoperatestate != null">
+                IMGOPERATESTATE,
+            </if>
+            <if test="sceneid != null">
+                SCENEID,
+            </if>
+            <if test="catalogid != null">
+                CATALOGID,
+            </if>
+            <if test="pushdate != null">
+                PUSHDATE,
+            </if>
+            <if test="productid != null">
+                PRODUCTID,
+            </if>
+            <if test="mosaicpath != null">
+                MOSAICPATH,
+            </if>
+            <if test="coveragestatus != null">
+                COVERAGESTATUS,
+            </if>
+            <if test="cloudpercent != null">
+                CLOUDPERCENT,
+            </if>
+            <if test="imagegsd != null">
+                IMAGEGSD,
+            </if>
+            <if test="bakpath != null">
+                BAKPATH,
+            </if>
+            <if test="polygonstate != null">
+                POLYGONSTATE,
+            </if>
+            <if test="producttype != null">
+                PRODUCTTYPE,
+            </if>
+            <if test="auditstate != null">
+                AUDITSTATE,
+            </if>
+            <if test="auditdate != null">
+                AUDITDATE,
+            </if>
+            <if test="auditoperator != null">
+                AUDITOPERATOR,
+            </if>
+            <if test="fOverallImageQuality != null">
+                F_OVERALL_IMAGE_QUALITY,
+            </if>
+            <if test="fKeyAreasCloum != null">
+                F_KEY_AREAS_CLOUM,
+            </if>
+            <if test="fKeyAreasCloumCover != null">
+                F_KEY_AREAS_CLOUM_COVER,
+            </if>
+            <if test="fImageIntegrity != null">
+                F_IMAGE_INTEGRITY,
+            </if>
+            <if test="fAreaName != null">
+                F_AREA_NAME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dataId != null">
+                #{dataId,jdbcType=DECIMAL},
+            </if>
+            <if test="satelliteid != null">
+                #{satelliteid,jdbcType=VARCHAR},
+            </if>
+            <if test="sensorid != null">
+                #{sensorid,jdbcType=VARCHAR},
+            </if>
+            <if test="scenedate != null">
+                #{scenedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="productlevel != null">
+                #{productlevel,jdbcType=VARCHAR},
+            </if>
+            <if test="recstationid != null">
+                #{recstationid,jdbcType=VARCHAR},
+            </if>
+            <if test="overallquality != null">
+                #{overallquality,jdbcType=DECIMAL},
+            </if>
+            <if test="scenepath != null">
+                #{scenepath,jdbcType=DECIMAL},
+            </if>
+            <if test="scenerow != null">
+                #{scenerow,jdbcType=DECIMAL},
+            </if>
+            <if test="productname != null">
+                #{productname,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=DECIMAL},
+            </if>
+            <if test="productpath != null">
+                #{productpath,jdbcType=VARCHAR},
+            </if>
+            <if test="filesize != null">
+                #{filesize,jdbcType=VARCHAR},
+            </if>
+            <if test="pictureformat != null">
+                #{pictureformat,jdbcType=VARCHAR},
+            </if>
+            <if test="topleftlatitude != null">
+                #{topleftlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="topleftlongitude != null">
+                #{topleftlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="toprightlatitude != null">
+                #{toprightlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="toprightlongitude != null">
+                #{toprightlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="bottomrightlatitude != null">
+                #{bottomrightlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="bottomrightlongitude != null">
+                #{bottomrightlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="bottomleftlatitude != null">
+                #{bottomleftlatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="bottomleftlongitude != null">
+                #{bottomleftlongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="instoragedate != null">
+                #{instoragedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="testss != null">
+                #{testss,jdbcType=VARCHAR},
+            </if>
+            <if test="myobjstate != null">
+                #{myobjstate,jdbcType=DECIMAL},
+            </if>
+            <if test="imgoperatestate != null">
+                #{imgoperatestate,jdbcType=DECIMAL},
+            </if>
+            <if test="sceneid != null">
+                #{sceneid,jdbcType=DECIMAL},
+            </if>
+            <if test="catalogid != null">
+                #{catalogid,jdbcType=VARCHAR},
+            </if>
+            <if test="pushdate != null">
+                #{pushdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="productid != null">
+                #{productid,jdbcType=DECIMAL},
+            </if>
+            <if test="mosaicpath != null">
+                #{mosaicpath,jdbcType=VARCHAR},
+            </if>
+            <if test="coveragestatus != null">
+                #{coveragestatus,jdbcType=DECIMAL},
+            </if>
+            <if test="cloudpercent != null">
+                #{cloudpercent,jdbcType=DECIMAL},
+            </if>
+            <if test="imagegsd != null">
+                #{imagegsd,jdbcType=DECIMAL},
+            </if>
+            <if test="bakpath != null">
+                #{bakpath,jdbcType=VARCHAR},
+            </if>
+            <if test="polygonstate != null">
+                #{polygonstate,jdbcType=DECIMAL},
+            </if>
+            <if test="producttype != null">
+                #{producttype,jdbcType=DECIMAL},
+            </if>
+            <if test="auditstate != null">
+                #{auditstate,jdbcType=DECIMAL},
+            </if>
+            <if test="auditdate != null">
+                #{auditdate,jdbcType=VARCHAR},
+            </if>
+            <if test="auditoperator != null">
+                #{auditoperator,jdbcType=VARCHAR},
+            </if>
+            <if test="fOverallImageQuality != null">
+                #{fOverallImageQuality,jdbcType=VARCHAR},
+            </if>
+            <if test="fKeyAreasCloum != null">
+                #{fKeyAreasCloum,jdbcType=VARCHAR},
+            </if>
+            <if test="fKeyAreasCloumCover != null">
+                #{fKeyAreasCloumCover,jdbcType=VARCHAR},
+            </if>
+            <if test="fImageIntegrity != null">
+                #{fImageIntegrity,jdbcType=VARCHAR},
+            </if>
+            <if test="fAreaName != null">
+                #{fAreaName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="queryAllByCondition" resultType="com.gaofen.model.ImageData">
+        SELECT CLOUDPERCENT,SCENEDATE,SENSORID,DATAID,SATELLITEID
+        FROM TB_BAS_SATELLITE_TERM
+        WHERE 1=1
+
+        <if test="startTime != null">
+            AND SCENEDATE &gt;= #{startTime}
+        </if>
+
+        <if test="endTime != null">
+            AND SCENEDATE &lt;= #{endTime}
+        </if>
+        <if test="cloudPercent != null">
+            AND CLOUDPERCENT &lt;= #{cloudPercent}
+        </if>
+        AND( (TOPLEFTLATITUDE &lt;= #{topLeftLatitude} AND
+        TOPLEFTLONGITUDE &gt;= #{topLeftLongitude}AND
+        TOPLEFTLATITUDE &gt;= #{bottomRightLatitude} AND
+        TOPLEFTLONGITUDE &lt;= #{bottomRightLongitude})OR
+
+        (TOPRIGHTLATITUDE &lt;= #{topLeftLatitude}AND
+        TOPRIGHTLONGITUDE &gt;= #{topLeftLongitude}AND
+        TOPRIGHTLATITUDE &gt;= #{bottomRightLatitude} AND
+        TOPRIGHTLONGITUDE &lt;= #{bottomRightLongitude} )OR
+
+        (BOTTOMLEFTLATITUDE &lt;= #{topLeftLatitude}AND
+        BOTTOMLEFTLONGITUDE &gt;= #{topLeftLongitude}AND
+        BOTTOMLEFTLATITUDE &gt;= #{bottomRightLatitude} AND
+        BOTTOMLEFTLONGITUDE &lt;= #{bottomRightLongitude} )OR
+
+        (BOTTOMRIGHTLATITUDE &lt;= #{topLeftLatitude}AND
+        BOTTOMRIGHTLONGITUDE &gt;= #{topLeftLongitude}AND
+        BOTTOMRIGHTLATITUDE &gt;= #{bottomRightLatitude} AND
+        BOTTOMRIGHTLONGITUDE &lt;= #{bottomRightLongitude} )
+        )
+        AND AUDITSTATE = 1
+        ${satelliteSql}
+    </select>
+
+    <select id="queryAllByProvinceOrCity" parameterType="SearchConditionBean"
+            resultType="ImageData">
+        SELECT CLOUDPERCENT,SCENEDATE,SENSORID,DATAID,SATELLITEID
+        FROM TB_BAS_SATELLITE_TERM
+        WHERE DATAID in
+        <foreach collection="dataIds" item="item" index="index"
+                open="(" separator="," close=")">#{item}
+        </foreach>
+
+        <if test="startTime != null">
+            AND SCENEDATE &gt;= #{startTime}
+        </if>
+
+        <if test="endTime != null">
+            AND SCENEDATE &lt;= #{endTime}
+        </if>
+        <if test="cloudPercent != null">
+            AND CLOUDPERCENT &lt;= #{cloudPercent}
+        </if>
+        AND AUDITSTATE = 1
+        ${satelliteSql}
+    </select>
+    <select id="getImageByDataId" resultType="com.gaofen.model.ImageDetailData">
+        SELECT PRODUCTID, SCENEID, PRODUCTTYPE,CLOUDPERCENT,SCENEDATE,SENSORID,DATAID,SATELLITEID,BOTTOMLEFTLATITUDE,BOTTOMLEFTLONGITUDE,TOPRIGHTLATITUDE,TOPRIGHTLONGITUDE,BOTTOMRIGHTLATITUDE,BOTTOMRIGHTLONGITUDE,TOPLEFTLATITUDE,TOPLEFTLONGITUDE
+        FROM TB_BAS_SATELLITE_TERM
+        WHERE DATAID = #{dataId}
+    </select>
+    <select id="getAllSatelliteType" resultType="java.lang.String">
+        SELECT DISTINCT NAME FROM TB_PRODUCT_CATALOG WHERE PARENTID = 'B'
+    </select>
+</mapper>

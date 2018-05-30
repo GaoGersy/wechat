@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加音频</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrapValidator.css"/>
+	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="../../stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="../../assets/css/ace.min.css" />
+	<link rel="stylesheet" href="../../css/common.css" />
+	<link rel="stylesheet" href="../../css/message.css" />
+</head>
+<body>
+	<div class="page-content audio-edit" id="audio-edit">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="header smaller lighter blue">添加音频</h3>
+				<a class="return smaller lighter blue" href="userList.html" >返回上一级<img class="icon_return" src="../../images/return.png" alt=""></a>
+			</div>
+			<div class="col-xs-12 clearfix">
+				<div class="form-group col-sm-9 clearfix" >
+					<label>关键字</label></span><input type="text" class="col-sm-9" placeholder="请输入关键字" >
+				</div>
+				<div class="form-group col-sm-9 clearfix" >
+					<label>标&nbsp;&nbsp;题</label><input type="text" class="col-sm-9" placeholder="请输入标题" >
+				</div>
+				<div class="form-group col-sm-6 col-md-4 clearfix">
+					<label>分&nbsp;&nbsp;类</label>
+					<div class="radio col-md-12">
+					                 
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">财经</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">动漫</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">儿童</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">搞笑</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">健康</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">教育</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">军事</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">科技</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">历史</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">旅行</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">汽车</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">情感</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">体育</span>
+						</label>
+						<label>                 
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">外语</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">文学</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">校园</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">音乐</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">影视</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">游戏</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">音乐</span>
+						</label>
+						<label>
+							<input name="form-field-radio" type="radio" class="ace">
+							<span class="lbl">娱乐</span>
+						</label>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-sm-9 ">
+				<!-- <img src="../../images/music.png" alt="" @click="clickPic()"> -->
+				<input type="file">
+				<button class="btn btn-primary">上传音频</button>
+			</div>
+			<div class="col-sm-9 action">
+				<button class="btn btn-success">保  存</button>
+				<button class="btn btn-danger">删除</button>
+			</div>
+			<div class="hidden" style="display: none">
+				<form id="imgForm" method="post" enctype="multipart/form-data">
+					<div class="form-group">
+						<!-- <input type="file" id="fileImg" name="file" @change="setpicurl(this);"> -->
+						<input type="file" id="fileImg" name="file" onchange="setpicurl(this);">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="../../assets/js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='../../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript">
+		if("ontouchend" in document) document.write("<script src='../../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+   <!--  <script type="text/javascript" src="../dist/js/bootstrapValidator.js"></script> -->
+ 	<script src="../../assets/js/vue/vue.js"></script>
+    <script src="../../assets/js/vue/vue-resource.min.js"></script>
+	
+   <!--  <script type="text/javascript" src="../dist/js/bootstrapValidator.js"></script> -->
+	<script type="text/javascript">
+		function add(){
+			window.location.href="./add-text.html"
+		}
+		// 获取路径
+		function setpicurl(obj){
+			console.log($('#fileImg').val())
+			
+			var file = obj.files[0]; 
+			//获得一个http格式的url路径:mozilla(firefox)||webkit or chrome  
+		    var windowURL = window.URL || window.webkitURL;  
+		    //createObjectURL创建一个指向该参数对象(图片)的URL  
+		    var dataURL;  
+		    dataURL = windowURL.createObjectURL(file); 
+			console.log(dataURL)
+		}
+		var baseUrl="http://192.168.1.166/weixin/";
+		var app = new Vue({
+			el:'#audio-edit',
+	        data:{
+	            keyword:'',//关键字
+	            content:''//回复内容
+	        },
+	        methods:{
+	        	getData:function(){
+	        		var vm = this;
+	        		var data="msgId="+14+"&msgType="+1;
+	        		var url=baseUrl+"getMsgDetail?"+data;
+				    this.$http.get(url).then(function(res){
+				    	alert("success")
+				    	console.log(res.data.data)
+				    	var data=res.data.data;
+				    	vm.keyword=data.keyword;
+				    	vm.content=data.content;
+				    },function(){
+				       alert('请求失败处理'); //失败处理
+				    });
+	        	},
+	        	clickPic:function(){
+            		$("#fileImg").click();
+            		console.log($("#fileImg").val())
+            	},
+	        },
+	        mounted:function(){
+	        	console.log(111)
+
+	        	var vm= this;
+	        	// vm.getData();
+	        },
+		})
+	</script>
+</body>
+</html>

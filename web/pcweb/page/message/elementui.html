@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- 引入样式 -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+  <link rel="stylesheet" href="../../assets/js/layer/mobile/need/layer.css">
+  <link rel="stylesheet" type="text/css" href="../../js/elementui/index.css">
+</head>
+<script src="../../js/vue/vue.js"></script>
+<script src="../../js/elementui/index.js"></script>
+<body>
+  <div id="app">
+    <template>
+      <div>
+        <el-row class="menu_setting_area">
+          <el-col :span="12">
+            <div class="menu_preview_area">
+              <div class="mobile-bd">
+                <el-row class="menulist">
+                  <el-col v-for="(item,index) in menulist" :key="index" :span="menulist.length<2?12:8" class="menuitem">
+                    <a class="pre_menu_link" :style="first_selected===index&&!second_selected?'border:1px solid #44b549':''"
+                       @click="changeSelect(index)" href="javascript:">{{item.name}}</a>
+                    <ul v-show="first_selected===index" class="sub_pre_menu_box">
+                      <li v-for="(i,x) in sub_menulist" :key="x"
+                          :style="second_selected===x+1?'border:1px solid #44b549':''" @click="second_selected=x+1">
+                      <!-- <li v-for="(i,x) in sub_menulist" :key="x"
+                          :style="second_selected===x+1?'border:1px solid #44b549':''" @click="addSecondSelected(x)"> -->
+                        <span>{{i.name}}</span>
+                      </li>
+                      <li @click="add_secondmenu(index)" v-show="!sub_menulist||sub_menulist.length<5"><a
+                        class="el-icon-plus"></a></li>
+                    </ul>
+                  </el-col>
+                  <el-col v-show="menulist.length<3" :span="menulist.length<2?12:8" class="menuitem"><a
+                    class="pre_menu_link" @click="addmenu" href="javascript:"><span class="el-icon-plus"></span></a>
+                  </el-col>
+                </el-row>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="12">
+            <div v-show="menulist.length" class="menu_form_area">
+              <div id="js_rightBox">
+                <div class="editor_inner">
+                  <div class="menu_form_hd">
+                    <h4 style="float:left;font-weight: 400;margin:0">
+                      {{second_selected ? menulist[first_selected].sub_button[second_selected - 1].name : menulist[first_selected].name}}</h4>
+                    <div style="text-align: right">
+                      <a href="javascript:" @click="delmenu">删除菜单</a>
+                    </div>
+                  </div>
+                  <div class="menu_form_bd">
+                    <el-form style="margin-top: 30px" label-position="left" label-width="80px">
+                      <el-form-item v-if="!second_selected" label="菜单名称">
+                        <el-input size="small" type="text" @change="changename"
+                                  v-model="menulist[first_selected].name"
+                                  auto-complete="off"></el-input>
+                        <span>{{'字数不超过四个汉字或8个字母'}}</span>
+                      </el-form-item>
+                      <el-form-item v-if="second_selected" label="菜单名称">
+                        <el-input size="small" type="text" @change="changename"
+                                  v-model="menulist[first_selected].sub_button[second_selected-1].name"
+                                  auto-complete="off"></el-input>
+                        <span>{{'字数不超过八个汉字或16个字母'}}</span>
+                      </el-form-item>
+                      <div
+                        v-show="second_selected||!menulist[first_selected].sub_button||!menulist[first_selected].sub_button.length">
+                        <el-form-item label="菜单内容">
+                          <!-- <el-radio v-model="type" label='click'>发送消息</el-radio> -->
+                          <el-radio v-model="type" label='view'>跳转网页</el-radio>
+                          <!-- <el-radio label="3">跳转小程序</el-radio> -->
+                        </el-form-item>
+                        <div class="msg_tab">
+                          <el-form-item style="padding:10px" v-show="this.type==='view'" label="链接地址">
+                            <el-input type="text" v-model="url"></el-input>
+                          </el-form-item>
+                          <div v-show="this.type==='click'" style="display: none;">
+                            <el-row class="tab_navs_panel">
+                              <el-col v-for="(item,index) in msgtypelist" :key="index" :span="4" :offset="index?1:0"><a
+                                @click="changemsg(item)" :style="msgtype===item.value?'color:#222222':''"
+                                href="javascript:">{{item.name}}</a></el-col>
+                            </el-row>
+                            <el-form-item style="padding:10px" v-show="this.msgtype==='text'" label="消息内容">
+                              <el-input type="textarea" v-model="textmsg" :autosize="{ minRows: 4, maxRows:8}"></el-input>
+                            </el-form-item>
+                            <div v-show="this.msgtype!=='text'" style="padding:14px 20px;border-top:1px solid #e7e7eb">
+                              <el-row style="padding:20px">
+                                <el-col class="create_access" :span="10">
+                                  <span style="padding: 10px" class="el-icon-plus"></span><br>
+                                  <a href="">从素材库选择</a>
+                                </el-col>
+                                <el-col :offset="4" class="create_access" :span="10">
+                                  <span style="padding: 10px" class="el-icon-plus"></span><br>
+                                  <a href="">新建{{typename}}</a>
+                                </el-col>
+                              </el-row>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </el-form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+        <div style="margin-top: 40px;text-align: center;padding-bottom:50px;">
+          <el-button type="success" @click="save">保存并发布</el-button>
+          <el-button @click="verify1">预览</el-button>
+        </div>
+      </div>
+    </template>
+  </div>
+</body>
+  <!-- 先引入 Vue -->
+  <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+  <script src="../../assets/js/vue/vue-resource.min.js"></script>
+  <!-- 引入组件库 -->
+  <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+  <script src="../../js/global.js"></script>
+  
+  
+  <script src="../../assets/js/jquery-2.0.3.min.js"></script>
+  <script src="../../assets/js/layer/layer.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return {
+          first_selected: 0,
+          second_selected: '',
+          sub_menulist: '',
+          // type: 'click',
+          type: 'view',
+          msgtype: 'text',
+          typename: '',
+          textmsg: '',
+          url: '',
+          msgtypelist: [{'name': '文本消息', 'value': 'text'}, {'name': '图文消息', 'value': 'imgtext'}, {
+            'name': '图片',
+            'value': 'img'
+          }, {'name': '语音', 'value': 'voice'}, {'name': '视频', 'value': 'video'}],
+          menulist: [
+            {'type': 'click', 'name': '菜单名称', 'msgtype': 'text'},
+            {'type': 'click', 'name': '菜单名称', 'msgtype': 'text'},
+            {'type': 'click', 'name': '菜单名称', 'msgtype': 'text'}
+          ],
+        }
+      },
+      watch: {
+        second_selected() {
+          this.setContent()
+        },
+        first_selected() {
+          this.setContent()
+        },
+        type(val) {
+          this.changeContent('type', val)
+          if (val === 'click') {
+            this.changeContent('msgtype', 'text')
+          } else {
+            this.changeContent('msgtype', '')
+          }
+        },
+        url(val) {
+          this.changeContent('url', val);
+        },
+        textmsg(val) {
+          this.changeContent('textmsg', val)
+        }
+      },
+      methods: {
+        // 增加second_selected
+        addSecondSelected(x){
+          var vm = this;
+          // 先判断当前创建的新的二级菜单的内容是否为空
+          // var flag = vm.verify();
+          // if(flag!=false){
+            vm.second_selected=x+1;
+          // }
+        },
+        changeContent(name, value) {
+          if (this.second_selected) {
+            this.menulist[this.first_selected].sub_button[this.second_selected - 1][name] = value
+          } else {
+            this.menulist[this.first_selected][name] = value
+          }
+        },
+        setContent() {
+          var contentlist = ['type', 'msgtype', 'textmsg', 'url']
+          contentlist.map(ii => {
+            if (this.second_selected) {
+              this[ii] = this.menulist[this.first_selected].sub_button[this.second_selected - 1][ii]
+            } else {
+              this[ii] = this.menulist[this.first_selected][ii]
+            }
+          })
+        },
+        addmenu() {
+          var vm = this;
+          // var flag = vm.verify();
+          // console.log(flag)
+          // if(flag!=false){
+            this.menulist.push({type: 'click', name: '菜单名称', msgtype: 'text'});
+          // }
+        },
+        changeSelect(index) {
+          var vm = this;
+          // var flag = vm.verify();
+          // if(flag!=false){
+            this.first_selected = index
+            this.second_selected = ''
+            this.sub_menulist = this.menulist[index].sub_button || ''
+          // }
+        },
+        add_secondmenu(index) {
+          var vm = this;
+          // var flag = vm.verify();
+          // console.log(flag)
+          // if(flag!=false){
+            console.log(this.menulist[index].sub_button)
+            if (!this.menulist[index].sub_button || this.menulist[index].sub_button.length < 5) {
+              if (!this.menulist[index].sub_button) {
+                this.menulist[index].sub_button = []
+              }
+              this.menulist[index].sub_button.push({'type': 'view', 'name': '子菜单名称', msgtype: 'text'})
+              this.sub_menulist = this.menulist[index].sub_button
+              this.second_selected = this.sub_menulist.length
+            }
+            // this.show_secondmenu(index,{'type': 'click', 'name': '子菜单名称', msgtype: 'text'});
+          // }
+        },
+        show_secondmenu(index,buttonObj) {
+          if (!this.menulist[index].sub_button || this.menulist[index].sub_button.length < 5) {
+            if (!this.menulist[index].sub_button) {
+              this.menulist[index].sub_button = []
+            }
+            this.menulist[index].sub_button.push(buttonObj)
+            this.sub_menulist = this.menulist[index].sub_button
+            this.second_selected = this.sub_menulist.length
+          }
+        },
+        delmenu() {
+          var sub, index
+          if (this.menulist.length === 1) {
+            alert('最少一个菜单')
+            return
+          }
+          if (this.second_selected) {
+            sub = this.menulist[this.first_selected].sub_button[this.second_selected - 1]
+            index = this.menulist[this.first_selected].sub_button.indexOf(sub)
+            this.menulist[this.first_selected].sub_button.splice(index, 1)
+            this.second_selected = ''
+          } else {
+            sub = this.menulist[this.first_selected]
+            index = this.menulist.indexOf(sub)
+            this.menulist.splice(index, 1)
+            this.first_selected = 0
+            this.sub_menulist = this.menulist[this.first_selected].sub_button || ''
+          }
+        },
+        changename(v) {
+          var length = this.second_selected ? 8 : 4
+          if (v.length > length) return
+          if (!v.length) return
+          this.changeContent('name', v)
+        },
+        changemsg(type) {
+          this.msgtype = type.value
+          this.typename = type.name
+          this.changeContent('msgtype', type.value)
+        },
+        submit() {
+          this.deleteEl(this.menulist)
+          console.log(this.menulist)
+          
+        },
+        deleteEl(el) {
+          el.map((ii, index) => {
+            if (ii.sub_button) {
+              this.menulist[index] = {name: ii.name, sub_button: ii.sub_button}
+              this.deleteEl(ii.sub_button)
+            }
+            for (var i in ii) {
+              if (ii[i] === '' || ii[i] === undefined) {
+                delete ii[i]
+              }
+            }
+          })
+        },
+        // 获取菜单数据
+        getList:function(){
+          var vm =this;
+          var url=menuUrl+"wechat/menu/getMenu";
+          this.$http.get(url).then(function(res){
+            if(res.data.code==200){
+
+              layer.msg('请求成功', {icon: 1,time:2000});
+              vm.menulist = res.data.data.buttons;
+              vm.menulist[0].sub_button = vm.menulist[0].subButtons;
+              vm.sub_menulist = vm.menulist[0].subButtons;
+              
+                // 把后台的所有的子菜单赋给vm.menulist[i].sub_button
+              for(var i = 1;i<vm.menulist.length;i++){
+                vm.menulist[i].sub_button = vm.menulist[i].subButtons;
+              }
+
+            }else {
+              layer.msg(res.data.error, {icon: 2,time:2000});
+            }
+          },function(res){
+            layer.msg(res.data.error, {icon: 2,time:2000});
+          });
+        },
+        // 保存新增内容
+        save:function(){
+            var vm =this;
+            // var flag = vm.verify();
+            var flag = vm.verify1();
+            console.log(flag)
+            if(flag!=false){
+              // 删除sub_button（与subButton重复）
+              for(var i =0;i<vm.menulist.length;i++){
+                delete vm.menulist[i].subButtons;
+              }
+              console.log(vm.menulist)
+              var url=menuUrl+"wechat/menu/create";
+              var param = {
+                'buttons':vm.menulist
+              }
+              this.$http.post(url,param).then(function(res){
+                if(res.data.code==200){
+                  vm.textList = res.data.data;
+                  layer.msg('保存成功', {icon: 1,time:2000});
+                }else {
+                  layer.msg(res.data.error, {icon: 2,time:2000});
+                }
+              },function(res){
+                  layer.msg(res.data.error, {icon: 2,time:2000});
+              });
+            }
+        },
+        // 验证name和url 的值
+        verify:function(){
+          var vm = this;
+          // 选中二级菜单或者一级菜单没有二级菜单
+          if(vm.second_selected||!vm.menulist[vm.first_selected].sub_button||!vm.menulist[vm.first_selected].sub_button.length){
+              // 二级菜单的标题验证
+              if(vm.second_selected){
+                var name = vm.menulist[vm.first_selected].sub_button[vm.second_selected - 1].name;
+                if(name.length==0){
+                  layer.msg('请输入标题', {icon: 2,time:2000});
+                  return false;
+                }
+                // 一级菜单的标题验证
+              }else {
+                var name = vm.menulist[vm.first_selected].name;
+                if (name.length==0) {
+                  layer.msg('请输入标题', {icon: 2,time:2000});
+                  return false;
+                }
+              }
+              console.log(vm.url)
+              // url的验证
+              if(vm.url==null||vm.url.length==0){
+                layer.msg('请输入路径', {icon: 2,time:2000});
+                return false;
+              }else if(vm.url.indexOf('http')==-1){
+                layer.msg('路径必须包含"http://"', {icon: 2,time:2000});
+                return false;
+              }
+          }else {
+            var name = vm.menulist[vm.first_selected].name;
+            if (name.length==0) {
+              layer.msg('请输入标题', {icon: 2,time:2000});
+              return false;
+            }
+          }
+        },
+        verify1:function(){
+          var vm = this;
+          console.log(vm.menulist)
+          for(var i =0;i<vm.menulist.length;i++){
+            var munulist = vm.menulist[i]; 
+            // menulist[first_selected].sub_button
+            if(!munulist.sub_button){
+              if(munulist.name.length==0 ||munulist.name==null){
+                layer.msg('请输入标题', {icon: 2,time:2000});
+                return false;
+              }
+              if(munulist.url==null){
+                layer.msg('请输入url', {icon: 2,time:2000});
+                return false;
+              }else if(munulist.url.indexOf('http')==-1){
+                layer.msg('路径必须包含"http://"', {icon: 2,time:2000});
+                return false;
+              }
+            }else {
+              for(var j = 0;j<munulist.sub_button.length;j++){
+                var subMenue = munulist.sub_button[j];
+                if(munulist.name.length==0 ||munulist.name==null){
+                  layer.msg('请输入标题', {icon: 2,time:2000});
+                  return false;
+                }
+                if(subMenue.name.length==0||subMenue.name==null){
+                   layer.msg('请输入子标题', {icon: 2,time:2000});
+                   return false;
+                }
+                if(subMenue.url==null){
+                  layer.msg('请输入子url', {icon: 2,time:2000});
+                  return false;
+                }else if(subMenue.url.indexOf('http')==-1){
+                  layer.msg('路径必须包含"http://"', {icon: 2,time:2000});
+                  return false;
+                }
+              }
+            }
+          }
+        }
+      },
+      mounted:function(){
+        var vm = this;
+        vm.getList();
+      }
+    })
+  </script>
+</html>
+<style>
+  .menu_setting_area {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #353535;
+    font-size: 14px;
+  }
+  .menu_setting_area a{
+    text-decoration: none;
+    color: #8d8d8d;
+  }
+  .menu_setting_area li, .menu_setting_area ul {
+    list-style-type: none;
+    margin: 0;
+    text-align: center;
+  }
+
+  .menu_preview_area {
+    width: 294px;
+    height: 580px;
+    border: solid 1px #e7e7eb;
+    position: relative;
+    margin: 0 auto;
+    background: transparent url(../../images/bg_mobile_head.png) no-repeat 0 0 / 100%;
+  }
+
+  .menulist {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    border-top: 1px solid #e7e7eb;
+    background: transparent url(../../images/bg_mobile_foot.png) no-repeat 0 0;
+    padding-left: 43px;
+  }
+
+  .menuitem {
+    line-height: 50px;
+    position: relative;
+    text-align: center;
+  }
+
+  .pre_menu_link {
+    display: block;
+    border-left: 1px solid #e7e7eb;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    color: #616161;
+    text-decoration: none;
+  }
+
+  .sub_pre_menu_box {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border: 1px solid #d0d0d0;
+    bottom: 60px;
+    padding: 0;
+    background-color: #fafafa;
+  }
+
+  .sub_pre_menu_box li {
+    border-top: 1px solid #e7e7eb;
+    cursor: pointer;
+  }
+
+  .sub_pre_menu_box li:first-child {
+    border: none;
+  }
+
+  .menu_form_area {
+    /*display: table-cell;*/
+    vertical-align: top;
+    height: 580px;
+    /*width: 460px;*/
+    float: none;
+    background: #f4f5f9;
+    border: 1px solid #e7e7eb;
+    padding: 0 20px 5px
+  }
+
+  .editor_inner {
+    min-height: 560px;
+    padding-bottom: 20px;
+  }
+
+  .menu_form_hd {
+    padding: 9px 0;
+    border-bottom: 1px solid #e7e7eb
+  }
+
+  .msg_tab {
+    background: #fff;
+    border: 1px solid #e7e7eb
+  }
+
+  .create_access {
+    padding: 42px 0;
+    border: 2px dotted #d9dadc;
+    text-align: center;
+  }
+
+  .create_access a {
+    vertical-align: middle;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #8d8d8d;
+    font-size: 14px;
+    line-height: normal;
+  }
+
+  .tab_navs_panel {
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    color: #8d8d8d;
+  }
+</style>
+

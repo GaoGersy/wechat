@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图文消息</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrapValidator.css"/>
+	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="../../stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="../../assets/css/ace.min.css" />
+	<link rel="stylesheet" href="../../css/common.css" />
+	<link rel="stylesheet" href="../../css/message.css" />
+</head>
+<style>
+	.form-actions{
+		border-top: 0;
+		background-color: #fff;
+	}
+</style>
+<body>
+	<div class="page-content add-text-picture" id="addPicture">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="header smaller lighter blue">图文消息</h3>
+				<a class="return smaller lighter blue" href="userList.html" >返回上一级<img class="icon_return" src="../../images/return.png" alt=""></a>
+			</div>
+			<!-- <div class="main-content"> -->
+				<div class="page-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<!-- PAGE CONTENT BEGINS -->
+
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1">请输入关键字</label>
+									<div class="col-sm-9">
+										<input type="text" id="form-field-1" placeholder="请输入关键字" class="col-xs-10 col-sm-5 keyword">
+								</div>
+								</div>
+								<div class="sub sub0">
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">请上传主图片</label>
+										<div class="col-sm-9 main-img" @click="clickPic();">
+											<img src="../../images/default.png" alt="">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">输入主标题</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入主标题" class="col-xs-10 col-sm-5 mainTitle">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">输入主url</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入主标题url" class="col-xs-10 col-sm-5 mainUrl">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">输入主描述</label>
+										<div class="col-sm-9">
+											<textarea class="form-control mainDecr" id="form-field-8" placeholder="请输入描述" style="height: 82px; width: 500px;">
+											</textarea>
+										</div>
+										
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">是否需要登陆</label>
+
+										<div class="col-sm-9" >
+
+											<!-- <input type="checkbox" id="form-field-1"  class="col-xs-10 col-sm-5 needLogin"> -->
+											<img class="isLogin" src="../../images/uncheck.png" @click="isCheck($event)">
+											
+										</div>
+									</div>
+									
+								</div>
+								<div class="space-4"></div>
+								
+								<div class="sub sub1">
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级图片</label>
+										<div class="col-sm-9 item-img item1-img" @click="clickPic1();">
+											<img src="../../images/default.png" alt="">
+										</div>
+									</div>
+									<div class="form-group item1">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 子级标题</label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入子标题" class="col-xs-10 col-sm-5 itemTitle1">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级url</label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入url" class="col-xs-10 col-sm-5 itemUrl1">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级描述</label>
+										<div class="col-sm-9">
+											<textarea class="form-control itemDecr1" id="form-field-8" placeholder="请输入描述" style="height: 82px; width: 500px;">
+											</textarea>
+										</div>
+										
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">是否需要登陆</label>
+
+										<div class="col-sm-9">
+		
+											<!-- <input type="checkbox" id="form-field-1"  class="col-xs-10 col-sm-5 needLogin"> -->
+											<img class="isLogin" src="../../images/uncheck.png" @click="isCheck($event)">
+										</div>
+									</div>
+								</div>
+								<div class="sub sub2">
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级图片</label>
+										<div class="col-sm-9 item-img item2-img" @click="clickPic2();">
+											<img src="../../images/default.png" alt="">
+										</div>
+									</div>
+									<div class="form-group item1">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 子级标题</label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入子标题" class="col-xs-10 col-sm-5 itemTitle2">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级url</label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入url" class="col-xs-10 col-sm-5 itemUrl2">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级描述</label>
+										<div class="col-sm-9">
+											<textarea class="form-control itemDecr2" id="form-field-8" placeholder="请输入描述" style="height: 82px; width: 500px;">
+											</textarea>
+										</div>
+										
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">是否需要登陆</label>
+
+										<div class="col-sm-9">
+	
+											<!-- <input type="checkbox" id="form-field-1"  class="col-xs-10 col-sm-5 needLogin"> -->
+											<img class="isLogin" src="../../images/uncheck.png" @click="isCheck($event)">
+										</div>
+									</div>
+								</div>
+								<div class="sub sub3">
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级图片</label>
+										<div class="col-sm-9 item-img item3-img" @click="clickPic3();">
+											<img src="../../images/default.png" alt="">
+										</div>
+									</div>
+									<div class="form-group item1">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级标题</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入子标题" class="col-xs-10 col-sm-5 itemTitle3">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级url</label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入url" class="col-xs-10 col-sm-5 itemUrl3">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级描述</label>
+										<div class="col-sm-9">
+											<textarea class="form-control itemDecr3" id="form-field-8" placeholder="请输入描述" style="height: 82px; width: 500px;">
+											</textarea>
+										</div>
+										
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">是否需要登陆</label>
+
+										<div class="col-sm-9">
+
+											<!-- <input type="checkbox" id="form-field-1"  class="col-xs-10 col-sm-5 needLogin"> -->
+											<img class="isLogin" src="../../images/uncheck.png" @click="isCheck($event)">
+										</div>
+									</div>
+								</div>
+								
+								<div class="sub sub4">
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级图片</label>
+										<div class="col-sm-9 item-img item4-img" @click="clickPic4();">
+											<img src="../../images/default.png" alt="">
+										</div>
+									</div>
+									<div class="form-group item1">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级标题</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入子标题" class="col-xs-10 col-sm-5 itemTitle4">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级url</label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="输入url" class="col-xs-10 col-sm-5 itemUrl4">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">子级描述</label>
+										<div class="col-sm-9">
+											<textarea class="form-control itemDecr4" id="form-field-8" placeholder="请输入描述" style="height: 82px; width: 500px;">
+											</textarea>
+										</div>
+										
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1">是否需要登陆</label>
+
+										<div class="col-sm-9">
+
+											
+											<!-- <input type="checkbox" id="form-field-1"  class="col-xs-10 col-sm-5 needLogin"> -->
+											<img class="isLogin" src="../../images/uncheck.png" @click="isCheck($event)">
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> </label>
+
+									<div class="col-xs-8 col-sm-3 add-item btn btn-primary" @click="addItem();">
+										添加
+									</div>
+								</div>
+								
+								<div class="clearfix form-actions">
+									<div class="col-md-offset-3 col-md-9">
+										<button class="btn btn-info" type="button" @click="loadData();">
+											<i class="icon-ok bigger-110"></i>
+											提交
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="icon-undo bigger-110"></i>
+											重置
+										</button>
+									</div>
+								</div>
+							</form>
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div>
+			<!-- </div> -->
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="fileImg" name="file" onchange="setpicurl(this,'mainImg');">
+				</div>
+			</form>
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm1" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="fileImg1" name="file" onchange="setpicurl(this,'item1');">
+				</div>
+			</form>
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm2" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="fileImg2" name="file" onchange="setpicurl(this,'item2');">
+				</div>
+			</form>
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm3" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="fileImg3" name="file" onchange="setpicurl(this,'item3');">
+				</div>
+			</form>
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm4" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="fileImg4" name="file" onchange="setpicurl(this,'item4');">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="../../assets/js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='../../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript">
+		if("ontouchend" in document) document.write("<script src='../../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+   <!--  <script type="text/javascript" src="../dist/js/bootstrapValidator.js"></script> -->
+   <script src="../../js/global.js"></script>
+    <script src="../../assets/js/vue/vue.js"></script>
+    <script src="../../assets/js/vue/vue-resource.min.js"></script>
+    <script src="../../assets/js/layer/layer.js"></script>
+	<script type="text/javascript">
+
+	// var baseUrl = "http://localhost:8002/gch/";//调试
+	// var baseUrl = "http://gaofen.iask.in/gaofen/";//服务器
+// 
+		
+		function setpicurl(obj,typeImg){
+			var file = obj.files[0]; 
+			//获得一个http格式的url路径:mozilla(firefox)||webkit or chrome  
+		    var windowURL = window.URL || window.webkitURL;  
+		    //createObjectURL创建一个指向该参数对象(图片)的URL  
+		    var dataURL;  
+		    dataURL = windowURL.createObjectURL(file); 
+			console.log(dataURL)
+			if(typeImg =="mainImg"){
+				$('.main-img img')[0].src=dataURL;
+				// var html='<div class="img fl"><img src="'+dataURL+'" alt=""></div>';
+				// $('.img-all').append(html);
+				setTimeout(function(){
+					this.app.douploadImg(typeImg);
+				},1000)
+			}else if(typeImg =="item1"){
+				$('.item1-img img')[0].src=dataURL;
+				setTimeout(function(){
+					this.app.douploadImg(typeImg);
+				},1000)
+			}else if(typeImg =="item2"){
+				$('.item2-img img')[0].src=dataURL;
+				setTimeout(function(){
+					this.app.douploadImg(typeImg);
+				},1000)
+			}else if(typeImg =="item3"){
+				$('.item3-img img')[0].src=dataURL;
+				setTimeout(function(){
+					this.app.douploadImg(typeImg);
+				},1000)
+			}else if(typeImg =="item4"){
+				$('.item4-img img')[0].src=dataURL;
+				setTimeout(function(){
+					this.app.douploadImg(typeImg);
+				},1000)
+			}			
+		}
+		var app = new Vue({
+			el:'#addPicture',
+	        data:{
+	        	msgId:'',//关键字id
+				msgType:'',//关键字类型
+	            bookList:"111",
+	            mainImgUrl:'',//主图片url
+	            item1ImgUrl:'',//第一个item的图片url
+	            item2ImgUrl:'',//第一个item的图片url
+	            item3ImgUrl:'',//第一个item的图片url
+	            item4ImgUrl:'',//第一个item的图片url
+	            description:'',
+				imageUrl:'',
+				itemId:'',
+				title:'',
+				masterItem:'',//大主题
+				subItems:'',//小标题
+				
+	        },
+	        methods:{
+	        	// 是否需要登陆
+	        	isCheck:function(e){
+	        		var oldUrl = e.target.src;//上一次的图片路径
+	        		var isChangUrl = oldUrl.indexOf('uncheck');
+	        		console.log(isChangUrl)
+	        		if(isChangUrl!=-1){
+	        			e.target.src="../../images/check.png"
+	        		}else {
+	        			e.target.src="../../images/uncheck.png"
+	        		}
+	        	},
+	        	// 添加子级
+	        	addItem:function(){
+	        		var subList1 = $(".sub1").css('display');
+	        		var subList2 = $(".sub2").css('display');
+	        		var subList3 = $(".sub3").css('display');
+	        		var subList4 = $(".sub4").css('display');
+	        		if(subList1 =="none"){
+	        			$(".sub1").show();
+	        		}else if(subList2=="none"){
+	        			$(".sub2").show();
+	        		}else if(subList3=="none"){
+	        			$(".sub3").show();
+	        		}else if(subList4=="none"){
+	        			$(".sub4").show();
+	        		}else{
+	        			layer.msg('子级最多只能为4个', {icon: 2});//感叹号
+	        		}
+	        	},
+	        	// 获取url
+	        	getUrl:function(name) {
+		            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		            var r = window.location.search.substr(1).match(reg);
+		            if (r != null) {
+		                return decodeURI(r[2]);
+		            }
+		            return null;
+		        },
+	        	test:function(){
+	        		// window.top.tips("提示","success",20000);
+	        		// layer.msg('hello');
+	        		// layer.msg('尼玛，打个酱油', {icon: 1});//勾
+	        		// layer.msg('尼玛，打个酱油', {icon: 2});//错
+	        		// layer.msg('尼玛，打个酱油', {icon: 3});//问号
+	        		// layer.msg('尼玛，打个酱油', {icon: 4});//锁
+	        		// layer.msg('尼玛，打个酱油', {icon: 5});//不开心
+	        		// layer.msg('尼玛，打个酱油', {icon: 6});//微笑
+	        		// layer.msg('尼玛，打个酱油', {icon: 7});//感叹号
+	        		layer.msg('尼玛，打个酱油', {icon: 8});//感叹号
+	        	},
+	        	clickPic:function(){
+            		$("#fileImg").click();
+            		console.log($("#fileImg").val())
+            	},
+            	clickPic1:function(){
+            		$("#fileImg1").click();
+            		console.log($("#fileImg1").val())
+            	},
+            	clickPic2:function(){
+            		$("#fileImg2").click();
+            		console.log($("#fileImg2").val())
+            	},
+            	clickPic3:function(){
+            		$("#fileImg3").click();
+            		console.log($("#fileImg3").val())
+            	},
+            	clickPic4:function(){
+            		$("#fileImg4").click();
+            		console.log($("#fileImg4").val())
+            	},
+            	// 请求微信服务器
+            	weiServe:function(){
+            		var vm=this;
+            		//先获得图片的路径
+					var uPic = $("#fileImg").val();
+					if(uPic == null || uPic == "") {
+						$.alert("请选择文件在上传");
+						return;
+					}
+					var formData = new FormData($("#imgForm")[0]);
+					// formData.append ("openId" , "12456");
+					// formData.append ("imageType" , 1);
+					var url="https://api.weixin.qq.com/cgi-bin/material/add_news?access_token=ACCESS_TOKEN";
+					vm.$http.post(url,formData).then(function(res){
+					  layer.msg('上传失败', {icon: 2,time:2000});
+					   console.log(res)
+				    },function(){
+				       layer.msg('上传失败', {icon: 2,time:2000});//失败处理
+				    });
+			    },
+			    // 请求上传图片接口
+            	douploadImg:function(typeImg){
+            		var vm=this;
+            		//先获得图片的路径
+            		if(typeImg=="mainImg"){
+            			var uPic = $("#fileImg").val();
+            			var formData = new FormData($("#imgForm")[0]);
+            		}else if(typeImg=="item1"){
+            			var uPic = $("#fileImg1").val();
+            			var formData = new FormData($("#imgForm1")[0]);
+            		}else if(typeImg=="item2"){
+            			var uPic = $("#fileImg2").val();
+            			var formData = new FormData($("#imgForm2")[0]);
+            		}else if(typeImg=="item3"){
+            			var uPic = $("#fileImg3").val();
+            			var formData = new FormData($("#imgForm3")[0]);
+            		}else if(typeImg=="item4"){
+            			var uPic = $("#fileImg4").val();
+            			var formData = new FormData($("#imgForm4")[0]);
+            		}
+					
+					console.log(uPic)
+					if(uPic == null || uPic == "") {
+						// $.alert("请选择文件在上传");
+						layer.msg('请选择图片', {icon: 2,time:2000});
+						return;
+					}
+					// var formData = new FormData($("#imgForm")[0]);
+					formData.append ("openId" , "12456");
+					formData.append ("imageType" , 1);
+					// var url="http://localhost:8002/gch/weixin/uploadImage";
+					var url=baseUrl+"uploadImage";
+					vm.$http.post(url,formData).then(function(res){
+						if(res.data.code==200){
+						   layer.msg('上传成功', {icon: 6,time:2000});
+						  if(typeImg=="mainImg"){
+						  	vm.mainImgUrl = res.data.data;
+						  	console.log("vm.mainImgUrl:"+vm.mainImgUrl)
+						  }else if(typeImg=="item1"){
+						  	vm.item1ImgUrl =res.data.data;
+						  	console.log("vm.item1ImgUrl:"+vm.item1ImgUrl)
+						  }else if(typeImg=="item2"){
+						  	vm.item2ImgUrl =res.data.data;
+						  	console.log("vm.item1ImgUrl:"+vm.item2ImgUrl)
+						  }else if(typeImg=="item3"){
+						  	vm.item3ImgUrl =res.data.data;
+						  	console.log("vm.item1ImgUrl:"+vm.item3ImgUrl)
+						  }else if(typeImg=="item4"){
+						  	vm.item4ImgUrl =res.data.data;
+						  	console.log("vm.item1ImgUrl:"+vm.item4ImgUrl)
+						  }
+						}else {
+							layer.msg(res.data.error, {icon: 2,time:2000});
+						}
+				    },function(res){
+				       layer.msg(res.data.error, {icon: 2,time:2000});
+				    });
+			    },
+			    // 上传
+			    loadData:function(){
+            		var vm=this;
+            		var keyword = $(".keyword").val();
+            		var mainTitle = $(".mainTitle").val();
+            		var itemTitle1 = $(".itemTitle1").val();
+            		var itemTitle2 = $(".itemTitle2").val();
+            		var itemTitle3 = $(".itemTitle3").val();
+            		var itemTitle4 = $(".itemTitle4").val();
+            		var mainUrl = $(".mainUrl").val();
+            		var item1Url = $(".itemUrl1").val();
+            		var item2Url = $(".itemUrl2").val();
+            		var item3Url = $(".itemUrl3").val();
+            		var item4Url = $(".itemUrl4").val();
+            		var uPic = $("#fileImg").val();
+            		var uPic1 = $("#fileImg1").val();
+            		var uPic2 = $("#fileImg2").val();
+            		var uPic3 = $("#fileImg3").val();
+            		var uPic4 = $("#fileImg4").val();
+            		
+            		var mainDecr = $(".mainDecr").val();
+            		var itemDecr1 = $(".itemDecr1").val();
+            		var itemDecr2 = $(".itemDecr2").val();
+            		var itemDecr3 = $(".itemDecr3").val();
+            		var itemDecr4 = $(".itemDecr4").val();
+            		if(keyword==null || keyword.length==0){
+            			layer.msg('请输入关键字', {icon: 2,time:2000});
+            			return false;
+            		}
+            		if(uPic == null || uPic == "") {
+						layer.msg('请上传主图片', {icon: 2,time:2000});
+						return;
+					}
+            		if(mainTitle==null || mainTitle.length==0){
+            			layer.msg('请输入主标题', {icon: 2,time:2000});
+            			return false;
+            		}
+            		if(mainUrl==null || mainUrl.length==0){
+            			layer.msg('请输入主链接', {icon: 2,time:2000});
+            			return false;
+            		}
+            		//needLogin是否需要登陆 0不需要 1需要
+            		var needLogin0=0;
+            		var needLogin1=0;
+            		var needLogin2=0;
+            		var needLogin3=0;
+            		var needLogin4=0;
+     //        		if($('.sub0 .needLogin').is(':checked')) {
+					//     needLogin0 = 1;
+					// }
+     //        		if($('.sub1 .needLogin').is(':checked')) {
+					//     needLogin1 = 1;
+					// }
+					// if($('.sub2 .needLogin').is(':checked')) {
+					//     needLogin2 = 1;
+					// }
+					// if($('.sub3 .needLogin').is(':checked')) {
+					//     needLogin3 = 1;
+					// }
+					// if($('.sub4 .needLogin').is(':checked')) {
+					//     needLogin4 = 1;
+					// }
+					// console.log("src")
+					// console.log($('.sub0 .isLogin')[0].src)
+					var oldImgUrl = 'uncheck';
+					var newImg0 = $('.sub0 .isLogin')[0].src;
+					var newImg1 = $('.sub1 .isLogin')[0].src;
+					var newImg2 = $('.sub2 .isLogin')[0].src;
+					var newImg3 = $('.sub3 .isLogin')[0].src;
+					var newImg4 = $('.sub4 .isLogin')[0].src;
+
+					if(newImg0.indexOf(oldImgUrl)==-1){
+						 needLogin0 = 1;
+					}
+					if(newImg1.indexOf(oldImgUrl)==-1){
+						 needLogin1 = 1;
+					}
+					if(newImg2.indexOf(oldImgUrl)==-1){
+						 needLogin2 = 1;
+					}
+					if(newImg3.indexOf(oldImgUrl)==-1){
+						 needLogin3 = 1;
+					}
+					if(newImg4.indexOf(oldImgUrl)==-1){
+						 needLogin4 = 1;
+					}
+            		// 子级的内容
+            		var sub = [];
+            		var sub1 = {
+			            "description": itemDecr1,
+			            "url": item1Url,
+			            "title": itemTitle1,
+			            "imageUrl": vm.item1ImgUrl,
+			            "needLogin":needLogin1,
+			        }
+            		var sub2 = {
+			            "description": itemDecr2,
+			            "url": item2Url,
+			            "title": itemTitle2,
+			            "imageUrl": vm.item2ImgUrl,
+			            "needLogin":needLogin2,
+					};
+					var sub3 = {
+			            "description": itemDecr3,
+			            "url": item3Url,
+			            "title": itemTitle3,
+			            "imageUrl": vm.item3ImgUrl,
+			            "needLogin":needLogin3,
+					};
+					var sub4 = {
+			            "description": itemDecr4,
+			            "url": item4Url,
+			            "title": itemTitle4,
+			            "imageUrl": vm.item4ImgUrl,
+			            "needLogin":needLogin4,
+					};
+					sub.push(sub1,sub2,sub3,sub4);
+
+					
+					
+            		var param = {
+					    "masterItem": {
+					        "description": mainDecr,
+					        "url": mainUrl,
+					        "title": mainTitle,
+					        "imageUrl": vm.mainImgUrl,
+					        "needLogin":needLogin0,
+					    },
+					    "subItems": [
+					    ],
+					    "keyWord": keyword,
+					    
+					}
+					console.log("length:"+sub.length)
+					for(var i = 0;i<sub.length;i++){
+						console.log(sub[i])
+						console.log(sub[i].imageUrl)
+						if(sub[i].title!=null && sub[i].title!="" && sub[i].imageUrl!="" && sub[i].imageUrl!=null){
+							param.subItems.push(sub[i])
+						}
+					}
+
+					console.log("param");
+					console.log(param)
+					var url=baseUrl+"addImgTextReplyMsg";
+					vm.$http.post(url,param).then(function(res){
+						if(res.data.code==200){
+							layer.msg('上传成功', {icon: 6,time:2000});
+							setTimeout(function(){
+								window.location.href="./text-picture.html";
+							},2000)
+						}else {
+							layer.msg(res.data.error, {icon: 2,time:2000});
+						}
+				    },function(res){
+				       layer.msg(res.data.error, {icon: 2,time:2000});
+				    });
+			    }
+	        },
+	        mounted:function(){
+	        	var vm = this;
+	        	vm.msgId = vm.getUrl("msgId");
+	        	vm.msgType = vm.getUrl("msgType");
+	        },
+		})
+	</script>
+</body>
+</html>

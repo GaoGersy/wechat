@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>视频消息</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrapValidator.css"/>
+	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="../../stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="../../assets/css/ace.min.css" />
+	<link rel="stylesheet" href="../../css/common.css" />
+	<link rel="stylesheet" href="../../css/message.css" />
+</head>
+<style>
+	.form-actions{
+		border-top: 0;
+		background-color: #fff;
+	}
+</style>
+<body>
+	<div class="page-content add-picture" id="add-picture">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="header smaller lighter blue">视频消息</h3>
+				<a class="return smaller lighter blue" href="userList.html" >返回上一级<img class="icon_return" src="../../images/return.png" alt=""></a>
+			</div>
+			<!-- <div class="main-content"> -->
+				<div class="page-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<!-- PAGE CONTENT BEGINS -->
+
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 标题 </label>
+
+									<div class="col-sm-9">
+										<input type="text" id="form-field-1" placeholder="Username" class="col-xs-10 col-sm-5">
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 封面</label>
+
+									<div class="col-sm-9">
+										<input type="text" id="form-field-1" placeholder="Username" class="col-xs-10 col-sm-5">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 分类 </label>
+
+									<div class="col-sm-9">
+										<input type="text" id="form-field-1" placeholder="Username" class="col-xs-10 col-sm-5">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 标签 </label>
+
+									<div class="col-sm-9">
+										<input type="text" id="form-field-1" placeholder="Username" class="col-xs-10 col-sm-5">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 分类 </label>
+
+									<div class="col-sm-4">
+										<select class="form-control " id="form-field-select-1">
+											<option value="">&nbsp;</option>
+											<option value="AL">Alabama</option>
+											<option value="AK">Alaska</option>
+											<option value="AZ">Arizona</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 简介 </label>
+									<div class="col-sm-9">
+										<textarea class="form-control" id="form-field-8" placeholder="Default Text" style="margin: 0px -0.015625px 0px 0px; height: 132px; width: 510px;">
+										</textarea>
+									</div>
+									
+								</div>
+								
+								<div class="clearfix form-actions">
+									<div class="col-md-offset-3 col-md-9">
+										<button class="btn btn-info" type="button">
+											<i class="icon-ok bigger-110"></i>
+											Submit
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="icon-undo bigger-110"></i>
+											Reset
+										</button>
+									</div>
+								</div>
+							</form>
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div>
+			<!-- </div> -->
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<!-- <input type="file" id="fileImg" name="file" @change="setpicurl(this);"> -->
+					<input type="file" id="fileImg" name="file" onchange="setpicurl(this);">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="../../assets/js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='../../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript">
+		if("ontouchend" in document) document.write("<script src='../../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+   <!--  <script type="text/javascript" src="../dist/js/bootstrapValidator.js"></script> -->
+    <script src="../../assets/js/vue/vue.js"></script>
+    <script src="../../assets/js/vue/vue-resource.min.js"></script>
+	<script type="text/javascript">
+		function add(){
+			window.location.href="./add-text.html"
+		}
+		function setpicurl(obj){
+			var file = obj.files[0]; 
+			//获得一个http格式的url路径:mozilla(firefox)||webkit or chrome  
+		    var windowURL = window.URL || window.webkitURL;  
+		    //createObjectURL创建一个指向该参数对象(图片)的URL  
+		    var dataURL;  
+		    dataURL = windowURL.createObjectURL(file); 
+			console.log(dataURL)
+			// $('.img img')[0].src=dataURL;
+			var html='<div class="img fl"><img src="'+dataURL+'" alt=""></div>';
+			$('.img-all').append(html);
+		}
+		var app = new Vue({
+			el:'#add-picture',
+	        data:{
+	            bookList:[]
+	        },
+	        methods:{
+	        	getData:function(){
+	        		console.log("请求数据")
+	        		var url=baseUrl+"user/register";
+				    this.$http.get(url,param).then(function(res){
+						if(res.data.code==200){
+						 	g.popupMobile.msg(res.data.data);
+						}else{
+						  	g.popupMobile.msg(res.data.error);
+						}
+				    },function(){
+				       alert('请求失败处理'); //失败处理
+				    });
+	        	},
+	        	clickPic:function(){
+            		$("#fileImg").click();
+            		console.log($("#fileImg").val())
+            	},
+            	// 请求微信服务器
+            	weiServe:function(){
+            		var vm=this;
+            		//先获得图片的路径
+					var uPic = $("#fileImg").val();
+					if(uPic == null || uPic == "") {
+						$.alert("请选择文件在上传");
+						return;
+					}
+					var formData = new FormData($("#imgForm")[0]);
+					// formData.append ("openId" , "12456");
+					// formData.append ("imageType" , 1);
+					var url="https://api.weixin.qq.com/cgi-bin/material/add_news?access_token=ACCESS_TOKEN";
+					vm.$http.post(url,formData).then(function(res){
+					  alert("success"); 
+					   console.log(res)
+				    },function(){
+				       alert('请求失败处理'); //失败处理
+				    });
+			    },
+			    // 请求上传图片接口
+            	douploadImg:function(){
+            		var vm=this;
+            		//先获得图片的路径
+					var uPic = $("#fileImg").val();
+					if(uPic == null || uPic == "") {
+						$.alert("请选择文件在上传");
+						return;
+					}
+					var formData = new FormData($("#imgForm")[0]);
+					formData.append ("openId" , "12456");
+					formData.append ("imageType" , 1);
+					var url=g.baseUrl+"uploadImage";
+					vm.$http.post(url,formData).then(function(res){
+					  alert("success"); 
+					   console.log(res)
+				    },function(){
+				       alert('请求失败处理'); //失败处理
+				    });
+			    }
+	        },
+	        mounted:function(){
+	        	console.log(111)
+	        },
+		})
+	</script>
+</body>
+</html>

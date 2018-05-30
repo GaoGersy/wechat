@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+
+<!-- BEGIN HEAD -->
+
+<head>
+
+	<meta charset="utf-8" />
+
+	<title>个人资料</title>
+
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+	<meta content="" name="description" />
+
+	<meta content="" name="author" />
+
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+	<link href="../../media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="../../media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="../../media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="../../media/css/style-metro.css" rel="stylesheet" type="text/css"/>
+
+	<link href="../../media/css/style.css" rel="stylesheet" type="text/css"/>
+
+	<link href="../../media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+
+	<link href="../../media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+	<link href="../../media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+
+	<!-- END GLOBAL MANDATORY STYLES -->
+
+	<!-- BEGIN PAGE LEVEL STYLES -->
+
+	<link href="../../media/css/bootstrap-fileupload.css" rel="stylesheet" type="text/css" />
+
+	<link href="../../media/css/chosen.css" rel="stylesheet" type="text/css" />
+
+	<link href="../../media/css/profile.css" rel="stylesheet" type="text/css" />
+
+	<!-- END PAGE LEVEL STYLES -->
+
+	<link rel="shortcut icon" href="../../media/image/favicon.ico" />
+
+</head>
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+	<!-- BEGIN CONTAINER -->   
+		<!-- BEGIN PAGE -->
+			<!-- BEGIN PAGE CONTAINER-->
+
+			<div class="container-fluid">
+
+				<!-- BEGIN PAGE HEADER-->
+
+				<div class="row-fluid">
+
+					<div class="span12">
+
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+						<h3 class="page-title">
+
+							用户资料 
+
+						</h3>
+
+						<ul class="breadcrumb">
+
+							<li>
+
+								<i class="icon-home"></i>
+
+								<a href="index.html">首页</a> 
+
+								<i class="icon-angle-right"></i>
+
+							</li>
+
+							<li><a href="#">用户资料</a></li>
+
+						</ul>
+
+						<!-- END PAGE TITLE & BREADCRUMB-->
+
+					</div>
+
+				</div>
+
+				<!-- END PAGE HEADER-->
+
+				<!-- BEGIN PAGE CONTENT-->
+
+				<div class="row-fluid profile">
+
+					<div class="span12">
+
+						<!--BEGIN TABS-->
+
+						<div class="tabbable tabbable-custom tabbable-full-width">
+
+							<ul class="nav nav-tabs">
+
+								<li class="active"><a href="#tab_1_2" data-toggle="tab">个人信息</a></li>
+
+								<li><a href="#tab_1_3" data-toggle="tab">编辑信息</a></li>
+
+							</ul>
+
+							<div class="tab-content">
+								
+								<div class="tab-pane profile-classic row-fluid active" id="tab_1_2">
+									<div class="span2"></div>
+									<ul class="unstyled span10">
+
+										<li id = "userName"></li>
+
+										<li id = "realName"></li>
+
+										<li id = "sex"></li>
+
+										<li id = "cellPhone"></li>
+
+										<li id = "email"></li>
+
+										<li id = "score"></li>
+
+										<li id = "createTime"></li>
+
+										<li id = "addr"></li>
+
+										<li id = "remark"></li>
+
+									</ul>
+
+								</div>
+
+								<!--tab_1_2-->
+
+								<div class="tab-pane row-fluid profile-account" id="tab_1_3">
+
+									<div class="row-fluid">
+
+										<div class="span12">
+
+											<div class="span3">
+
+												<ul class="ver-inline-menu tabbable margin-bottom-10">
+
+													<li class="active">
+
+														<a data-toggle="tab" href="#tab_1-1">
+
+														<i class="icon-cog"></i> 
+
+														个人信息
+
+														</a> 
+
+														<span class="after"></span>                                    
+
+													</li>
+
+													<li class=""><a data-toggle="tab" href="#tab_3-3"><i class="icon-lock"></i> 修改密码</a></li>
+
+												</ul>
+
+											</div>
+
+											<div class="span9">
+												
+												<div class="tab-content">
+
+													<div id="tab_1-1" class="tab-pane active">
+
+														<div style="height: auto;" id="accordion1-1" class="accordion collapse">
+
+															<form action="#">
+
+																<label class="control-label">用户名</label>
+
+																<input type="text" id="userName1" class="m-wrap span8" />
+
+																<label class="control-label">真实姓名</label>
+
+																<input type="text" id="realName1" class="m-wrap span8" />
+
+																<label class="control-label">性别</label>
+																<label class="radio">
+																  <input type="radio" name="sex1" id="sex0" value="0" checked="checked">
+																  男
+																</label>
+																<label class="radio">
+																  <input type="radio" name="sex1" id="sex1" value="1">
+																  女
+																</label>
+																<label class="control-label">电话</label>
+
+																<input type="text" id="cellPhone1" class="m-wrap span8" />
+
+																<label class="control-label">邮箱</label>
+
+																<input type="text" id="email1" class="m-wrap span8" />
+
+																<label class="control-label">地址</label>
+
+																<input type="text" id="addr1" class="m-wrap span8" />
+
+																<label class="control-label">备注</label>
+
+																<textarea class="span8 m-wrap" id="remark1" rows="3"></textarea>
+
+																<div class="submit-btn">
+
+																	<a onclick="updateAdminUser()" class="btn green">修改</a>
+
+																</div>
+
+															</form>
+
+														</div>
+
+													</div>
+
+													<div id="tab_3-3" class="tab-pane">
+
+														<div style="height: auto;" id="accordion3-3" class="accordion collapse">
+
+															<form action="#">
+
+																<label class="control-label">当前密码</label>
+
+																<input type="password" id="changePassword" class="m-wrap span8" />
+
+																<label class="control-label">新密码</label>
+
+																<input type="password" id="newPassword" class="m-wrap span8" />
+
+																<label class="control-label">确认密码</label>
+
+																<input type="password" id="confirmPassword" class="m-wrap span8" />
+
+																<div class="submit-btn">
+
+																	<a onclick="changePassword()" class="btn green">修改密码</a>
+
+																</div>
+
+															</form>
+
+														</div>
+
+													</div>
+
+												</div>
+
+											</div>
+
+											<!--end span9-->                                   
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<!--end tab-pane-->
+
+
+							</div>
+
+						</div>
+
+						<!--END TABS-->
+
+					</div>
+
+				</div>
+
+				<!-- END PAGE CONTENT-->
+
+			</div>
+
+			<!-- END PAGE CONTAINER--> 
+
+
+		<!-- END PAGE -->    
+
+
+	<!-- END CONTAINER -->
+
+
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+	<!-- BEGIN CORE PLUGINS -->
+
+	<script src="../../media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+
+	<script src="../../media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+	<script src="../../media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
+
+	<script src="../../media/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--[if lt IE 9]>
+
+	<script src="../../media/js/excanvas.min.js"></script>
+
+	<script src="../../media/js/respond.min.js"></script>  
+
+	<![endif]-->   
+
+	<script src="../../media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+	<script src="../../media/js/jquery.blockui.min.js" type="text/javascript"></script>  
+
+	<script src="../../media/js/jquery.cookie.min.js" type="text/javascript"></script>
+
+	<script src="../../media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+
+	<!-- END CORE PLUGINS -->
+
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+
+	<script type="text/javascript" src="../../media/js/bootstrap-fileupload.js"></script>
+
+	<script type="text/javascript" src="../../media/js/chosen.jquery.min.js"></script>
+
+	<!-- END PAGE LEVEL PLUGINS -->
+
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+	<script src="../../media/js/app.js"></script>      
+
+	<!-- END PAGE LEVEL SCRIPTS -->
+
+	<script>
+		jQuery(document).ready(function() {       
+		   App.init();
+		});
+		var baseUrl=window.top.baseUrl;
+		var adminId = "a03888e80feb41299939e65987550a0a";
+		$(function(){
+			var param={};
+			param.adminId = adminId;
+			$.ajax({
+				url:baseUrl + "rest/adminuser/getAdminUserInfo",
+				dataType:"JSON",
+				contentType:"application/json;charset=utf-8",
+				data:JSON.stringify(param),
+				type:"POST",
+				success:function(res){
+					if(res.result==1){
+						var sex = res.data.sex == 0?"男":"女";
+						$("#userName").html("<span>用&nbsp;&nbsp;户&nbsp;&nbsp;名:</span>" + res.data.userName);
+						$("#realName").html("<span>真实姓名:</span> " + res.data.realName);
+						$("#sex").html("<span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</span>" + sex);
+						$("#cellPhone").html("<span>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话:</span>" + res.data.cellPhone);
+						$("#email").html("<span>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:</span>" + res.data.email);
+						$("#score").html("<span>积&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分:</span>" + res.data.score);
+						$("#createTime").html("<span>创建时间:</span>" + window.top.dataFormat(res.data.createTime,"datetime"));
+						$("#addr").html("<span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:</span>" + res.data.addr);
+						$("#remark").html("<span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</span>" + res.data.remark);
+						$("#userName1").val(res.data.userName);
+						$("#realName1").val(res.data.realName);
+						$("#cellPhone1").val(res.data.cellPhone);
+						$("#email1").val(res.data.email);
+						$("#addr1").val(res.data.addr);
+						$("#remark1").val(res.data.remark);
+					}else{
+            			window.top.tips("提示",res.error,"error",2000);
+            		}
+				},error:function(){
+					console.log("请求数据失败!!!!");
+					window.top.tips("提示","查询数据失败了！！","error",2000);
+				}
+			})
+		})
+		
+		/**
+		 * 修改个人信息
+		 */
+		function updateAdminUser(){
+			var param={};
+			param.adminId = adminId;
+			param.userName = $("#userName1").val();
+			param.realName = $("#realName1").val();
+			param.sex = $('input[name="sex1"]:checked').val();
+			param.cellPhone = $("#cellPhone1").val();
+			param.email = $("#email1").val();
+			param.addr = $("#addr1").val();
+			param.remark = $("#remark1").val();
+			$.ajax({
+            	url:baseUrl+"rest/adminuser/updateAdminUser",
+            	data:JSON.stringify(param),
+            	dataType:"JSON",
+            	contentType: "application/json;charset=utf-8",
+            	type:"POST",
+            	success:function(res){
+            		if(res.result==1){
+            			window.top.tips("提示","修改用户信息成功","success",2000);
+            			setTimeout(function(){
+            				window.location.href="myPorfile.html";
+            			},1000);
+            		}else{
+            			window.top.tips("提示",res.error,"error",2000);
+            		}
+            	},
+            	error:function(){
+            		window.top.tips("提示","操作失败","error",2000);
+            	}
+            });
+		}
+		
+		/**
+		 * 修改密码
+		 */
+		function changePassword(){
+			var changePassword = $("#changePassword").val();
+			var newPassword = $("#newPassword").val();
+			var confirmPassword = $("#confirmPassword").val();
+			var param={};
+			param.adminId=adminId;
+			param.passWord=changePassword;
+			param.newPassWord=newPassword;
+			if(changePassword == null || changePassword==""){
+				window.top.tips("提示","请输入当前密码!","error",2000);
+			}else if(newPassword==""||newPassword==null){
+				window.top.tips("提示","请输入新密码!","error",2000);
+			}else if(newPassword.length<6||newPassword.length>16){
+				window.top.tips("提示","密码长度为6~16位！","error",2000);
+			}else if(confirmPassword==""||confirmPassword==null){
+				window.top.tips("提示","请输入确认密码!","error",2000);
+			}else if(newPassword != confirmPassword){
+				window.top.tips("提示","确认密码与新密码不一致，请重新输入！","error",2000);
+				$("#confirmPassword").val("");
+				$("#confirmPassword").focus();
+			}else{
+				$.ajax({
+					url:baseUrl+"rest/adminuser/changePassword",
+					data:JSON.stringify(param),
+					dataType:"JSON",
+					contentType: "application/json;charset=utf-8",
+            		type:"POST",
+            		success:function(res){
+            			if(res.result==1){
+            				window.top.tips("提示","修改密码成功","success",2000);
+            				window.location.href="myPorfile.html";
+            			}else{
+            				window.top.tips("提示",res.error,"error",2000);
+            			}
+            		},error:function(){
+            			window.top.tips("提示","操作失败","error",2000);
+            		}
+				})
+			}
+		}
+		
+	</script>
+
+	<!-- END JAVASCRIPTS -->
+
+<script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _gaq.push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script></body>
+
+<!-- END BODY -->
+
+</html>

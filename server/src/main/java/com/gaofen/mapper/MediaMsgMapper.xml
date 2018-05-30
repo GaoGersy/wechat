@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.MediaMsgMapper">
+  <resultMap id="BaseResultMap" type="com.gaofen.model.weixin.MediaMsg">
+    <constructor>
+      <idArg column="MSGID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MEDIAID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MEDIAURL" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    MSGID, MEDIAID, MEDIAURL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WEIXIN_MEDIA_MSG
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WEIXIN_MEDIA_MSG
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gaofen.model.weixin.MediaMsg">
+    insert into WEIXIN_MEDIA_MSG (MSGID, MEDIAID, MEDIAURL
+      )
+    values (#{msgId,jdbcType=VARCHAR}, #{mediaId,jdbcType=VARCHAR}, #{mediaUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gaofen.model.weixin.MediaMsg">
+    insert into WEIXIN_MEDIA_MSG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        MSGID,
+      </if>
+      <if test="mediaId != null">
+        MEDIAID,
+      </if>
+      <if test="mediaUrl != null">
+        MEDIAURL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaId != null">
+        #{mediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaUrl != null">
+        #{mediaUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gaofen.model.weixin.MediaMsg">
+    update WEIXIN_MEDIA_MSG
+    <set>
+      <if test="mediaId != null">
+        MEDIAID = #{mediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaUrl != null">
+        MEDIAURL = #{mediaUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gaofen.model.weixin.MediaMsg">
+    update WEIXIN_MEDIA_MSG
+    set MEDIAID = #{mediaId,jdbcType=VARCHAR},
+      MEDIAURL = #{mediaUrl,jdbcType=VARCHAR}
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByMediaUrl" parameterType="string" resultType="MediaMsg">
+    SELECT * FROM WEIXIN_MEDIA_MSG WHERE mediaUrl = #{mediaUrl}
+  </select>
+</mapper>

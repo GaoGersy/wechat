@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.WeixinMsgMapper">
+  <resultMap id="BaseResultMap" type="com.gaofen.model.weixin.WeixinMsg">
+    <constructor>
+      <idArg column="MSGID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MSGTYPE" javaType="java.lang.Integer" jdbcType="DECIMAL" />
+      <arg column="CONTENT" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    MSGID, MSGTYPE, CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WEIXIN_BAS_MSG
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WEIXIN_BAS_MSG
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gaofen.model.weixin.WeixinMsg">
+    insert into WEIXIN_BAS_MSG (MSGID, MSGTYPE, CONTENT
+      )
+    values (#{msgId,jdbcType=VARCHAR}, #{msgType,jdbcType=DECIMAL}, #{content,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gaofen.model.weixin.WeixinMsg">
+    insert into WEIXIN_BAS_MSG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        MSGID,
+      </if>
+      <if test="msgType != null">
+        MSGTYPE,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null">
+        #{msgType,jdbcType=DECIMAL},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gaofen.model.weixin.WeixinMsg">
+    update WEIXIN_BAS_MSG
+    <set>
+      <if test="msgType != null">
+        MSGTYPE = #{msgType,jdbcType=DECIMAL},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gaofen.model.weixin.WeixinMsg">
+    update WEIXIN_BAS_MSG
+    set MSGTYPE = #{msgType,jdbcType=DECIMAL},
+      CONTENT = #{content,jdbcType=VARCHAR}
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByKeyword">
+    update WEIXIN_BAS_MSG
+    set msgType = #{msgType,jdbcType=INTEGER},
+    content = #{content,jdbcType=VARCHAR}
+    where msgId = #{msgId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getWeixinMsgByContent" parameterType="string"
+          resultType="com.gaofen.model.weixin.WeixinMsg">
+    SELECT * FROM WEIXIN_BAS_MSG WHERE content=#{content}
+  </select>
+
+  <select id="getWeixinMsgByMsgId" parameterType="string"
+          resultType="com.gaofen.model.weixin.WeixinMsg">
+    SELECT * FROM WEIXIN_BAS_MSG WHERE msgId=#{msgId}
+  </select>
+
+  <select id="getAllMsgByMsgType" parameterType="integer" resultType="com.gaofen.model.weixin.WeixinMsg">
+    SELECT * FROM WEIXIN_BAS_MSG WHERE msgType=#{msgType}
+  </select>
+</mapper>

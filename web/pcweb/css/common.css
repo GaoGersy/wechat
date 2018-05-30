@@ -1,0 +1,161 @@
+body{
+	background-color: #fff;
+	overflow:auto;
+}
+/*分页器样式*/
+.addAndPage .pagination{
+	float: right;
+	margin:0;
+	margin-right: 40%;
+}
+/*添加按钮样式*/
+.addAndPage .add{
+	float: left;
+	width: 52px;
+	margin-left: 50px;
+}
+.addAndPage .btn{
+	width: 52px;
+	border: none;
+	padding: 0;
+}
+.addAndPage .btn-primary{
+	width: 52px;
+	height: 32px;
+	line-height:32px; 
+}
+
+/*返回按钮*/
+.return{
+	float: right;
+	margin-top: -48px;
+	font-size: 18px;
+	list-style: none;
+	text-decoration: none;
+	position: relative;
+	width: 125px;
+	height: 27px;
+	padding-left: 35px;
+}
+.return img{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	left: 0px;
+	top:0px;
+}
+a:hover{
+text-decoration:none;
+}
+
+
+
+/*弹框的样式*/
+
+/*标题和内容的边距*/
+.ui-dialog .ui-dialog-buttonpane{
+	margin-top: 0px;
+}
+/*第一个输入框与顶部的距离*/
+.form-horizontal .form-group{
+	margin-top: 10px;
+}
+
+textarea#dicVal{
+	width:164px;
+	height: 90px; 
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+width: 100%;
+/*float: right;*/
+/*background-color: red;*/
+/*margin: 0 auto;
+text-align: center;*/
+}
+
+/*确定、取消按钮*/
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button{
+	float: right;
+}
+.ui-dialog .ui-dialog-content{
+	/*background-color: #fff;*/
+}
+
+
+/*审核管理的搜索框*/
+.preFont{
+	width: 320px;
+	float: right;
+ }
+.content{
+	width: 100%;
+	margin-bottom: 10px;
+}
+.fr{
+	float: right;
+	margin-bottom:10px;
+	margin-left:10px;
+}
+.fl{
+	float: left;
+}
+.pright{
+	width: 80px;
+	margin-left: 10px;
+	margin-right: 15px;
+}
+.lblel .search{
+	width: 20%;
+}
+.search{
+	width:59px;
+	color: #fff;
+	padding: 3px 4px;
+	background-color: #62A8D1;
+}
+
+
+/*轮播图列表搜索样式*/
+
+#search{
+margin-bottom: 10px;	
+}
+#search .type{
+margin-right: 30px;
+}
+#search .way{
+ 
+}
+#search .way input{
+font-size: 8px;
+padding-left: 10px;
+width: 170px;
+height: 30px;
+}
+.btn_search {
+margin-left: 30px;
+width: 60px;
+height: 30px;
+}
+
+/*结构添加按钮*/
+.add_structrue{
+	width: 60px;
+	height: 30px;
+	margin-top: 20px;
+}
+.add_structrue .search{
+	width: 60px;
+	height: 30px;
+	padding: 0;
+}
+.add_structrue .search button{
+	width: 60px;
+	height: 30px;
+	background-color:#62A8D1;
+	color: #fff; 
+	border: 0;
+}
+.img img{
+	width:80%;
+}

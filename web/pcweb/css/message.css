@@ -1,0 +1,112 @@
+/*common start*/
+.form-group label{
+	float: left;
+	line-height: 40px;
+	margin-right: 20px;
+}
+.form-group textarea{
+	height: 400px;
+
+}
+.form-group input{
+	height: 40px;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+/*common end*/
+
+/*text start*/
+.text-index .form-group{
+	border-bottom: 1px solid #ccc;
+	float: none;
+}
+/*text end*/
+
+/*text-edit start*/
+.text-edit .form-group textarea{
+	height: 400px;
+}
+.text-edit .form-group input{
+	height: 40px;
+}
+/*.text-edit .action{
+	text-align: center;
+}*/
+.text-edit .action{
+	margin-left: 12px;
+}
+.text-edit .action .btn-success{
+	margin-right: 20px;
+
+}
+.text-edit .action .btn-danger{
+	margin-left: 20px;
+}
+/*text-edit end*/
+
+
+/*add-picture start;*/
+
+.add-picture .img-wrap .img img{
+	width: 120px;
+	height: 120px;
+}
+.add-picture .img-wrap{
+	border: 1px solid #cdcdcd;
+	padding: 10px;
+}
+.img-wrap .img{
+	width: 120px;
+	height: 120px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+}
+.add img{
+	width: 100px;
+	height: 100px;
+}
+.add-picture .btn{
+	margin-top: 20px;
+}
+/*add-picture end*/
+
+
+/*add-text-picture begin*/
+.add-text-picture .main-img img{
+	display: block;
+	width: 100px;
+	height: 100px;
+}
+.add-text-picture .item1 img{
+	display: block;
+	width: 100px;
+	height: 100px;
+}
+.add-text-picture .needLogin{
+	width: 30px;
+}
+.add-text-picture .item-img img{
+	display: block;
+	width:100px;
+	height: 100px;
+}
+.add-text-picture .isLogin{
+	width: 28px;
+	margin-top: 10px;
+}
+.add-item{
+	border: 1px solid #ccc;
+	text-align: center;
+	line-height: 40px;
+}
+#addPicture .sub1,#addPicture .sub2,#addPicture .sub3,#addPicture .sub4{
+	display: none;
+}
+.sub{
+	border-bottom: 1px solid #ccc;
+}
+/*add-text-picture end*/

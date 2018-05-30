@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="../../js/lib/weui/weui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/order.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../../js/lib/webapp/fix.js"></script>
+    <title>影像列表</title>
+</head>
+<style>
+    
+</style>
+<body >
+    <div id="searchResult" class="searchResult">
+        <div class="content">
+            <div class="lists">
+                <ul class="imgList">
+                    <li class="clearfix" @click="getDetail(item);" v-for="item in satelliList">
+                        <img class="img-icon"  v-bind:src="item.src" alt="">
+                        <div class="text">
+                            <p><label for="">卫星：</label><span v-text="item.gfName"></span></p>
+                            <p><label for="">传感器：</label><span v-text="item.sensorId"></span></p>
+                            <p><label for="">采集时间：</label><span v-text="item.sceneDate"></span></p>
+                            <p><label for="">云覆盖量：</label><span v-text="item.cloudPercent"></span></p>
+                        </div>
+                        <!-- <img class="detail-icon" src="../../images/arrow.png" alt=""> -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="hide-img" :class="{'null':isnull}">
+            <img src="../../images/null1.png" alt="">
+            <p class="noData">没有任何数据</p>
+        </div>
+        <div class="hide-img" :class="{'network':iswork}">
+            <img src="../../images/network.png" alt="">
+            <p class="noData">请求网络出错，请刷新！</p>
+        </div>
+        <div class="weui-loadmore loading-data hide-img" :class="{'loading':isloading}">
+            <i class="weui-loading loading-icon"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+        </div>
+    </div>
+<script type="text/javascript" data-main="../../js/dev/shadow/resultList" src="../../js/lib/requirejs/require.js" defer async="true"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="../css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/login.css" rel="stylesheet" type="text/css"/>
+    <link href="../js/lib/weui/weui.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../js/lib/webapp/fix.js"></script>
+    <title>我的账号</title>
+</head>
+
+<body style="background: #f8f8f8;">
+    <div class="login">
+        
+        <div class="logo">
+            <img src="../images/logo.png" alt="">
+        </div>
+        <div class="title">广东高分中心</div>
+        <form class="login-card" id="login" >
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell userName">
+                    <div class="weui-cell__hd"><label class="weui-label">账号</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input user-name" type="text"  placeholder="请输入账号"/>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input password" type="password" placeholder="请输入密码"/>
+                    </div>
+                </div>
+                <div class="weui-cell weui-cell_vcode">
+                    <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input validation" type="text" placeholder="请输入验证码"/>
+                    </div>
+                    <div class="weui-cell__ft code">
+                        <img v-bind:src="imgUrl" id="img-code" @click="reloadCode();" class="validation-img">
+                    </div>
+                </div>
+                <!-- <label for="weuiAgree" class="weui-cell weui-agree auto-login">
+                    <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox remember">
+                    <span class="weui-agree__text">
+                        一周内记住登陆账号
+                    </span>
+                </label> -->
+                <span class="defautl-code">验证码</span>
+                <div class="submit weui-cell" @click="login();">
+                    <a href="javascript:;" class="weui-btn weui-btn_primary">登录</a>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+<script type="text/javascript" data-main="../js/dev/login" src="../js/lib/requirejs/require.js" defer async="true"></script>
+
+</body>
+</html>

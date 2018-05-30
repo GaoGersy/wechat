@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片消息</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrapValidator.css"/>
+	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="../../stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="../../assets/css/ace.min.css" />
+	<link rel="stylesheet" href="../../css/common.css" />
+	<link rel="stylesheet" href="../../css/message.css" />
+</head>
+<body>
+	<div class="page-content add-picture" id="add-picture">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="header smaller lighter blue">图片消息</h3>
+				<a class="return smaller lighter blue" href="userList.html" >返回上一级<img class="icon_return" src="../../images/return.png" alt=""></a>
+			</div>
+			<div class="col-xs-12 img-wrap">
+				<div class="img-all">
+					<!-- <div class="img fl">
+						<img src="../../images/empty.jpg" alt="">
+					</div> -->
+				</div>
+				<div class="add fl" @click="clickPic();">
+					<img src="../../images/add.png" alt="">
+				</div>
+			</div>
+			<button class="btn btn-lg btn-success"  @click="weiServe()">
+				<i class="icon-ok"></i>
+				上传图片
+			</button>
+			<div>上传</div>
+		</div>
+		<div class="hidden" style="display: none">
+			<form id="imgForm" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<!-- <input type="file" id="fileImg" name="file" @change="setpicurl(this);"> -->
+					<input type="file" id="fileImg" name="file" onchange="setpicurl(this);">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="../../assets/js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='../../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript">
+		if("ontouchend" in document) document.write("<script src='../../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+   <!--  <script type="text/javascript" src="../dist/js/bootstrapValidator.js"></script> -->
+    <script src="../../assets/js/vue/vue.js"></script>
+    <script src="../../assets/js/vue/vue-resource.min.js"></script>
+	<script type="text/javascript">
+		function add(){
+			window.location.href="./add-text.html"
+		}
+		function setpicurl(obj){
+			var file = obj.files[0]; 
+			//获得一个http格式的url路径:mozilla(firefox)||webkit or chrome  
+		    var windowURL = window.URL || window.webkitURL;  
+		    //createObjectURL创建一个指向该参数对象(图片)的URL  
+		    var dataURL;  
+		    dataURL = windowURL.createObjectURL(file); 
+			console.log(dataURL)
+			// $('.img img')[0].src=dataURL;
+			var html='<div class="img fl"><img src="'+dataURL+'" alt=""></div>';
+			$('.img-all').append(html);
+		}
+		var app = new Vue({
+			el:'#add-picture',
+	        data:{
+	            bookList:[]
+	        },
+	        methods:{
+	        	getData:function(){
+	        		console.log("请求数据")
+	        		var url=baseUrl+"user/register";
+				    this.$http.get(url,param).then(function(res){
+						if(res.data.code==200){
+						 	g.popupMobile.msg(res.data.data);
+						}else{
+						  	g.popupMobile.msg(res.data.error);
+						}
+				    },function(){
+				       alert('请求失败处理'); //失败处理
+				    });
+	        	},
+	        	clickPic:function(){
+            		$("#fileImg").click();
+            		console.log($("#fileImg").val())
+            	},
+            	aa:function(){
+            		console.log(111)
+            	},
+            	// 请求微信服务器
+            	weiServe:function(){
+            		var vm=this;
+            		//先获得图片的路径
+					var uPic = $("#fileImg").val();
+					if(uPic == null || uPic == "") {
+						$.alert("请选择文件在上传");
+						return;
+					}
+					// var formData = new FormData($("#imgForm")[0]);
+					var formData = new FormData($("#imgForm")[0]);
+					var data={"media":formData};
+					// formData.append ("openId" , "12456");
+					// formData.append ("imageType" , 1);
+					var url="http://localhost:8000/wx/cgi-bin/material/add_material?access_token=YG1bdv2uq_1gD6C8L6ArLkHg4kU_nvMb7pcHZQIvz7mn_IXjlo3OjCfHFDAUhiuJZczBGbsJenI_kE0xZGuOQUtt0oRLKtOQDTazZ411IOpAS8k_U9P3LdRXCeU1fVXFDUJaAIALCR&type=image";
+					vm.$http.post(url,data).then(function(res){
+					  alert("success"); 
+					   console.log(res)
+				    },function(){
+				       alert('请求失败处理'); //失败处理
+				    });
+			    },
+			    getData:function(){
+			    	var url="https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=fXdWXR0zs7sILeIRbj6rLtsQXvUULu3HpOVJqAbCOQJR9QuT9QAUljGg85JahAb1PfwvoEYx7qhRMKOwQIiiovUV9a66ek_AAHqANW8DCzr2F6vvsOM3eYtpMhWWWYjEOTWaAHAYDG&type=image";
+			    	var formData = new FormData($("#imgForm")[0]);
+			    	var media=formData;
+					var data={"media":formData};
+			    	$.ajax({
+                		url:url,
+						dataType:"JSONP",
+						data:JSON.stringify(data),
+						// data:data,
+						contentType:'application/json',
+						type:"POST",
+                        success: function( data){
+                        	alert("成功")
+                           console.log(data)
+                        },
+                        error:function (data) {
+                        	alert("失败")
+                           console.log(data)
+                        }
+                    });
+			    },
+			    // 请求上传图片接口
+            	douploadImg:function(){
+            		var vm=this;
+            		//先获得图片的路径
+					var uPic = $("#fileImg").val();
+					if(uPic == null || uPic == "") {
+						$.alert("请选择文件在上传");
+						return;
+					}
+					var formData = new FormData($("#imgForm")[0]);
+					formData.append ("openId" , "12456");
+					formData.append ("imageType" , 1);
+					var url=g.baseUrl+"uploadImage";
+					vm.$http.post(url,formData).then(function(res){
+					  alert("success"); 
+					   console.log(res)
+				    },function(){
+				       alert('请求失败处理'); //失败处理
+				    });
+			    }
+	        },
+	        mounted:function(){
+	        	console.log(111)
+	        },
+		})
+	</script>
+</body>
+</html>

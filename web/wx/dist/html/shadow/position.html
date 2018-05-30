@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name=format-detection content="telphone=no, email=no"><meta name=apple-touch-fullscreen content=yes><meta name=apple-mobile-web-app-capable content=yes><link href=../../js/lib/weui/weui.min.css rel=stylesheet type=text/css><link href=../../css/common.css rel=stylesheet type=text/css><link href=../../css/shadow.css rel=stylesheet type=text/css><script src="http://api.tianditu.com/api?v=4.0" type=text/javascript></script><script type=text/javascript src=../../js/lib/webapp/fix.js></script><script type=text/javascript src=../../js/lib/plugin/calender/laydate.js></script><title>定位搜索</title><style>
+   /*日历挂件*/
+  #laydate_box{
+    left: 10%;
+  }
+  .laydate_body .laydate_top{
+    width:6rem;
+  }
+  .laydate_body .laydate_box{
+    width: 6rem;
+  }
+   .laydate_body .laydate_table{
+      width:6.2rem!important;
+      background-color: #fff;
+      height: 6rem;
+    }
+    .laydate_body .laydate_bottom{
+      width: 5.96rem;
+      background-color: #fff;
+    }
+    .laydate_body .laydate_table td{
+      font-size: 0.32rem;
+    }
+    .laydate_body .laydate_table thead th{
+      font-size: 0.32rem;
+      height: 0.6rem;
+    }
+    .tree_node_child{
+      display: none;
+    }
+    .hide-y{
+      overflow-y: hidden;
+    }
+    #app{
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+    }
+    /*搜索结果信息框*/
+    .tdt-infowindow-content-wrapper{
+      border-radius: 5px;
+    }
+  </style></head><body><div id=app><div id=mapDiv class=clearfix @click=isShowResult></div><div class=position><div class=search-wrap><div class=search><input type=text id=keyWord class=keyWord placeholder=搜索地点或地址><div @click=search(); class=btn>搜索</div></div><br><div class=all-result id=all-result><div id=promptDiv class=prompt></div><div id=statisticsDiv class=statistics></div><div id=suggestsDiv class=suggests></div><div id=lineDataDiv class=lineData></div><div id=resultDiv class=result><div id=searchDiv></div><div id=pageDiv><input type=button value=第一页 @click=localsearch.firstPage()> <input type=button value=上一页 @click=localsearch.previousPage()> <input type=button value=下一页 @click=localsearch.nextPage()> <input type=button value=最后一页 @click=localsearch.lastPage()></div></div></div><div class=push><img src=../../images/left1.png></div></div><div class="weui-loadmore loading"><i class="weui-loading loading-icon"></i> <span class=weui-loadmore__tips>正在打开地图</span></div><div class="marking clearfix aside" id=aside><div class="mark-left clearfix hideAside"></div><div class="condition-search clearfix"><ul class=able-scroll><li class=time><label class=condition>时间：</label><div class=time-wrap><input type=text readonly class=begin id=begin onclick="laydate({elem: '#begin'});"><span class=gas>-</span><input type=text readonly class=end id=end onclick="laydate({elem: '#end'});"></div></li><li class="area clearfix"><label class=condition>区域：</label><div class=area-wrap><div class="size current-area on" id=ee value=1 @click=getArea1($event);>当前屏幕</div><div class="size select-area" value=2 id=gg @click=getArea1($event);>选择区域</div><span id=areaName class=area-name :class="{'hide-area':isArea}"></span></div></li><li class=satellite><div class="weui-cells weui-cells_checkbox"><span class=satellite-title>卫星：</span><div class=satellite-wrap><div class=grandfather><div class=tree_node_parent1><label class="weui-cell weui-check__label" for=s11><div class=weui-cell__hd><input type=checkbox class="weui-check tree_node_parent_checkbox" name=checkbox1 id=s11 value=GF1> <i class=weui-icon-checked></i></div><div class=weui-cell__bd><p class=gfName>GF1</p></div></label></div><div class=tree_node_child1><label class="weui-cell weui-check__label" for=s12><div class=weui-cell__hd><input type=checkbox class="weui-check tree_node_child_checkbox" name=checkbox1 id=s12 value=PMS> <i class=weui-icon-checked></i></div><div class=weui-cell__bd><p class=gfName>2m/8m</p></div></label> <label class="weui-cell weui-check__label" for=s13><div class=weui-cell__hd><input type=checkbox class="weui-check tree_node_child_checkbox" name=checkbox1 id=s13 value=WFV> <i class=weui-icon-checked></i></div><div class=weui-cell__bd><p class=gfName>16m</p></div></label></div></div><div class=grandfather v-for="item in secondGf"><div class=tree_node_parent1><label class="weui-cell weui-check__label" for=s14><div class=weui-cell__hd><input type=checkbox class="weui-check tree_node_parent_checkbox" name=checkbox1 id=s14 :value=item> <i class=weui-icon-checked></i></div><div class=weui-cell__bd><p>{{item}}</p></div></label></div></div></div><div class=satellite-wrap><div class=grandfather v-for="(item,index) in satellite"><div class=tree_node_parent1><label class="weui-cell weui-check__label" :for=index><div class=weui-cell__hd><input type=checkbox class="weui-check tree_node_parent_checkbox" name=checkbox1 :id=index :value=item> <i class=weui-icon-checked></i></div><div class=weui-cell__bd><p class=gfName>{{item}}</p></div></label></div></div></div></div></li><li class=cloud><div class=page><div class="page__bd page__bd_spacing"><div class=weui-slider-box><span class=cloud-title>云量：</span><div class=weui-slider><div id=sliderInner class=weui-slider__inner><div id=sliderTrack style="width: 60%;" class=weui-slider__track></div><div id=sliderHandler style="left: 60%;" class=weui-slider__handler></div></div></div><div id=sliderValue class=weui-slider-box__value>60%</div></div></div></div></li><div class=submit @click=submit>查询</div><div style="display: none;"><h1>LArea</h1><div class=content-block><input id=demo1 type=text readonly placeholder=城市选择特效 value=广东省,深圳市,南山区> <input id=value1 type=hidden value=20,234,504></div><div class=content-block><input id=demo2 type=text readonly placeholder=城市选择特效 value=广东省,广州市,天河区> <input id=value2 type=hidden></div></div></ul></div></div></div></div></body><script type=text/javascript data-main=../../js/dev/shadow/position src=../../js/lib/requirejs/require.js defer async></script></html>

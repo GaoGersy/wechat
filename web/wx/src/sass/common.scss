@@ -1,0 +1,79 @@
+// reset start
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,table,th,td,form,input,button,textarea,menu{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,img,iframe{border:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:100%;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+a,a:hover{text-decoration:none;}
+body{background:#fff;}
+a{color:#000;}
+body{-webkit-overflow-scrolling: touch;overflow-scrolling: touch;}
+// reset end
+
+// commod start
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.clearfix {zoom:1;}    /*==for IE6/7 Maxthon2==*/
+.clearfix:after {clear:both;content:'.';display:block;width: 0;height: 0;visibility:hidden;}
+//文本溢出时使用省略号 占位实现(%placeholder) -> @extend
+%text-ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+%solide{
+	border:1px solid #cdcdcd;
+}
+%dashed{
+    border:1px dashed #cdcdcd;
+}
+// 头部标题
+%title{
+	text-align: center;
+    font-size: 0.4rem;
+    height: 0.68rem;
+    line-height: 0.68rem;
+    border: 1px solid #cdcdcd;
+}
+%loading{
+    margin:0;
+    position: absolute;
+    left: 50%;
+    margin-left: -2.40rem;
+    top: 50%;
+    margin-top: -0.45rem;
+    z-index: 1005;
+
+}
+%loading-icon{
+  width: 0.9rem;
+  height: 0.9rem;
+}
+%null{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: none;
+    width: 4rem;
+    height: 3rem;
+    text-align: center;
+}
+.scroll{
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+// commod end

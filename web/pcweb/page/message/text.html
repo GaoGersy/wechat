@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文本消息</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrapValidator.css"/>
+	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="../../stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="../../assets/css/ace.min.css" />
+	<link rel="stylesheet" href="../../css/common.css" />
+	<link rel="stylesheet" href="../../css/message.css" />
+</head>
+<body>
+	<div class="page-content text-index" id="text-index">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="header smaller lighter blue">文本消息</h3>
+				<a class="return smaller lighter blue" href="userList.html" >返回上一级<img class="icon_return" src="../../images/return.png" alt=""></a>
+			</div>
+			<div class="col-xs-12 clearfix">
+				<div class="form-group col-sm-6 clearfix" v-for = "item in textList" @click="getDetail(item)">
+					<a href="#" >
+						<h4 class="col-sm-4 control-label no-padding-right" for="name">关键字：{{item.content}}</h4>
+					</a>
+				</div>
+				<button class="btn btn-primary" @click="add();">新增关键字</button>
+				
+			</div>
+		</div>
+	</div>
+
+	<script src="../../assets/js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='../../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript">
+		if("ontouchend" in document) document.write("<script src='../../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <script src="../../js/global.js"></script>
+    <script src="../../assets/js/vue/vue.js"></script>
+    <script src="../../assets/js/vue/vue-resource.min.js"></script>
+	<script src="../../assets/js/layer/layer.js"></script>
+   <!--  <script type="text/javascript" src="../dist/js/bootstrapValidator.js"></script> -->
+	<script type="text/javascript">
+		
+
+		// var baseUrl = "http://gaofen.iask.in/gaofen/weixin/";//服务器
+		// var baseUrl = "http://localhost:8002/gch/weixin/";//调试
+		var app = new Vue({
+			el:'#text-index',
+	        data:{
+	           textList:[],//文本关键字列表
+	          
+	        },
+	        methods:{
+	        	
+	        	getData:function(){
+	        		var vm =this;
+	        		var url=baseUrl+"getMsgList?msgType="+1;
+				    this.$http.get(url).then(function(res){
+				    	if(res.data.code==200){
+				    		vm.textList = res.data.data;
+				    	}else {
+				    		layer.msg(res.data.error, {icon: 2,time:2000});
+				    	}
+				    },function(res){
+				       layer.msg(res.data.error, {icon: 2,time:2000});
+				    });
+	        	},
+	        	// 获取关键字详情
+	        	getDetail:function(item){
+	        		window.location.href="./text-detail.html?msgId="+item.msgId+"&msgType="+item.msgType;
+	        	},
+	        	add:function(){
+	        		window.location.href = "./add-text.html";
+	        	}
+	        },
+	        mounted:function(){
+	        	var vm =this;
+	        	vm.getData();
+	        },
+		})
+	</script>
+</body>
+</html>

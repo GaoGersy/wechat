@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.UimUserMapper">
+  <resultMap id="BaseResultMap" type="com.gaofen.model.UimUser">
+    <constructor>
+      <idArg column="USERID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PWD" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MEMO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ADD_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="ISLOCK" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="SYSTEM_KEY" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CA" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ORGID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PHONE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ISPORTALUSER" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="FCOUNTYCODE" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="SEX" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="BIRTH" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CERNO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FAX" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SHOWINDEX" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="DUTY" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TELEPHONE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FAMILY_ADDRESS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="COMPANY_ADDRESS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ISADD" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ISCOMM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="THEME_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="VISITECOUNT" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="REASON" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="REPLY" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MOBILEPHONE" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    USERID, PWD, MEMO, ADD_TIME, ISLOCK, SYSTEM_KEY, CA, ORGID, USERNAME, EMAIL, PHONE, 
+    ISPORTALUSER, FCOUNTYCODE, SEX, BIRTH, CERNO, FAX, SHOWINDEX, DUTY, TELEPHONE, FAMILY_ADDRESS, 
+    COMPANY_ADDRESS, ISADD, ISCOMM, THEME_ID, VISITECOUNT, REASON, REPLY, MOBILEPHONE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_UIM_USER
+    where USERID = #{USERID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_UIM_USER
+    where USERID = #{USERID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gaofen.model.UimUser">
+    insert into TB_UIM_USER (USERID, PWD, MEMO, 
+      ADD_TIME, ISLOCK, SYSTEM_KEY, 
+      CA, ORGID, USERNAME, 
+      EMAIL, PHONE, ISPORTALUSER, 
+      FCOUNTYCODE, SEX, BIRTH, 
+      CERNO, FAX, SHOWINDEX, 
+      DUTY, TELEPHONE, FAMILY_ADDRESS, 
+      COMPANY_ADDRESS, ISADD, ISCOMM, 
+      THEME_ID, VISITECOUNT, REASON, 
+      REPLY, MOBILEPHONE)
+    values (#{USERID,jdbcType=VARCHAR}, #{PWD,jdbcType=VARCHAR}, #{MEMO,jdbcType=VARCHAR}, 
+      #{ADD_TIME,jdbcType=TIMESTAMP}, #{ISLOCK,jdbcType=DECIMAL}, #{SYSTEM_KEY,jdbcType=VARCHAR}, 
+      #{CA,jdbcType=VARCHAR}, #{ORGID,jdbcType=VARCHAR}, #{USERNAME,jdbcType=VARCHAR}, 
+      #{EMAIL,jdbcType=VARCHAR}, #{PHONE,jdbcType=VARCHAR}, #{ISPORTALUSER,jdbcType=DECIMAL}, 
+      #{FCOUNTYCODE,jdbcType=DECIMAL}, #{SEX,jdbcType=VARCHAR}, #{BIRTH,jdbcType=VARCHAR}, 
+      #{CERNO,jdbcType=VARCHAR}, #{FAX,jdbcType=VARCHAR}, #{SHOWINDEX,jdbcType=DECIMAL}, 
+      #{DUTY,jdbcType=VARCHAR}, #{TELEPHONE,jdbcType=VARCHAR}, #{FAMILY_ADDRESS,jdbcType=VARCHAR}, 
+      #{COMPANY_ADDRESS,jdbcType=VARCHAR}, #{ISADD,jdbcType=VARCHAR}, #{ISCOMM,jdbcType=VARCHAR}, 
+      #{THEME_ID,jdbcType=VARCHAR}, #{VISITECOUNT,jdbcType=DECIMAL}, #{REASON,jdbcType=VARCHAR}, 
+      #{REPLY,jdbcType=VARCHAR}, #{MOBILEPHONE,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gaofen.model.UimUser">
+    insert into TB_UIM_USER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="USERID != null">
+        USERID,
+      </if>
+      <if test="PWD != null">
+        PWD,
+      </if>
+      <if test="MEMO != null">
+        MEMO,
+      </if>
+      <if test="ADD_TIME != null">
+        ADD_TIME,
+      </if>
+      <if test="ISLOCK != null">
+        ISLOCK,
+      </if>
+      <if test="SYSTEM_KEY != null">
+        SYSTEM_KEY,
+      </if>
+      <if test="CA != null">
+        CA,
+      </if>
+      <if test="ORGID != null">
+        ORGID,
+      </if>
+      <if test="USERNAME != null">
+        USERNAME,
+      </if>
+      <if test="EMAIL != null">
+        EMAIL,
+      </if>
+      <if test="PHONE != null">
+        PHONE,
+      </if>
+      <if test="ISPORTALUSER != null">
+        ISPORTALUSER,
+      </if>
+      <if test="FCOUNTYCODE != null">
+        FCOUNTYCODE,
+      </if>
+      <if test="SEX != null">
+        SEX,
+      </if>
+      <if test="BIRTH != null">
+        BIRTH,
+      </if>
+      <if test="CERNO != null">
+        CERNO,
+      </if>
+      <if test="FAX != null">
+        FAX,
+      </if>
+      <if test="SHOWINDEX != null">
+        SHOWINDEX,
+      </if>
+      <if test="DUTY != null">
+        DUTY,
+      </if>
+      <if test="TELEPHONE != null">
+        TELEPHONE,
+      </if>
+      <if test="FAMILY_ADDRESS != null">
+        FAMILY_ADDRESS,
+      </if>
+      <if test="COMPANY_ADDRESS != null">
+        COMPANY_ADDRESS,
+      </if>
+      <if test="ISADD != null">
+        ISADD,
+      </if>
+      <if test="ISCOMM != null">
+        ISCOMM,
+      </if>
+      <if test="THEME_ID != null">
+        THEME_ID,
+      </if>
+      <if test="VISITECOUNT != null">
+        VISITECOUNT,
+      </if>
+      <if test="REASON != null">
+        REASON,
+      </if>
+      <if test="REPLY != null">
+        REPLY,
+      </if>
+      <if test="MOBILEPHONE != null">
+        MOBILEPHONE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="USERID != null">
+        #{USERID,jdbcType=VARCHAR},
+      </if>
+      <if test="PWD != null">
+        #{PWD,jdbcType=VARCHAR},
+      </if>
+      <if test="MEMO != null">
+        #{MEMO,jdbcType=VARCHAR},
+      </if>
+      <if test="ADD_TIME != null">
+        #{ADD_TIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ISLOCK != null">
+        #{ISLOCK,jdbcType=DECIMAL},
+      </if>
+      <if test="SYSTEM_KEY != null">
+        #{SYSTEM_KEY,jdbcType=VARCHAR},
+      </if>
+      <if test="CA != null">
+        #{CA,jdbcType=VARCHAR},
+      </if>
+      <if test="ORGID != null">
+        #{ORGID,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="EMAIL != null">
+        #{EMAIL,jdbcType=VARCHAR},
+      </if>
+      <if test="PHONE != null">
+        #{PHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="ISPORTALUSER != null">
+        #{ISPORTALUSER,jdbcType=DECIMAL},
+      </if>
+      <if test="FCOUNTYCODE != null">
+        #{FCOUNTYCODE,jdbcType=DECIMAL},
+      </if>
+      <if test="SEX != null">
+        #{SEX,jdbcType=VARCHAR},
+      </if>
+      <if test="BIRTH != null">
+        #{BIRTH,jdbcType=VARCHAR},
+      </if>
+      <if test="CERNO != null">
+        #{CERNO,jdbcType=VARCHAR},
+      </if>
+      <if test="FAX != null">
+        #{FAX,jdbcType=VARCHAR},
+      </if>
+      <if test="SHOWINDEX != null">
+        #{SHOWINDEX,jdbcType=DECIMAL},
+      </if>
+      <if test="DUTY != null">
+        #{DUTY,jdbcType=VARCHAR},
+      </if>
+      <if test="TELEPHONE != null">
+        #{TELEPHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="FAMILY_ADDRESS != null">
+        #{FAMILY_ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="COMPANY_ADDRESS != null">
+        #{COMPANY_ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="ISADD != null">
+        #{ISADD,jdbcType=VARCHAR},
+      </if>
+      <if test="ISCOMM != null">
+        #{ISCOMM,jdbcType=VARCHAR},
+      </if>
+      <if test="THEME_ID != null">
+        #{THEME_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="VISITECOUNT != null">
+        #{VISITECOUNT,jdbcType=DECIMAL},
+      </if>
+      <if test="REASON != null">
+        #{REASON,jdbcType=VARCHAR},
+      </if>
+      <if test="REPLY != null">
+        #{REPLY,jdbcType=VARCHAR},
+      </if>
+      <if test="MOBILEPHONE != null">
+        #{MOBILEPHONE,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gaofen.model.UimUser">
+    update TB_UIM_USER
+    <set>
+      <if test="PWD != null">
+        PWD = #{PWD,jdbcType=VARCHAR},
+      </if>
+      <if test="MEMO != null">
+        MEMO = #{MEMO,jdbcType=VARCHAR},
+      </if>
+      <if test="ADD_TIME != null">
+        ADD_TIME = #{ADD_TIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ISLOCK != null">
+        ISLOCK = #{ISLOCK,jdbcType=DECIMAL},
+      </if>
+      <if test="SYSTEM_KEY != null">
+        SYSTEM_KEY = #{SYSTEM_KEY,jdbcType=VARCHAR},
+      </if>
+      <if test="CA != null">
+        CA = #{CA,jdbcType=VARCHAR},
+      </if>
+      <if test="ORGID != null">
+        ORGID = #{ORGID,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="EMAIL != null">
+        EMAIL = #{EMAIL,jdbcType=VARCHAR},
+      </if>
+      <if test="PHONE != null">
+        PHONE = #{PHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="ISPORTALUSER != null">
+        ISPORTALUSER = #{ISPORTALUSER,jdbcType=DECIMAL},
+      </if>
+      <if test="FCOUNTYCODE != null">
+        FCOUNTYCODE = #{FCOUNTYCODE,jdbcType=DECIMAL},
+      </if>
+      <if test="SEX != null">
+        SEX = #{SEX,jdbcType=VARCHAR},
+      </if>
+      <if test="BIRTH != null">
+        BIRTH = #{BIRTH,jdbcType=VARCHAR},
+      </if>
+      <if test="CERNO != null">
+        CERNO = #{CERNO,jdbcType=VARCHAR},
+      </if>
+      <if test="FAX != null">
+        FAX = #{FAX,jdbcType=VARCHAR},
+      </if>
+      <if test="SHOWINDEX != null">
+        SHOWINDEX = #{SHOWINDEX,jdbcType=DECIMAL},
+      </if>
+      <if test="DUTY != null">
+        DUTY = #{DUTY,jdbcType=VARCHAR},
+      </if>
+      <if test="TELEPHONE != null">
+        TELEPHONE = #{TELEPHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="FAMILY_ADDRESS != null">
+        FAMILY_ADDRESS = #{FAMILY_ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="COMPANY_ADDRESS != null">
+        COMPANY_ADDRESS = #{COMPANY_ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="ISADD != null">
+        ISADD = #{ISADD,jdbcType=VARCHAR},
+      </if>
+      <if test="ISCOMM != null">
+        ISCOMM = #{ISCOMM,jdbcType=VARCHAR},
+      </if>
+      <if test="THEME_ID != null">
+        THEME_ID = #{THEME_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="VISITECOUNT != null">
+        VISITECOUNT = #{VISITECOUNT,jdbcType=DECIMAL},
+      </if>
+      <if test="REASON != null">
+        REASON = #{REASON,jdbcType=VARCHAR},
+      </if>
+      <if test="REPLY != null">
+        REPLY = #{REPLY,jdbcType=VARCHAR},
+      </if>
+      <if test="MOBILEPHONE != null">
+        MOBILEPHONE = #{MOBILEPHONE,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where USERID = #{USERID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gaofen.model.UimUser">
+    update TB_UIM_USER
+    set PWD = #{PWD,jdbcType=VARCHAR},
+      MEMO = #{MEMO,jdbcType=VARCHAR},
+      ADD_TIME = #{ADD_TIME,jdbcType=TIMESTAMP},
+      ISLOCK = #{ISLOCK,jdbcType=DECIMAL},
+      SYSTEM_KEY = #{SYSTEM_KEY,jdbcType=VARCHAR},
+      CA = #{CA,jdbcType=VARCHAR},
+      ORGID = #{ORGID,jdbcType=VARCHAR},
+      USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      EMAIL = #{EMAIL,jdbcType=VARCHAR},
+      PHONE = #{PHONE,jdbcType=VARCHAR},
+      ISPORTALUSER = #{ISPORTALUSER,jdbcType=DECIMAL},
+      FCOUNTYCODE = #{FCOUNTYCODE,jdbcType=DECIMAL},
+      SEX = #{SEX,jdbcType=VARCHAR},
+      BIRTH = #{BIRTH,jdbcType=VARCHAR},
+      CERNO = #{CERNO,jdbcType=VARCHAR},
+      FAX = #{FAX,jdbcType=VARCHAR},
+      SHOWINDEX = #{SHOWINDEX,jdbcType=DECIMAL},
+      DUTY = #{DUTY,jdbcType=VARCHAR},
+      TELEPHONE = #{TELEPHONE,jdbcType=VARCHAR},
+      FAMILY_ADDRESS = #{FAMILY_ADDRESS,jdbcType=VARCHAR},
+      COMPANY_ADDRESS = #{COMPANY_ADDRESS,jdbcType=VARCHAR},
+      ISADD = #{ISADD,jdbcType=VARCHAR},
+      ISCOMM = #{ISCOMM,jdbcType=VARCHAR},
+      THEME_ID = #{THEME_ID,jdbcType=VARCHAR},
+      VISITECOUNT = #{VISITECOUNT,jdbcType=DECIMAL},
+      REASON = #{REASON,jdbcType=VARCHAR},
+      REPLY = #{REPLY,jdbcType=VARCHAR},
+      MOBILEPHONE = #{MOBILEPHONE,jdbcType=DECIMAL}
+    where USERID = #{USERID,jdbcType=VARCHAR}
+  </update>
+<select id="getUimUserById" parameterType="String"
+        resultType="com.gaofen.model.UimUser"
+
+        >
+  SELECT  from TB_UIM_USER WHERE USERID ={USERID}
+
+
+
+</select>
+
+</mapper>

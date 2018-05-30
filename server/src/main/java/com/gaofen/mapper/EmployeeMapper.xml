@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.gaofen.model.Employee">
+    <constructor>
+      <idArg column="LOGINNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMPLOYEE_NUM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMPLOYEE_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMPLOYEE_AGE" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="EMPLOYEE_SEXUAL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMPLOYEE_BIRTHDAY" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="EMPLOYEE_PHONE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PEOPLES_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMPLOYEE_HOMETOWN" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DEPARTMENT_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="INDENTITY_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMPLOYEE_ARR_DATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="EMPLOYEE_WORK_DATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="OCCUPATIONTITLE_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="OCCUPATIONTITLE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="MANAGE_DUTY_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMPLOYEE_MANAGE_DUTY_DATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="RECORD_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMPLOYEE_RECORD_DATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DEGREE_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMPLOYEE_DEGREE_DATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="ISUSED" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="PASSWORD" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PARENTID" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="VISITECOUNT" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="EMP_CHECK" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMP_CHECKDETAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PROTOCOLFILE" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    LOGINNAME, EMPLOYEE_NUM, EMPLOYEE_NAME, EMPLOYEE_AGE, EMPLOYEE_SEXUAL, EMPLOYEE_BIRTHDAY, 
+    EMPLOYEE_PHONE, PEOPLES_CODE, EMPLOYEE_HOMETOWN, DEPARTMENT_CODE, INDENTITY_CODE, 
+    EMPLOYEE_ARR_DATE, EMPLOYEE_WORK_DATE, OCCUPATIONTITLE_CODE, OCCUPATIONTITLE_TIME, 
+    MANAGE_DUTY_CODE, EMPLOYEE_MANAGE_DUTY_DATE, RECORD_CODE, EMPLOYEE_RECORD_DATE, DEGREE_CODE, 
+    EMPLOYEE_DEGREE_DATE, ISUSED, PASSWORD, PARENTID, VISITECOUNT, EMP_CHECK, EMP_CHECKDETAIL, 
+    PROTOCOLFILE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EMPLOYEE
+    where LOGINNAME = #{loginname,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from EMPLOYEE
+    where LOGINNAME = #{loginname,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gaofen.model.Employee">
+    insert into EMPLOYEE (LOGINNAME, EMPLOYEE_NUM, EMPLOYEE_NAME, 
+      EMPLOYEE_AGE, EMPLOYEE_SEXUAL, EMPLOYEE_BIRTHDAY, 
+      EMPLOYEE_PHONE, PEOPLES_CODE, EMPLOYEE_HOMETOWN, 
+      DEPARTMENT_CODE, INDENTITY_CODE, EMPLOYEE_ARR_DATE, 
+      EMPLOYEE_WORK_DATE, OCCUPATIONTITLE_CODE, 
+      OCCUPATIONTITLE_TIME, MANAGE_DUTY_CODE, 
+      EMPLOYEE_MANAGE_DUTY_DATE, RECORD_CODE, EMPLOYEE_RECORD_DATE, 
+      DEGREE_CODE, EMPLOYEE_DEGREE_DATE, ISUSED, 
+      PASSWORD, PARENTID, VISITECOUNT, 
+      EMP_CHECK, EMP_CHECKDETAIL, PROTOCOLFILE
+      )
+    values (#{loginname,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{employeeName,jdbcType=VARCHAR}, 
+      #{employeeAge,jdbcType=DECIMAL}, #{employeeSexual,jdbcType=VARCHAR}, #{employeeBirthday,jdbcType=TIMESTAMP}, 
+      #{employeePhone,jdbcType=VARCHAR}, #{peoplesCode,jdbcType=VARCHAR}, #{employeeHometown,jdbcType=VARCHAR}, 
+      #{departmentCode,jdbcType=VARCHAR}, #{indentityCode,jdbcType=VARCHAR}, #{employeeArrDate,jdbcType=TIMESTAMP}, 
+      #{employeeWorkDate,jdbcType=TIMESTAMP}, #{occupationtitleCode,jdbcType=VARCHAR}, 
+      #{occupationtitleTime,jdbcType=TIMESTAMP}, #{manageDutyCode,jdbcType=VARCHAR}, 
+      #{employeeManageDutyDate,jdbcType=TIMESTAMP}, #{recordCode,jdbcType=VARCHAR}, #{employeeRecordDate,jdbcType=TIMESTAMP}, 
+      #{degreeCode,jdbcType=VARCHAR}, #{employeeDegreeDate,jdbcType=TIMESTAMP}, #{isused,jdbcType=DECIMAL}, 
+      #{password,jdbcType=VARCHAR}, #{parentid,jdbcType=DECIMAL}, #{visitecount,jdbcType=DECIMAL}, 
+      #{empCheck,jdbcType=VARCHAR}, #{empCheckdetail,jdbcType=VARCHAR}, #{protocolfile,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gaofen.model.Employee">
+    insert into EMPLOYEE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginname != null">
+        LOGINNAME,
+      </if>
+      <if test="employeeNum != null">
+        EMPLOYEE_NUM,
+      </if>
+      <if test="employeeName != null">
+        EMPLOYEE_NAME,
+      </if>
+      <if test="employeeAge != null">
+        EMPLOYEE_AGE,
+      </if>
+      <if test="employeeSexual != null">
+        EMPLOYEE_SEXUAL,
+      </if>
+      <if test="employeeBirthday != null">
+        EMPLOYEE_BIRTHDAY,
+      </if>
+      <if test="employeePhone != null">
+        EMPLOYEE_PHONE,
+      </if>
+      <if test="peoplesCode != null">
+        PEOPLES_CODE,
+      </if>
+      <if test="employeeHometown != null">
+        EMPLOYEE_HOMETOWN,
+      </if>
+      <if test="departmentCode != null">
+        DEPARTMENT_CODE,
+      </if>
+      <if test="indentityCode != null">
+        INDENTITY_CODE,
+      </if>
+      <if test="employeeArrDate != null">
+        EMPLOYEE_ARR_DATE,
+      </if>
+      <if test="employeeWorkDate != null">
+        EMPLOYEE_WORK_DATE,
+      </if>
+      <if test="occupationtitleCode != null">
+        OCCUPATIONTITLE_CODE,
+      </if>
+      <if test="occupationtitleTime != null">
+        OCCUPATIONTITLE_TIME,
+      </if>
+      <if test="manageDutyCode != null">
+        MANAGE_DUTY_CODE,
+      </if>
+      <if test="employeeManageDutyDate != null">
+        EMPLOYEE_MANAGE_DUTY_DATE,
+      </if>
+      <if test="recordCode != null">
+        RECORD_CODE,
+      </if>
+      <if test="employeeRecordDate != null">
+        EMPLOYEE_RECORD_DATE,
+      </if>
+      <if test="degreeCode != null">
+        DEGREE_CODE,
+      </if>
+      <if test="employeeDegreeDate != null">
+        EMPLOYEE_DEGREE_DATE,
+      </if>
+      <if test="isused != null">
+        ISUSED,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="visitecount != null">
+        VISITECOUNT,
+      </if>
+      <if test="empCheck != null">
+        EMP_CHECK,
+      </if>
+      <if test="empCheckdetail != null">
+        EMP_CHECKDETAIL,
+      </if>
+      <if test="protocolfile != null">
+        PROTOCOLFILE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginname != null">
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeNum != null">
+        #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeName != null">
+        #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeAge != null">
+        #{employeeAge,jdbcType=DECIMAL},
+      </if>
+      <if test="employeeSexual != null">
+        #{employeeSexual,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeBirthday != null">
+        #{employeeBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employeePhone != null">
+        #{employeePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="peoplesCode != null">
+        #{peoplesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeHometown != null">
+        #{employeeHometown,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentCode != null">
+        #{departmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indentityCode != null">
+        #{indentityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeArrDate != null">
+        #{employeeArrDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employeeWorkDate != null">
+        #{employeeWorkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="occupationtitleCode != null">
+        #{occupationtitleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationtitleTime != null">
+        #{occupationtitleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manageDutyCode != null">
+        #{manageDutyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeManageDutyDate != null">
+        #{employeeManageDutyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordCode != null">
+        #{recordCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeRecordDate != null">
+        #{employeeRecordDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="degreeCode != null">
+        #{degreeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeDegreeDate != null">
+        #{employeeDegreeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isused != null">
+        #{isused,jdbcType=DECIMAL},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=DECIMAL},
+      </if>
+      <if test="visitecount != null">
+        #{visitecount,jdbcType=DECIMAL},
+      </if>
+      <if test="empCheck != null">
+        #{empCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="empCheckdetail != null">
+        #{empCheckdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolfile != null">
+        #{protocolfile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gaofen.model.Employee">
+    update EMPLOYEE
+    <set>
+      <if test="employeeNum != null">
+        EMPLOYEE_NUM = #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeName != null">
+        EMPLOYEE_NAME = #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeAge != null">
+        EMPLOYEE_AGE = #{employeeAge,jdbcType=DECIMAL},
+      </if>
+      <if test="employeeSexual != null">
+        EMPLOYEE_SEXUAL = #{employeeSexual,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeBirthday != null">
+        EMPLOYEE_BIRTHDAY = #{employeeBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employeePhone != null">
+        EMPLOYEE_PHONE = #{employeePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="peoplesCode != null">
+        PEOPLES_CODE = #{peoplesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeHometown != null">
+        EMPLOYEE_HOMETOWN = #{employeeHometown,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentCode != null">
+        DEPARTMENT_CODE = #{departmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indentityCode != null">
+        INDENTITY_CODE = #{indentityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeArrDate != null">
+        EMPLOYEE_ARR_DATE = #{employeeArrDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employeeWorkDate != null">
+        EMPLOYEE_WORK_DATE = #{employeeWorkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="occupationtitleCode != null">
+        OCCUPATIONTITLE_CODE = #{occupationtitleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationtitleTime != null">
+        OCCUPATIONTITLE_TIME = #{occupationtitleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manageDutyCode != null">
+        MANAGE_DUTY_CODE = #{manageDutyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeManageDutyDate != null">
+        EMPLOYEE_MANAGE_DUTY_DATE = #{employeeManageDutyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordCode != null">
+        RECORD_CODE = #{recordCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeRecordDate != null">
+        EMPLOYEE_RECORD_DATE = #{employeeRecordDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="degreeCode != null">
+        DEGREE_CODE = #{degreeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeDegreeDate != null">
+        EMPLOYEE_DEGREE_DATE = #{employeeDegreeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isused != null">
+        ISUSED = #{isused,jdbcType=DECIMAL},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=DECIMAL},
+      </if>
+      <if test="visitecount != null">
+        VISITECOUNT = #{visitecount,jdbcType=DECIMAL},
+      </if>
+      <if test="empCheck != null">
+        EMP_CHECK = #{empCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="empCheckdetail != null">
+        EMP_CHECKDETAIL = #{empCheckdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolfile != null">
+        PROTOCOLFILE = #{protocolfile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOGINNAME = #{loginname,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gaofen.model.Employee">
+    update EMPLOYEE
+    set EMPLOYEE_NUM = #{employeeNum,jdbcType=VARCHAR},
+      EMPLOYEE_NAME = #{employeeName,jdbcType=VARCHAR},
+      EMPLOYEE_AGE = #{employeeAge,jdbcType=DECIMAL},
+      EMPLOYEE_SEXUAL = #{employeeSexual,jdbcType=VARCHAR},
+      EMPLOYEE_BIRTHDAY = #{employeeBirthday,jdbcType=TIMESTAMP},
+      EMPLOYEE_PHONE = #{employeePhone,jdbcType=VARCHAR},
+      PEOPLES_CODE = #{peoplesCode,jdbcType=VARCHAR},
+      EMPLOYEE_HOMETOWN = #{employeeHometown,jdbcType=VARCHAR},
+      DEPARTMENT_CODE = #{departmentCode,jdbcType=VARCHAR},
+      INDENTITY_CODE = #{indentityCode,jdbcType=VARCHAR},
+      EMPLOYEE_ARR_DATE = #{employeeArrDate,jdbcType=TIMESTAMP},
+      EMPLOYEE_WORK_DATE = #{employeeWorkDate,jdbcType=TIMESTAMP},
+      OCCUPATIONTITLE_CODE = #{occupationtitleCode,jdbcType=VARCHAR},
+      OCCUPATIONTITLE_TIME = #{occupationtitleTime,jdbcType=TIMESTAMP},
+      MANAGE_DUTY_CODE = #{manageDutyCode,jdbcType=VARCHAR},
+      EMPLOYEE_MANAGE_DUTY_DATE = #{employeeManageDutyDate,jdbcType=TIMESTAMP},
+      RECORD_CODE = #{recordCode,jdbcType=VARCHAR},
+      EMPLOYEE_RECORD_DATE = #{employeeRecordDate,jdbcType=TIMESTAMP},
+      DEGREE_CODE = #{degreeCode,jdbcType=VARCHAR},
+      EMPLOYEE_DEGREE_DATE = #{employeeDegreeDate,jdbcType=TIMESTAMP},
+      ISUSED = #{isused,jdbcType=DECIMAL},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=DECIMAL},
+      VISITECOUNT = #{visitecount,jdbcType=DECIMAL},
+      EMP_CHECK = #{empCheck,jdbcType=VARCHAR},
+      EMP_CHECKDETAIL = #{empCheckdetail,jdbcType=VARCHAR},
+      PROTOCOLFILE = #{protocolfile,jdbcType=VARCHAR}
+    where LOGINNAME = #{loginname,jdbcType=VARCHAR}
+  </update>
+</mapper>

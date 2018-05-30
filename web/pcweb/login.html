@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>用户登录</title>
+        <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./assets/css/login.css" />
+        <script src="./assets/js/jquery-2.0.3.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <form action="" method="post" id="form1">
+            <div class="mycenter">
+            <div class="mysign">
+                <div class="col-lg-7 text-center text-info">
+                    <h2>请登录</h2>
+                </div>
+                <div class="col-lg-7">
+                    <input type="text" class="form-control" name="username" placeholder="请输入账户名" required autofocus id="name"/>
+                </div>
+                <div class="col-lg-7"></div>
+                <div class="col-lg-7">
+                    <input type="password" class="form-control" name="password" placeholder="请输入密码" required autofocus id="password"/>
+                </div>
+                <div class="col-lg-7"></div>
+                <div class="col-lg-7 mycheckbox checkbox">
+                    <input type="checkbox" class="col-lg-1">记住密码</input>
+                </div>
+                <div class="col-lg-7"></div>
+                <div class="col-lg-7">
+                    <button type="button" @click="submit()" class="btn btn-success col-lg-12" id="submit">登录</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </body>
+</html>
+<script src="./media/js/vue/vue-resource.min.js"></script>
+<script src="./media/js/vue/vue.min.js"></script>
+<script type="text/javascript">
+    var app = new Vue({
+        el:'#form1',
+        data:{
+            enjoyList:[]//定义一个数组用来存储公司列表
+        },
+        ready: function () {
+            var vm=this;
+            console.log(11)
+            console.log($("#name").val());
+        },
+        methods: {
+             // 登录
+            submit:function (){
+                var param={};
+                var phone = $("#name").val()
+                var password = $("#password").val();
+
+                param.phone=phone;
+                param.password=password;
+                param.permission=0;
+                 console.log(param);
+              //   param.eid=eid;
+                var schoolNewUrl="http://localhost:8080/Eltest1/user/applogin.do";
+                $.ajax({url:schoolNewUrl,data:param,success:function(res){
+                    console.log("登录成功")
+                    console.log(res)
+                   if(res.result==1){
+                        
+                        // window.top.tips("提示","删除成功","success",2000);
+                        setTimeout(function(){
+                            window.location.href="./index.html";
+                        },1000)
+                    }else{
+                        // window.top.tips("提示",res.error,"error",2000);
+                    }
+              }});
+            },
+            //删除确认
+            deleteComfire:function (uid){
+                bootbox.confirm({  
+                    buttons: {  
+                        confirm: {  
+                            label: '确认',  
+                            className: 'btn-myStyle'  
+                        },  
+                        cancel: {  
+                            label: '取消',  
+                            className: 'btn-default'  
+                        }  
+                    },  
+                    message: '确定删除该用户吗?',  
+                    callback: function(result) {  
+                        if(result){
+                            deleteUser1(uid);
+                        }
+                    },  
+                });
+            }
+        }
+    })
+</script>

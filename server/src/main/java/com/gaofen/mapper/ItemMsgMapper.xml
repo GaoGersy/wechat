@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.ItemMsgMapper">
+  <resultMap id="BaseResultMap" type="com.gaofen.model.weixin.ItemMsg">
+    <constructor>
+      <idArg column="ITEMID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DESCRIPTION" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="URL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TITLE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IMAGEURL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="NEEDLOGIN" javaType="java.lang.Long" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ITEMID, DESCRIPTION, URL, TITLE, IMAGEURL, NEEDLOGIN
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WEIXIN_ITEM_MSG
+    where ITEMID = #{itemId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WEIXIN_ITEM_MSG
+    where ITEMID = #{itemId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gaofen.model.weixin.ItemMsg">
+    insert into WEIXIN_ITEM_MSG (ITEMID, DESCRIPTION, URL, 
+      TITLE, IMAGEURL, NEEDLOGIN
+      )
+    values (#{itemId,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+      #{title,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, #{needLogin,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gaofen.model.weixin.ItemMsg">
+    insert into WEIXIN_ITEM_MSG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        ITEMID,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+      <if test="imageUrl != null">
+        IMAGEURL,
+      </if>
+      <if test="needLogin != null">
+        NEEDLOGIN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="needLogin != null">
+        #{needLogin,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gaofen.model.weixin.ItemMsg">
+    update WEIXIN_ITEM_MSG
+    <set>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        IMAGEURL = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="needLogin != null">
+        NEEDLOGIN = #{needLogin,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ITEMID = #{itemId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gaofen.model.weixin.ItemMsg">
+    update WEIXIN_ITEM_MSG
+    set DESCRIPTION = #{description,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      IMAGEURL = #{imageUrl,jdbcType=VARCHAR},
+      NEEDLOGIN = #{needLogin,jdbcType=DECIMAL}
+    where ITEMID = #{itemId,jdbcType=VARCHAR}
+  </update>
+  <select id="getMsgByItemIds" resultType="ItemMsg">
+    SELECT *
+    FROM WEIXIN_ITEM_MSG
+    where itemId in
+    <foreach collection="array" item="itemId" index="index"
+            open="(" close=")" separator=",">
+      #{itemId}
+    </foreach>
+  </select>
+</mapper>

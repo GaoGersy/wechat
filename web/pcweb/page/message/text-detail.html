@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文本详情</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../../plugin/bootstrapvalidator/css/bootstrapValidator.css"/>
+	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="../../stylesheet" href="assets/css/font-awesome.min.css" />
+	<script src="../../js/global.js"></script>
+	<link rel="stylesheet" href="../../assets/css/ace.min.css" />
+	<link rel="stylesheet" href="../../css/common.css" />
+	<link rel="stylesheet" href="../../css/message.css" />
+</head>
+<body>
+	<div class="page-content text-edit" id="text-edit">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="header smaller lighter blue">新增文本关键字</h3>
+				<a class="return smaller lighter blue" href="userList.html" >返回上一级<img class="icon_return" src="../../images/return.png" alt=""></a>
+			</div>
+			<div class="col-xs-12 clearfix">
+				<div class="form-group col-sm-9 clearfix" >
+					<input type="text" class="col-sm-9 key-word" placeholder="请输入关键字" v-model="keyword">
+				</div>
+				<div class="form-group col-sm-9 clearfix">
+					<textarea name="" id="" class="col-sm-9 description"  placeholder="请输入回复内容" v-model="content"></textarea>
+				</div>
+			</div>
+			<div class="col-sm-9 action">
+				<button class="btn btn-success" @click="upload();">更新</button>
+				<button class="btn btn-danger" @click="deleteKey();">删除</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="../../assets/js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='../../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript">
+		if("ontouchend" in document) document.write("<script src='../../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
+	<script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+   <!--  <script type="text/javascript" src="../dist/js/bootstrapValidator.js"></script> -->
+ 	<script src="../../assets/js/vue/vue.js"></script>
+    <script src="../../assets/js/vue/vue-resource.min.js"></script>
+	<script src="../../assets/js/layer/layer.js"></script>
+	<script src="../../js/global.js"></script>
+   <!--  <script type="text/javascript" src="../dist/js/bootstrapValidator.js"></script> -->
+	<script type="text/javascript">
+		
+		// var baseUrl = "http://gaofen.iask.in/gaofen/weixin/";//服务器
+		// var baseUrl = "http://localhost:8002/gch/weixin/";//调试
+
+		var app = new Vue({
+			el:'#text-edit',
+	        data:{
+	            keyword:'',//关键字
+	            content:'',//回复内容
+	            msgId:'',
+	            msgType:'',
+	        },
+	        methods:{
+	        	// 获取url
+	        	getUrl:function(name) {
+		            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		            var r = window.location.search.substr(1).match(reg);
+		            if (r != null) {
+		                return decodeURI(r[2]);
+		            }
+		            return null;
+		        },
+	        	getDetail:function(){
+	        		var vm = this;
+	        		var url=baseUrl+"getMsgDetail?msgId="+vm.msgId+"&msgType="+vm.msgType;
+				    this.$http.get(url).then(function(res){
+				    	if(res.data.code==200){
+				    		layer.msg('请求成功', {icon: 6,time:2000});
+					    	vm.keyword = res.data.data.keyWord;
+					    	vm.content = res.data.data.content;
+				    	}else {
+				    		 layer.msg(res.data.error, {icon: 2,time:2000});
+				    	}
+				    },function(res){
+				       layer.msg(res.data.error, {icon: 2,time:2000});
+				    });
+	        	},
+	        	// 删除关键字
+	        	deleteKey:function() {
+		           var vm =this;
+		      		var url=baseUrl+"deleteTextReplyMsg?msgId="+vm.msgId;
+				    this.$http.get(url).then(function(res){
+				    	if(res.data.code==200){
+				    		layer.msg('删除成功', {icon: 6,time:2000});
+					  		window.location.href="./text.html";
+				    	}else {
+				    		layer.msg(res.data.error, {icon: 2,time:2000});
+				    	}
+				    },function(res){//失败处理
+				       layer.msg(res.data.error, {icon: 2,time:2000});
+				    });
+		        },
+		        // 更新
+		        upload:function(){
+	        		var vm = this;
+	        		var keyWord = $(".key-word").val();
+	        		var content = $(".description").val();
+	        		if(keyWord==null || keyWord.length==0){
+            			layer.msg('请输入关键字', {icon: 2,time:2000});
+            			return false;
+            		}
+            		if(content==null || content.length==0){
+            			layer.msg('请输入回复内容', {icon: 2,time:2000});
+            			return false;
+            		}
+	        		var param = {
+						"content":content,
+						"keyWord":keyWord,
+						"msgId":vm.msgId,
+						"msgType":vm.msgType,
+					}
+	        		var url=baseUrl+"updateTextReplyMsg";
+				    this.$http.post(url,param).then(function(res){
+				    	if(res.data.code){
+				    		layer.msg('更新成功', {icon: 6,time:2000});
+				    		setTimeout(function(){
+								// window.history.go(-1);
+								// location.reload();
+								self.location=document.referrer; 
+							},1500)
+				    	}else {
+				    		layer.msg(res.data.error, {icon: 2,time:2000});
+				    	}
+				    },function(res){
+				       layer.msg(res.data.error, {icon: 2,time:2000});
+				    });
+	        	}
+	        },
+	        mounted:function(){
+	        	var vm= this;
+	        	vm.msgId = vm.getUrl("msgId");
+	        	vm.msgType = vm.getUrl("msgType");
+	        	vm.getDetail();
+	        },
+		})
+	</script>
+</body>
+</html>

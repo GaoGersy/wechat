@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.TbBasNoticeGdMapper">
+    <resultMap id="BaseResultMap" type="com.gaofen.model.TbBasNoticeGd">
+        <constructor>
+            <arg column="ID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="TITLE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="CONTENT" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="CREATEDATE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="QUICKIMG" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="STATE" javaType="java.lang.Short" jdbcType="DECIMAL"/>
+            <arg column="CSOURCE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="AOTHER" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="PUBLISHER" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="LEVELONE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="LEVELTWO" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="DRAFT" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <insert id="insert" parameterType="com.gaofen.model.TbBasNoticeGd">
+    insert into TB_BAS_NOTICE_GD (ID, TITLE, CONTENT, 
+      CREATEDATE, QUICKIMG, STATE, 
+      CSOURCE, AOTHER, PUBLISHER, 
+      LEVELONE, LEVELTWO, DRAFT
+      )
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=VARCHAR}, #{quickimg,jdbcType=VARCHAR}, #{state,jdbcType=DECIMAL}, 
+      #{csource,jdbcType=VARCHAR}, #{aother,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
+      #{levelone,jdbcType=VARCHAR}, #{leveltwo,jdbcType=VARCHAR}, #{draft,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.gaofen.model.TbBasNoticeGd">
+        insert into TB_BAS_NOTICE_GD
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="title != null">
+                TITLE,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+            <if test="createdate != null">
+                CREATEDATE,
+            </if>
+            <if test="quickimg != null">
+                QUICKIMG,
+            </if>
+            <if test="state != null">
+                STATE,
+            </if>
+            <if test="csource != null">
+                CSOURCE,
+            </if>
+            <if test="aother != null">
+                AOTHER,
+            </if>
+            <if test="publisher != null">
+                PUBLISHER,
+            </if>
+            <if test="levelone != null">
+                LEVELONE,
+            </if>
+            <if test="leveltwo != null">
+                LEVELTWO,
+            </if>
+            <if test="draft != null">
+                DRAFT,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null">
+                #{createdate,jdbcType=VARCHAR},
+            </if>
+            <if test="quickimg != null">
+                #{quickimg,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=DECIMAL},
+            </if>
+            <if test="csource != null">
+                #{csource,jdbcType=VARCHAR},
+            </if>
+            <if test="aother != null">
+                #{aother,jdbcType=VARCHAR},
+            </if>
+            <if test="publisher != null">
+                #{publisher,jdbcType=VARCHAR},
+            </if>
+            <if test="levelone != null">
+                #{levelone,jdbcType=VARCHAR},
+            </if>
+            <if test="leveltwo != null">
+                #{leveltwo,jdbcType=VARCHAR},
+            </if>
+            <if test="draft != null">
+                #{draft,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="getAllNotice" resultType="TbBasNoticeGd">
+        SELECT *
+        FROM TB_BAS_NOTICE_GD
+        WHERE LEVELTWO=#{levelTwo}
+    </select>
+
+    <select id="getNoticeDetail" resultType="TbBasNoticeGd">
+        SELECT *
+        FROM TB_BAS_NOTICE_GD
+        WHERE ID=#{id}
+    </select>
+</mapper>

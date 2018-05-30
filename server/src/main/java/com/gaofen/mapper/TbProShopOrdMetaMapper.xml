@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.TbProShopOrdMetaMapper">
+  <resultMap id="BaseResultMap" type="com.gaofen.model.TbProShopOrdMeta">
+    <constructor>
+      <idArg column="ID" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="ORDERID" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="PRODUCTID" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="STATE" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="SATELLITEID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SENSORID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PRODUCTDATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="PRODUCTSIZE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FILEPATH" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="REASON" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="BACKPATH" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="BACKTIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="SCENEID" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="DOWNDATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="PID" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="PRODUCTNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CLASSIFY" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ORDERID, PRODUCTID, STATE, SATELLITEID, SENSORID, PRODUCTDATE, PRODUCTSIZE, FILEPATH,
+    REASON, BACKPATH, BACKTIME, SCENEID, DOWNDATE, PID, PRODUCTNAME, CLASSIFY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from TB_PRODUCT_SHOP_ORDER_META
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from TB_PRODUCT_SHOP_ORDER_META
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.gaofen.model.TbProShopOrdMeta">
+    insert into TB_PRODUCT_SHOP_ORDER_META (ID, ORDERID, PRODUCTID,
+      STATE, SATELLITEID, SENSORID,
+      PRODUCTDATE, PRODUCTSIZE, FILEPATH, 
+      REASON, BACKPATH, BACKTIME,
+      SCENEID, DOWNDATE, PID,
+      PRODUCTNAME, CLASSIFY)
+    values (#{id,jdbcType=DECIMAL}, #{orderid,jdbcType=DECIMAL}, #{productid,jdbcType=DECIMAL},
+      #{state,jdbcType=DECIMAL}, #{satelliteid,jdbcType=VARCHAR}, #{sensorid,jdbcType=VARCHAR},
+      #{productdate,jdbcType=TIMESTAMP}, #{productsize,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR},
+      #{reason,jdbcType=VARCHAR}, #{backpath,jdbcType=VARCHAR}, #{backtime,jdbcType=TIMESTAMP},
+      #{sceneid,jdbcType=DECIMAL}, #{downdate,jdbcType=TIMESTAMP}, #{pid,jdbcType=DECIMAL},
+      #{productname,jdbcType=VARCHAR}, #{classify,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gaofen.model.TbProShopOrdMeta">
+    insert into TB_PRODUCT_SHOP_ORDER_META
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="orderid != null">
+        ORDERID,
+      </if>
+      <if test="productid != null">
+        PRODUCTID,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="satelliteid != null">
+        SATELLITEID,
+      </if>
+      <if test="sensorid != null">
+        SENSORID,
+      </if>
+      <if test="productdate != null">
+        PRODUCTDATE,
+      </if>
+      <if test="productsize != null">
+        PRODUCTSIZE,
+      </if>
+      <if test="filepath != null">
+        FILEPATH,
+      </if>
+      <if test="reason != null">
+        REASON,
+      </if>
+      <if test="backpath != null">
+        BACKPATH,
+      </if>
+      <if test="backtime != null">
+        BACKTIME,
+      </if>
+      <if test="sceneid != null">
+        SCENEID,
+      </if>
+      <if test="downdate != null">
+        DOWNDATE,
+      </if>
+      <if test="pid != null">
+        PID,
+      </if>
+      <if test="productname != null">
+        PRODUCTNAME,
+      </if>
+      <if test="classify != null">
+        CLASSIFY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=DECIMAL},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="satelliteid != null">
+        #{satelliteid,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorid != null">
+        #{sensorid,jdbcType=VARCHAR},
+      </if>
+      <if test="productdate != null">
+        #{productdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productsize != null">
+        #{productsize,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="backpath != null">
+        #{backpath,jdbcType=VARCHAR},
+      </if>
+      <if test="backtime != null">
+        #{backtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sceneid != null">
+        #{sceneid,jdbcType=DECIMAL},
+      </if>
+      <if test="downdate != null">
+        #{downdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=DECIMAL},
+      </if>
+      <if test="productname != null">
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null">
+        #{classify,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gaofen.model.TbProShopOrdMeta">
+    update TB_PRODUCT_SHOP_ORDER_META
+    <set>
+      <if test="orderid != null">
+        ORDERID = #{orderid,jdbcType=DECIMAL},
+      </if>
+      <if test="productid != null">
+        PRODUCTID = #{productid,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="satelliteid != null">
+        SATELLITEID = #{satelliteid,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorid != null">
+        SENSORID = #{sensorid,jdbcType=VARCHAR},
+      </if>
+      <if test="productdate != null">
+        PRODUCTDATE = #{productdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productsize != null">
+        PRODUCTSIZE = #{productsize,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        FILEPATH = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        REASON = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="backpath != null">
+        BACKPATH = #{backpath,jdbcType=VARCHAR},
+      </if>
+      <if test="backtime != null">
+        BACKTIME = #{backtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sceneid != null">
+        SCENEID = #{sceneid,jdbcType=DECIMAL},
+      </if>
+      <if test="downdate != null">
+        DOWNDATE = #{downdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pid != null">
+        PID = #{pid,jdbcType=DECIMAL},
+      </if>
+      <if test="productname != null">
+        PRODUCTNAME = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null">
+        CLASSIFY = #{classify,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gaofen.model.TbProShopOrdMeta">
+    update TB_PRODUCT_SHOP_ORDER_META
+    set ORDERID = #{orderid,jdbcType=DECIMAL},
+      PRODUCTID = #{productid,jdbcType=DECIMAL},
+      STATE = #{state,jdbcType=DECIMAL},
+      SATELLITEID = #{satelliteid,jdbcType=VARCHAR},
+      SENSORID = #{sensorid,jdbcType=VARCHAR},
+      PRODUCTDATE = #{productdate,jdbcType=TIMESTAMP},
+      PRODUCTSIZE = #{productsize,jdbcType=VARCHAR},
+      FILEPATH = #{filepath,jdbcType=VARCHAR},
+      REASON = #{reason,jdbcType=VARCHAR},
+      BACKPATH = #{backpath,jdbcType=VARCHAR},
+      BACKTIME = #{backtime,jdbcType=TIMESTAMP},
+      SCENEID = #{sceneid,jdbcType=DECIMAL},
+      DOWNDATE = #{downdate,jdbcType=TIMESTAMP},
+      PID = #{pid,jdbcType=DECIMAL},
+      PRODUCTNAME = #{productname,jdbcType=VARCHAR},
+      CLASSIFY = #{classify,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByOrderId"  parameterType="com.gaofen.model.TbProShopOrdMeta" resultType="com.gaofen.model.TbProShopOrdMeta">
+  SELECT * FROM  TB_PRODUCT_SHOP_ORDER_META WHERE orderId= #{orderId,jdbcType=DECIMAL}
+
+  </select>
+
+</mapper>

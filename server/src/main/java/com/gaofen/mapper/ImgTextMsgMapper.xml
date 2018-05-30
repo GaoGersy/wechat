@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.ImgTextMsgMapper">
+  <resultMap id="BaseResultMap" type="com.gaofen.model.weixin.ImgTextMsg">
+    <constructor>
+      <idArg column="MSGID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MASTERITEMID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SUBITEMIDS" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    MSGID, MASTERITEMID, SUBITEMIDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WEIXIN_IMG_TEXT_MSG
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WEIXIN_IMG_TEXT_MSG
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gaofen.model.weixin.ImgTextMsg">
+    insert into WEIXIN_IMG_TEXT_MSG (MSGID, MASTERITEMID, SUBITEMIDS
+      )
+    values (#{msgId,jdbcType=VARCHAR}, #{masterItemId,jdbcType=VARCHAR}, #{subItemIds,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gaofen.model.weixin.ImgTextMsg">
+    insert into WEIXIN_IMG_TEXT_MSG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        MSGID,
+      </if>
+      <if test="masterItemId != null">
+        MASTERITEMID,
+      </if>
+      <if test="subItemIds != null">
+        SUBITEMIDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="masterItemId != null">
+        #{masterItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="subItemIds != null">
+        #{subItemIds,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gaofen.model.weixin.ImgTextMsg">
+    update WEIXIN_IMG_TEXT_MSG
+    <set>
+      <if test="masterItemId != null">
+        MASTERITEMID = #{masterItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="subItemIds != null">
+        SUBITEMIDS = #{subItemIds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gaofen.model.weixin.ImgTextMsg">
+    update WEIXIN_IMG_TEXT_MSG
+    set MASTERITEMID = #{masterItemId,jdbcType=VARCHAR},
+      SUBITEMIDS = #{subItemIds,jdbcType=VARCHAR}
+    where MSGID = #{msgId,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="removeMsgByMsgId" parameterType="integer">
+    DELETE FROM WEIXIN_IMG_TEXT_MSG WHERE msgId = #{msgId}
+  </delete>
+  <select id="getMsgByMsgId" resultType="ImgTextMsg">
+    SELECT * FROM WEIXIN_IMG_TEXT_MSG WHERE msgId = #{msgId}
+  </select>
+
+  <select id="getAllImgTextMsg" resultType="ImgTextMsg">
+    SELECT * FROM MEDIA_MSG
+  </select>
+
+  <update id="updateByMsgId">
+    update WEIXIN_IMG_TEXT_MSG
+    set masterItemId = #{masterItemId,jdbcType=INTEGER},
+    subItemIds = #{subItemIds,jdbcType=VARCHAR}
+    where msgId = #{msgId,jdbcType=VARCHAR}
+  </update>
+</mapper>

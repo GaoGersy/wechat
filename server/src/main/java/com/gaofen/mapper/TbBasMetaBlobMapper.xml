@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.TbBasMetaBlobMapper">
+  <resultMap id="BaseResultMap" type="com.gaofen.model.TbBasMetaBlob">
+    <constructor>
+      <arg column="F_DATAID" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="F_STATE" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gaofen.model.TbBasMetaBlobWithBLOBs">
+    <constructor>
+      <arg column="F_DATAID" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="F_STATE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="F_METADATA" javaType="_byte[]" jdbcType="BLOB" />
+      <arg column="F_QUICKIMAGE1" javaType="_byte[]" jdbcType="BLOB" />
+      <arg column="F_QUICKIMAGE2" javaType="_byte[]" jdbcType="BLOB" />
+      <arg column="F_QUICKIMAGE3" javaType="_byte[]" jdbcType="BLOB" />
+      <arg column="F_QUICKIMAGE4" javaType="_byte[]" jdbcType="BLOB" />
+      <arg column="F_THUMIMAGE" javaType="_byte[]" jdbcType="BLOB" />
+      <arg column="F_QUICKIMAGE5" javaType="_byte[]" jdbcType="BLOB" />
+    </constructor>
+  </resultMap>
+  <sql id="Blob_Column_List">
+    F_METADATA, F_QUICKIMAGE1, F_QUICKIMAGE2, F_QUICKIMAGE3, F_QUICKIMAGE4, F_THUMIMAGE, 
+    F_QUICKIMAGE5
+  </sql>
+  <insert id="insert" parameterType="com.gaofen.model.TbBasMetaBlobWithBLOBs">
+    insert into TB_BAS_META_BLOB (F_DATAID, F_STATE, F_METADATA, 
+      F_QUICKIMAGE1, F_QUICKIMAGE2, F_QUICKIMAGE3, 
+      F_QUICKIMAGE4, F_THUMIMAGE, F_QUICKIMAGE5
+      )
+    values (#{fDataid,jdbcType=DECIMAL}, #{fState,jdbcType=VARCHAR}, #{f_Metadata,jdbcType=BLOB},
+      #{f_Quickimage1,jdbcType=BLOB}, #{f_Quickimage2,jdbcType=BLOB}, #{f_Quickimage3,jdbcType=BLOB},
+      #{f_Quickimage4,jdbcType=BLOB}, #{f_Thumimage,jdbcType=BLOB}, #{f_Quickimage5,jdbcType=BLOB}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gaofen.model.TbBasMetaBlobWithBLOBs">
+    insert into TB_BAS_META_BLOB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fDataid != null">
+        F_DATAID,
+      </if>
+      <if test="fState != null">
+        F_STATE,
+      </if>
+      <if test="f_Metadata != null">
+        F_METADATA,
+      </if>
+      <if test="f_Quickimage1 != null">
+        F_QUICKIMAGE1,
+      </if>
+      <if test="f_Quickimage2 != null">
+        F_QUICKIMAGE2,
+      </if>
+      <if test="f_Quickimage3 != null">
+        F_QUICKIMAGE3,
+      </if>
+      <if test="f_Quickimage4 != null">
+        F_QUICKIMAGE4,
+      </if>
+      <if test="f_Thumimage != null">
+        F_THUMIMAGE,
+      </if>
+      <if test="f_Quickimage5 != null">
+        F_QUICKIMAGE5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fDataid != null">
+        #{fDataid,jdbcType=DECIMAL},
+      </if>
+      <if test="fState != null">
+        #{fState,jdbcType=VARCHAR},
+      </if>
+      <if test="f_Metadata != null">
+        #{f_Metadata,jdbcType=BLOB},
+      </if>
+      <if test="f_Quickimage1 != null">
+        #{f_Quickimage1,jdbcType=BLOB},
+      </if>
+      <if test="f_Quickimage2 != null">
+        #{f_Quickimage2,jdbcType=BLOB},
+      </if>
+      <if test="f_Quickimage3 != null">
+        #{f_Quickimage3,jdbcType=BLOB},
+      </if>
+      <if test="f_Quickimage4 != null">
+        #{f_Quickimage4,jdbcType=BLOB},
+      </if>
+      <if test="f_Thumimage != null">
+        #{f_Thumimage,jdbcType=BLOB},
+      </if>
+      <if test="f_Quickimage5 != null">
+        #{f_Quickimage5,jdbcType=BLOB},
+      </if>
+    </trim>
+  </insert>
+  <select id="getImageById" parameterType="long" resultType="TbBasMetaBlobWithBLOBs">
+    SELECT F_THUMIMAGE
+    FROM TB_BAS_META_BLOB
+    WHERE F_DATAID = #{dataId}
+  </select>
+
+</mapper>

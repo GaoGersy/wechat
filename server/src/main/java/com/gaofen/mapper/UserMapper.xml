@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.gaofen.model.User">
+    <constructor>
+      <arg column="userName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="passWord" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="loginTime" javaType="java.lang.Integer" jdbcType="DECIMAL" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="DECIMAL" />
+      <arg column="openId" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.gaofen.model.User">
+    insert into USERINFO (userName, passWord, loginTime, 
+      status, openId)
+    values (#{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}, #{loginTime,jdbcType=DECIMAL}, 
+      #{status,jdbcType=DECIMAL}, #{openId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gaofen.model.User">
+    insert into USERINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="passWord != null">
+        passWord,
+      </if>
+      <if test="loginTime != null">
+        loginTime,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="openId != null">
+        openId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="passWord != null">
+        #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="queryUser" parameterType="string" resultType="com.gaofen.model.User">
+    SELECT * FROM  USERINFO WHERE openId = #{openId,jdbcType=VARCHAR}
+  </select>
+
+  <update id="updateUserStaus" parameterType="com.gaofen.model.User" >
+
+
+    update USERINFO
+    <set>
+
+        USERINFO.status =   #{status,jdbcType=DECIMAL}
+
+    </set>
+    where openId = #{openId}
+  </update>
+  <select id="queryUserByUserName" parameterType="string" resultType="com.gaofen.model.User">
+    SELECT * FROM  USERINFO WHERE userName= #{userName}
+  </select>
+
+<delete id="deleteUserById" parameterType="string"
+>
+
+DELETE FROM USERINFO WHERE openId= #{openId}
+</delete>
+
+</mapper>

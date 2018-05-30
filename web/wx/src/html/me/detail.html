@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="../../js/lib/weui/weui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/me.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../../js/lib/webapp/fix.js"></script>
+    <title>通知公告详情</title>
+</head>
+<body >
+    <div class="message-detail scroll" id="detail" v-cloak>
+       <article class="weui-article">
+            <!-- <h1>{{list.leveltwo}}</h1> -->
+            <section>
+                <h2 class="title">{{list.title}}</h2></br>
+                <section>
+                    <h3 class="time">{{list.createdate}}</h3>
+                    <p v-html="list.content">
+                        <!-- {{list.content}} -->
+                    </p>
+                </section>
+            </section>
+        </article>
+    </div>
+</body>
+<script type="text/javascript" data-main="../../js/dev/me/detail" src="../../js/lib/requirejs/require.js" defer async="true"></script>
+</html>

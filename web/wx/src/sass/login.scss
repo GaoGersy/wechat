@@ -1,0 +1,151 @@
+
+// login start
+.login{
+  font-size: 0.32rem;
+  .login-card{
+    margin:0 0.4rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,.3);
+    .userName{
+      margin-top: 0.4rem;
+    }
+  }
+  .auto-login{
+    text-align: center;
+  }
+  
+  .weui-cells_form{
+    border-radius: 0.2rem;
+    padding:0 0.2rem;
+  }
+  .weui-cell{
+    padding:15px;
+  }
+  .weui-cell:before{
+    right: 0.3rem;
+  }
+  .submit{
+    padding-top: 0.6rem;
+    padding-bottom:0.6rem;
+    .weui-btn{
+      width: 100%;
+    }
+  }
+  .title{
+   // display: inline-block;
+    font-size: 0.5rem;
+    text-align: center;
+    height: 1.5rem;
+    // line-height: 2rem;
+    color: #155E8A;
+    font-weight: 600;
+    font-family: cursive;
+    // text-shadow: 1px 5px 1px #cdcdcd;
+  }
+  .logo{
+      text-align: center;
+      width: 7.5rem;
+      margin-top: 0.4rem;
+      height: 2rem;
+      line-height: 2rem;
+      img{
+          //display: inline-block;
+          width: 1.2rem;
+          vertical-align: middle;
+      }
+  }
+  .weui-cell_vcode{
+    .code{
+      z-index: 10;
+    }
+    .validation-img{
+      height: 0.52rem;
+      width: 1.17rem;
+      border-color: transparent;
+      border:1px solid #ccc;
+    }
+  }
+  .defautl-code{
+    display: inline-block;
+    width: 1.17rem;
+    height: 0.51rem;
+    // border: 1px solid #ccc;
+    text-align: center;
+    line-height: 0.51rem;
+    position: absolute;
+    right: 0.48rem;
+    bottom: 2.4rem;
+    z-index: 1;
+    color:#ccc;
+  }
+}
+// login end
+
+// logout start
+.logout {
+  background: #f8f8f8;
+  margin-top: 40%;
+  .cancel{
+   margin:1rem 0.4rem 0;
+
+  }
+  .isLogin {
+    font-size: 0.6rem;
+    text-align: center;
+  }
+  .userName {
+    font-size: 0.32rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .login {
+    font-size: 0.34rem;
+    width: 4rem;
+    height: 0.8rem;
+    background: #45C01A;
+    border-width: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2.5rem;
+    border-radius: 3px;
+    color: white;
+  }
+}
+
+// logout end
+
+//searchResult start
+.searchResult {
+  background: #f8f8f8;
+  li {
+    margin-top: 0.2rem;
+    height: 1.8rem;
+    background: white;
+    .imgIcon {
+      width: 1.2rem;
+      height: 1.2rem;
+      margin-left: 0.2rem;
+      margin-top: 0.21rem;
+      margin-bottom: auto;
+      float: left;
+    }
+    .text {
+      float: left;
+      margin-top: 0.06rem;
+      margin-left: 0.2rem;
+      p {
+        font-size: 0.3rem;
+      }
+    }
+    .detailIcon {
+      width: 0.6rem;
+      height: 0.6rem;
+      float: right;
+      margin-right: 0.2rem;
+      margin-top: 0.6rem;
+      margin-bottom: auto;
+    }
+  }
+}
+
+//searchResult end

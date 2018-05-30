@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telphone=no, email=no"/>
+	<meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="./css/shadow.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="./js/lib/webapp/fix.js"></script>
+</head>
+<body>
+	<div class="index">
+		<div class="shadow" onclick="shadow();">影像查询</div>
+		<div class="order" onclick="order();">查询订单</div>
+	</div>
+	
+	<script type="text/javascript">
+		function shadow(){
+			window.location.href="./html/shadow/position.html"
+		}
+		function order(){
+			window.location.href="./html/order/orderList.html"
+		}
+	</script>
+</body>
+<!-- <script type="text/javascript" data-main="../../js/dev/doctor/arrage" src="../../js/lib/requirejs/require.js" defer async="true"></script> -->
+</html>

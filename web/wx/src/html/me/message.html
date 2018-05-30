@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="../../css/me.css" rel="stylesheet" type="text/css"/>
+    <link href="../../js/lib/weui/weui.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../../js/lib/webapp/fix.js"></script>
+    <title>通知公告</title>
+</head>
+
+<body >
+    <div class="message scroll" id="message" v-cloak>
+        <article class="weui-article content">
+            <section>
+                <ul class="list">
+                    <li v-for="item in list" @click="getDetail(item)">
+                        <a href="#">
+                            <span class="title">{{item.title}}</span>
+                            <span class="time"> {{item.createdate | timeFomat}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </article>
+       <!--  <div class="hide-img" :class="{'null':isnull}">
+            <img src="../../images/null1.png" alt="">
+            <p class="noData">没有任何数据</p>
+        </div>
+        <div class="hide-img" :class="{'network':iswork}">
+            <img src="../../images/network.png" alt="">
+            <p class="noData">请求网络出错，请刷新！</p>
+        </div>-->
+        <!-- <div class="weui-loadmore loading-data hide-img" :class="{'loading':isloading}">
+            <i class="weui-loading loading-icon"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+        </div>  -->
+    </div>
+</body>
+<script type="text/javascript" data-main="../../js/dev/me/message" src="../../js/lib/requirejs/require.js" defer async="true"></script>
+</html>

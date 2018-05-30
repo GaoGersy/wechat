@@ -1,0 +1,417 @@
+html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, table, th, td, form, input, button, textarea, menu {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th {
+  text-align: left;
+  font-weight: normal;
+}
+
+html, body, img, iframe {
+  border: 0;
+}
+
+li {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, small {
+  font-size: 100%;
+}
+
+textarea {
+  overflow: auto;
+  resize: none;
+}
+
+label, summary {
+  cursor: default;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, em, strong, b {
+  font-weight: bold;
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+body {
+  background: #fff;
+}
+
+a {
+  color: #000;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+/*==for IE6/7 Maxthon2==*/
+.clearfix:after {
+  clear: both;
+  content: '.';
+  display: block;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.searchResult .loading-data, .order .loading-data, .orderList .loading-data {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  margin-left: -2.40rem;
+  top: 50%;
+  margin-top: -0.45rem;
+  z-index: 1005;
+}
+
+.searchResult .loading-icon, .order .loading-icon, .orderList .loading-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.searchResult .null, .searchResult .network, .order .null, .order .network, .orderList .null, .orderList .network {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: none;
+  width: 4rem;
+  height: 3rem;
+  text-align: center;
+}
+
+.scroll {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.searchResult {
+  background: #f8f8f8;
+}
+
+.searchResult .hide-img {
+  display: none;
+}
+
+.searchResult .loading {
+  display: inline-block;
+}
+
+.searchResult .null, .searchResult .network {
+  display: inline-block;
+}
+
+.searchResult .null .noData, .searchResult .network .noData {
+  font-size: 0.32rem;
+  color: #ccc;
+}
+
+.searchResult .content {
+  display: none;
+}
+
+.searchResult .imgList {
+  background-color: #fff;
+}
+
+.searchResult li {
+  height: 2rem;
+  background: #fff;
+  border-bottom: 1px solid #cdcdcd;
+  margin-left: 0.2rem;
+  box-sizing: border-box;
+  padding-top: 0.24rem;
+}
+
+.searchResult li .img-icon {
+  width: 2rem;
+  height: 1.5rem;
+  float: left;
+}
+
+.searchResult li .text {
+  float: left;
+  width: 4.8rem;
+  margin-left: 0.2rem;
+  line-height: 1.4;
+}
+
+.searchResult li .text p {
+  color: #5b5b5b;
+  font-size: 0.28rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.searchResult li .detail-icon {
+  width: 0.5rem;
+  height: 0.5rem;
+  float: right;
+  margin-right: 0.2rem;
+  margin-top: 0.75rem;
+  margin-bottom: auto;
+}
+
+.order {
+  background: #f8f8f8;
+}
+
+.order .hide-img {
+  display: none;
+}
+
+.order .loading {
+  display: inline-block;
+}
+
+.order .null, .order .network {
+  display: inline-block;
+}
+
+.order .null .noData, .order .network .noData {
+  font-size: 0.32rem;
+  color: #ccc;
+}
+
+.order .dropload-down {
+  display: none;
+}
+
+.order .order-list {
+  background-color: #fff;
+  display: none;
+}
+
+.order .order-list .name {
+  font-size: 0.3rem;
+  padding-left: 0.2rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.order .item {
+  border-bottom: 1px solid #cdcdcd;
+  margin-left: 0.2rem;
+  padding: 0.2rem 0;
+}
+
+.order .item .img-icon {
+  width: 2rem;
+  height: 1.5rem;
+  float: left;
+}
+
+.order .item .text {
+  float: left;
+  width: 4.8rem;
+  line-height: 1.6;
+  padding-left: 0.2rem;
+  color: #5b5b5b;
+}
+
+.order .item .text p {
+  font-size: 0.3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.order .item .detail-icon {
+  width: 0.5rem;
+  height: 0.5rem;
+  float: right;
+  margin-right: 0.2rem;
+  margin-top: 0.65rem;
+  margin-bottom: auto;
+}
+
+.order .null img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.order .null .noData {
+  font-size: 0.32rem;
+  color: #ccc;
+}
+
+.orderList {
+  background: #f8f8f8;
+}
+
+.orderList .hide-img {
+  display: none;
+}
+
+.orderList .loading {
+  display: inline-block;
+}
+
+.orderList .null, .orderList .network {
+  display: inline-block;
+}
+
+.orderList .null .noData, .orderList .network .noData {
+  font-size: 0.32rem;
+  color: #ccc;
+}
+
+.orderList .dropload-down {
+  display: none;
+}
+
+.orderList .contentList {
+  margin: 0 0.2rem 0;
+}
+
+.orderList .tips {
+  background: white;
+  font-size: 0.34rem;
+  width: 100%;
+}
+
+.orderList .tips .tab .item {
+  float: left;
+  width: 33.3%;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  text-align: center;
+  box-sizing: border-box;
+  color: #666;
+  font-size: 0.32rem;
+}
+
+.orderList .tips .tab .on {
+  border-bottom: 2px solid #45C01A;
+  color: #45C01A;
+}
+
+.orderList .content {
+  display: none;
+}
+
+.orderList .content ul li {
+  background: #fff;
+  padding-left: 0.2rem;
+  margin-top: 0.2rem;
+  padding: 0.1rem 0.2rem;
+}
+
+.orderList .content ul li .text {
+  float: left;
+  line-height: 1.7;
+  margin-top: 0.2rem;
+  width: 70%;
+  font-size: 0.3rem;
+}
+
+.orderList .content ul li .text .data {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 0.6rem;
+}
+
+.orderList .content ul li .text label {
+  display: inline-block;
+  width: 1.5rem;
+  color: #666;
+  padding-left: 0.1rem;
+}
+
+.orderList .content ul li .text .order-data {
+  width: 70%;
+  color: #333;
+}
+
+.orderList .content ul li .text .order-name {
+  width: 6.2rem;
+}
+
+.orderList .content ul li .text .icon {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: url("../images/namelist.png") no-repeat;
+  vertical-align: middle;
+}
+
+.orderList .content ul li .text .name {
+  background: url("../images/namelist.png") no-repeat;
+  background-size: 0.4rem;
+}
+
+.orderList .content ul li .text .num {
+  background: url("../images/num1.png") no-repeat;
+  background-size: 0.4rem;
+}
+
+.orderList .content ul li .text .time {
+  background: url("../images/meditor-time.png") no-repeat;
+  background-size: 0.4rem;
+}
+
+.orderList .content ul li .text .statu {
+  background: url("../images/audit.png") no-repeat;
+  background-size: 0.4rem;
+}
+
+.orderList .content ul li .more {
+  width: 30%;
+  height: 0.64rem;
+  float: right;
+  margin-top: 0.9rem;
+  font-size: 0.3rem;
+}
+
+.orderList .content ul li .detail-icon {
+  width: 0.5rem;
+  height: 0.5rem;
+  float: right;
+  margin-top: 0.04rem;
+}
+
+.orderList .content ul li .cancel {
+  font-size: 0.3rem;
+  width: 1.6rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  border: 1px solid  #45C01A;
+  color: #45C01A;
+  border-radius: 0.1rem;
+  float: left;
+  outline: none;
+  text-align: center;
+}

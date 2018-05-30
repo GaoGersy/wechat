@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaofen.mapper.ProductOrderMapper">
+    <resultMap id="BaseResultMap" type="com.gaofen.model.ProductOrder">
+        <constructor>
+            <idArg column="ID" javaType="java.math.BigDecimal" jdbcType="DECIMAL"/>
+            <arg column="USERID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="ORDERDATE" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="AUDITDATE" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="ISDELL" javaType="java.math.BigDecimal" jdbcType="DECIMAL"/>
+            <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="DATASIZE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="SERIALID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="DISSTATE" javaType="java.math.BigDecimal" jdbcType="DECIMAL"/>
+            <arg column="CHECKID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="CHECKNAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="REMARK" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="SPECIFICATIONS" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="DATAAPPLICATION" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="DATALEVEL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="ORDERSOURCE" javaType="java.math.BigDecimal" jdbcType="DECIMAL"/>
+            <arg column="ISCUSTOM" javaType="java.math.BigDecimal" jdbcType="DECIMAL"/>
+            <arg column="STATE" javaType="java.math.BigDecimal" jdbcType="DECIMAL"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, USERID, ORDERDATE, AUDITDATE, ISDELL, USERNAME, DATASIZE, SERIALID, DISSTATE, 
+    CHECKID, CHECKNAME, REMARK, SPECIFICATIONS, DATAAPPLICATION, DATALEVEL, ORDERSOURCE, 
+    ISCUSTOM, STATE
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TB_PRODUCT_SHOP_ORDER
+        where ID = #{ID,jdbcType=DECIMAL}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from TB_PRODUCT_SHOP_ORDER
+    where ID = #{ID,jdbcType=DECIMAL}
+  </delete>
+    <insert id="insert" parameterType="com.gaofen.model.ProductOrder">
+    insert into TB_PRODUCT_SHOP_ORDER (ID, USERID, ORDERDATE, 
+      AUDITDATE, ISDELL, USERNAME, 
+      DATASIZE, SERIALID, DISSTATE, 
+      CHECKID, CHECKNAME, REMARK, 
+      SPECIFICATIONS, DATAAPPLICATION, DATALEVEL, 
+      ORDERSOURCE, ISCUSTOM, STATE
+      )
+    values (#{ID,jdbcType=DECIMAL}, #{USERID,jdbcType=VARCHAR}, #{ORDERDATE,jdbcType=TIMESTAMP}, 
+      #{AUDITDATE,jdbcType=TIMESTAMP}, #{ISDELL,jdbcType=DECIMAL}, #{USERNAME,jdbcType=VARCHAR}, 
+      #{DATASIZE,jdbcType=VARCHAR}, #{SERIALID,jdbcType=VARCHAR}, #{DISSTATE,jdbcType=DECIMAL}, 
+      #{CHECKID,jdbcType=VARCHAR}, #{CHECKNAME,jdbcType=VARCHAR}, #{REMARK,jdbcType=VARCHAR}, 
+      #{SPECIFICATIONS,jdbcType=VARCHAR}, #{DATAAPPLICATION,jdbcType=VARCHAR}, #{DATALEVEL,jdbcType=VARCHAR}, 
+      #{ORDERSOURCE,jdbcType=DECIMAL}, #{ISCUSTOM,jdbcType=DECIMAL}, #{STATE,jdbcType=DECIMAL}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.gaofen.model.ProductOrder">
+        insert into TB_PRODUCT_SHOP_ORDER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ID != null">
+                ID,
+            </if>
+            <if test="USERID != null">
+                USERID,
+            </if>
+            <if test="ORDERDATE != null">
+                ORDERDATE,
+            </if>
+            <if test="AUDITDATE != null">
+                AUDITDATE,
+            </if>
+            <if test="ISDELL != null">
+                ISDELL,
+            </if>
+            <if test="USERNAME != null">
+                USERNAME,
+            </if>
+            <if test="DATASIZE != null">
+                DATASIZE,
+            </if>
+            <if test="SERIALID != null">
+                SERIALID,
+            </if>
+            <if test="DISSTATE != null">
+                DISSTATE,
+            </if>
+            <if test="CHECKID != null">
+                CHECKID,
+            </if>
+            <if test="CHECKNAME != null">
+                CHECKNAME,
+            </if>
+            <if test="REMARK != null">
+                REMARK,
+            </if>
+            <if test="SPECIFICATIONS != null">
+                SPECIFICATIONS,
+            </if>
+            <if test="DATAAPPLICATION != null">
+                DATAAPPLICATION,
+            </if>
+            <if test="DATALEVEL != null">
+                DATALEVEL,
+            </if>
+            <if test="ORDERSOURCE != null">
+                ORDERSOURCE,
+            </if>
+            <if test="ISCUSTOM != null">
+                ISCUSTOM,
+            </if>
+            <if test="STATE != null">
+                STATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ID != null">
+                #{ID,jdbcType=DECIMAL},
+            </if>
+            <if test="USERID != null">
+                #{USERID,jdbcType=VARCHAR},
+            </if>
+            <if test="ORDERDATE != null">
+                #{ORDERDATE,jdbcType=TIMESTAMP},
+            </if>
+            <if test="AUDITDATE != null">
+                #{AUDITDATE,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ISDELL != null">
+                #{ISDELL,jdbcType=DECIMAL},
+            </if>
+            <if test="USERNAME != null">
+                #{USERNAME,jdbcType=VARCHAR},
+            </if>
+            <if test="DATASIZE != null">
+                #{DATASIZE,jdbcType=VARCHAR},
+            </if>
+            <if test="SERIALID != null">
+                #{SERIALID,jdbcType=VARCHAR},
+            </if>
+            <if test="DISSTATE != null">
+                #{DISSTATE,jdbcType=DECIMAL},
+            </if>
+            <if test="CHECKID != null">
+                #{CHECKID,jdbcType=VARCHAR},
+            </if>
+            <if test="CHECKNAME != null">
+                #{CHECKNAME,jdbcType=VARCHAR},
+            </if>
+            <if test="REMARK != null">
+                #{REMARK,jdbcType=VARCHAR},
+            </if>
+            <if test="SPECIFICATIONS != null">
+                #{SPECIFICATIONS,jdbcType=VARCHAR},
+            </if>
+            <if test="DATAAPPLICATION != null">
+                #{DATAAPPLICATION,jdbcType=VARCHAR},
+            </if>
+            <if test="DATALEVEL != null">
+                #{DATALEVEL,jdbcType=VARCHAR},
+            </if>
+            <if test="ORDERSOURCE != null">
+                #{ORDERSOURCE,jdbcType=DECIMAL},
+            </if>
+            <if test="ISCUSTOM != null">
+                #{ISCUSTOM,jdbcType=DECIMAL},
+            </if>
+            <if test="STATE != null">
+                #{STATE,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.gaofen.model.ProductOrder">
+        update TB_PRODUCT_SHOP_ORDER
+        <set>
+            <if test="USERID != null">
+                USERID = #{USERID,jdbcType=VARCHAR},
+            </if>
+            <if test="ORDERDATE != null">
+                ORDERDATE = #{ORDERDATE,jdbcType=TIMESTAMP},
+            </if>
+            <if test="AUDITDATE != null">
+                AUDITDATE = #{AUDITDATE,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ISDELL != null">
+                ISDELL = #{ISDELL,jdbcType=DECIMAL},
+            </if>
+            <if test="USERNAME != null">
+                USERNAME = #{USERNAME,jdbcType=VARCHAR},
+            </if>
+            <if test="DATASIZE != null">
+                DATASIZE = #{DATASIZE,jdbcType=VARCHAR},
+            </if>
+            <if test="SERIALID != null">
+                SERIALID = #{SERIALID,jdbcType=VARCHAR},
+            </if>
+            <if test="DISSTATE != null">
+                DISSTATE = #{DISSTATE,jdbcType=DECIMAL},
+            </if>
+            <if test="CHECKID != null">
+                CHECKID = #{CHECKID,jdbcType=VARCHAR},
+            </if>
+            <if test="CHECKNAME != null">
+                CHECKNAME = #{CHECKNAME,jdbcType=VARCHAR},
+            </if>
+            <if test="REMARK != null">
+                REMARK = #{REMARK,jdbcType=VARCHAR},
+            </if>
+            <if test="SPECIFICATIONS != null">
+                SPECIFICATIONS = #{SPECIFICATIONS,jdbcType=VARCHAR},
+            </if>
+            <if test="DATAAPPLICATION != null">
+                DATAAPPLICATION = #{DATAAPPLICATION,jdbcType=VARCHAR},
+            </if>
+            <if test="DATALEVEL != null">
+                DATALEVEL = #{DATALEVEL,jdbcType=VARCHAR},
+            </if>
+            <if test="ORDERSOURCE != null">
+                ORDERSOURCE = #{ORDERSOURCE,jdbcType=DECIMAL},
+            </if>
+            <if test="ISCUSTOM != null">
+                ISCUSTOM = #{ISCUSTOM,jdbcType=DECIMAL},
+            </if>
+            <if test="STATE != null">
+                STATE = #{STATE,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where ID = #{ID,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gaofen.model.ProductOrder">
+    update TB_PRODUCT_SHOP_ORDER
+    set USERID = #{USERID,jdbcType=VARCHAR},
+      ORDERDATE = #{ORDERDATE,jdbcType=TIMESTAMP},
+      AUDITDATE = #{AUDITDATE,jdbcType=TIMESTAMP},
+      ISDELL = #{ISDELL,jdbcType=DECIMAL},
+      USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      DATASIZE = #{DATASIZE,jdbcType=VARCHAR},
+      SERIALID = #{SERIALID,jdbcType=VARCHAR},
+      DISSTATE = #{DISSTATE,jdbcType=DECIMAL},
+      CHECKID = #{CHECKID,jdbcType=VARCHAR},
+      CHECKNAME = #{CHECKNAME,jdbcType=VARCHAR},
+      REMARK = #{REMARK,jdbcType=VARCHAR},
+      SPECIFICATIONS = #{SPECIFICATIONS,jdbcType=VARCHAR},
+      DATAAPPLICATION = #{DATAAPPLICATION,jdbcType=VARCHAR},
+      DATALEVEL = #{DATALEVEL,jdbcType=VARCHAR},
+      ORDERSOURCE = #{ORDERSOURCE,jdbcType=DECIMAL},
+      ISCUSTOM = #{ISCUSTOM,jdbcType=DECIMAL},
+      STATE = #{STATE,jdbcType=DECIMAL}
+    where ID = #{ID,jdbcType=DECIMAL}
+  </update>
+
+    <select id="queryProductByUserId" resultType="com.gaofen.model.ProductOrder">
+        SELECT *
+        FROM TB_PRODUCT_SHOP_ORDER
+        WHERE USERID = #{userId}
+        <if test="orderTime != null">
+            AND ORDERDATE &gt;= #{orderTime}
+        </if>
+        ORDER BY ORDERDATE DESC
+    </select>
+
+</mapper>
